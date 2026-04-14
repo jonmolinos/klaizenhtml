@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Klaizen · Bienestar del aula</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:#fff;color:#1a1a2e;-webkit-font-smoothing:antialiased;}
+button,textarea,input,select{font-family:'Plus Jakarta Sans',sans-serif;}
+.nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-bottom:1px solid #f0f0f0;padding:0 32px;height:64px;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{font-size:21px;font-weight:800;color:#3a3a3a;letter-spacing:-.5px;display:flex;align-items:center;gap:10px;}
+.nav-links{display:flex;gap:26px;}
+.nl{font-size:14px;font-weight:500;color:#555;background:none;border:none;cursor:pointer;}
+.nl:hover{color:#1a1a2e;}
+.nav-r{display:flex;gap:8px;align-items:center;}
+.lang{padding:5px 11px;border-radius:6px;border:1.5px solid #e5e5e5;background:none;font-size:12px;font-weight:700;cursor:pointer;color:#666;transition:all .2s;}
+.lang.on{border-color:#FF6B35;color:#FF6B35;background:#FFF0EB;}
+.btn{display:inline-flex;align-items:center;gap:7px;padding:12px 24px;border-radius:10px;border:none;font-size:14px;font-weight:700;cursor:pointer;transition:all .18s;}
+.bp{background:#FF6B35;color:white;}
+.bp:hover{background:#e85a25;transform:translateY(-1px);box-shadow:0 6px 20px rgba(255,107,53,.3);}
+.bo{background:white;color:#1a1a2e;border:2px solid #e5e5e5;}
+.bo:hover{border-color:#1a1a2e;}
+.bs{padding:9px 20px;font-size:13px;border-radius:8px;}
+.bw{background:white;color:#FF6B35;}
+.bw:hover{background:#fff8f5;}
+.bgbtn{background:#f5f5f5;color:#555;border:none;padding:9px 18px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;transition:all .18s;}
+.bgbtn:hover{background:#eee;color:#1a1a2e;}
+.hero{padding:80px 32px 72px;max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+.hero-tag{display:inline-block;padding:6px 16px;border-radius:999px;background:#FFF0EB;color:#FF6B35;font-size:13px;font-weight:600;margin-bottom:20px;}
+.hero-h1{font-size:clamp(36px,5vw,56px);font-weight:800;line-height:1.08;letter-spacing:-1.5px;margin-bottom:18px;}
+.hero-h1 span{color:#FF6B35;}
+.hero-sub{font-size:16px;line-height:1.65;color:#555;margin-bottom:30px;max-width:480px;}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;}
+.hv{background:linear-gradient(135deg,#fff8f5,#f0f4ff);border-radius:24px;border:1px solid #e8e8f0;padding:26px;box-shadow:0 20px 60px rgba(0,0,0,.06);}
+.hcard{background:white;border-radius:14px;padding:18px;box-shadow:0 4px 16px rgba(0,0,0,.06);margin-bottom:10px;}
+.hcard:last-child{margin-bottom:0;}
+.hcard-lbl{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#aaa;margin-bottom:10px;}
+.mbars{display:flex;gap:5px;align-items:flex-end;height:52px;}
+.mbar{flex:1;border-radius:4px 4px 0 0;}
+.mbar-l{font-size:9px;color:#aaa;text-align:center;margin-top:3px;}
+.pdot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#22c55e;margin-right:5px;animation:pd 1.5s ease-in-out infinite;}
+@keyframes pd{0%,100%{opacity:1;}50%{opacity:.3;}}
+.sf{padding:80px 32px;background:#f8f8fa;}
+.s{padding:80px 32px;max-width:1100px;margin:0 auto;}
+.stag{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#FF6B35;margin-bottom:10px;}
+.sh{font-size:clamp(26px,4vw,40px);font-weight:800;letter-spacing:-.8px;margin-bottom:10px;line-height:1.15;}
+.ssub{font-size:15px;color:#666;max-width:540px;line-height:1.6;margin-bottom:44px;}
+.rg{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+.rc{padding:26px;border-radius:20px;border:1.5px solid #f0f0f0;transition:all .25s;background:white;}
+.rc:hover{border-color:#FF6B35;transform:translateY(-3px);box-shadow:0 10px 28px rgba(255,107,53,.1);}
+.ri{font-size:30px;margin-bottom:12px;}
+.rn{font-size:15px;font-weight:800;margin-bottom:7px;}
+.rd{font-size:13px;color:#666;line-height:1.55;}
+.stg{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;}
+.stc{padding:22px;border-radius:16px;background:white;border:1px solid #f0f0f0;}
+.stn{font-size:12px;font-weight:800;color:#FF6B35;margin-bottom:10px;}
+.stt{font-size:14px;font-weight:700;color:#1a1a2e;margin-bottom:7px;line-height:1.3;}
+.std{font-size:12px;color:#666;line-height:1.5;}
+.dg{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.dc{padding:20px;border-radius:14px;display:flex;gap:12px;align-items:flex-start;border:1.5px solid #f0f0f0;transition:all .2s;}
+.dc:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.06);}
+.de{font-size:26px;flex-shrink:0;}
+.dl{font-size:14px;font-weight:700;margin-bottom:2px;}
+.dd{font-size:12px;color:#888;}
+.pg{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+.pc{padding:22px;border-radius:16px;background:#f8f8fa;border:1px solid #f0f0f0;text-align:center;}
+.pi{font-size:26px;margin-bottom:10px;}
+.pt{font-size:14px;font-weight:700;margin-bottom:5px;}
+.pd2{font-size:12px;color:#666;line-height:1.5;}
+.ctab{background:linear-gradient(135deg,#FF6B35,#ff4500);border-radius:26px;padding:60px;text-align:center;margin:0 32px 80px;}
+.ctab h2{font-size:clamp(26px,4vw,40px);font-weight:800;color:white;margin-bottom:10px;letter-spacing:-.8px;}
+.ctab p{font-size:15px;color:rgba(255,255,255,.85);margin-bottom:28px;}
+footer{background:#1a1a2e;padding:28px;text-align:center;}
+footer p{font-size:12px;color:#555;}
+/* Panel */
+.panel{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.5);backdrop-filter:blur(4px);display:flex;align-items:stretch;justify-content:flex-end;animation:fi .2s ease;}
+@keyframes fi{from{opacity:0;}to{opacity:1;}}
+.sheet{width:min(500px,100%);background:#f8f8fa;overflow-y:auto;display:flex;flex-direction:column;animation:si .25s ease;}
+@keyframes si{from{transform:translateX(100%);}to{transform:translateX(0);}}
+.ah{background:white;border-bottom:1px solid #eee;padding:14px 20px;display:flex;align-items:center;gap:8px;position:sticky;top:0;z-index:10;}
+.alogo{font-size:17px;font-weight:800;color:#3a3a3a;display:flex;align-items:center;gap:7px;}
+.atabs{display:flex;gap:3px;background:#f5f5f5;padding:3px;border-radius:7px;}
+.atab{padding:6px 14px;border-radius:5px;border:none;font-size:12px;font-weight:600;cursor:pointer;background:transparent;color:#888;transition:all .2s;}
+.atab.on{background:white;color:#1a1a2e;box-shadow:0 1px 3px rgba(0,0,0,.1);}
+.xbtn{width:30px;height:30px;border-radius:50%;border:none;background:#f5f5f5;cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-left:auto;}
+.xbtn:hover{background:#eee;}
+.ab{padding:18px;flex:1;}
+.card{background:white;border:1px solid #eee;border-radius:14px;padding:20px;margin-bottom:14px;animation:up .3s ease forwards;}
+@keyframes up{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+.ey{font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#FF6B35;margin-bottom:5px;}
+.ch2{font-size:18px;font-weight:800;color:#1a1a2e;margin-bottom:5px;line-height:1.25;letter-spacing:-.3px;}
+.cb2t{font-size:12px;color:#666;line-height:1.55;}
+.pt2{height:3px;background:#f0f0f0;border-radius:3px;overflow:hidden;margin:12px 0;}
+.pf{height:100%;background:#FF6B35;border-radius:3px;transition:width .5s ease;}
+.eg{display:grid;grid-template-columns:repeat(5,1fr);gap:5px;margin:14px 0;}
+.eb{display:flex;flex-direction:column;align-items:center;gap:4px;padding:11px 3px;border-radius:11px;border:1.5px solid #eee;background:#fafafa;cursor:pointer;transition:all .18s;}
+.eb:hover,.eb.on{border-color:#FF6B35;background:#FFF0EB;}
+.ee{font-size:22px;}
+.el{font-size:9px;color:#aaa;text-align:center;font-weight:500;}
+.cpg{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0;}
+.cp{padding:6px 13px;border-radius:999px;border:1.5px solid #eee;background:#fafafa;font-size:11px;color:#666;cursor:pointer;transition:all .18s;}
+.cp:hover,.cp.on{border-color:#FF6B35;background:#FFF0EB;color:#FF6B35;font-weight:500;}
+textarea{width:100%;background:#fafafa;border:1.5px solid #eee;border-radius:9px;padding:11px;color:#1a1a2e;font-size:12px;resize:none;outline:none;transition:border .2s;line-height:1.5;}
+textarea:focus{border-color:#FF6B35;}
+textarea::placeholder{color:#ccc;}
+input[type=range]{width:100%;height:4px;-webkit-appearance:none;appearance:none;background:linear-gradient(90deg,#FF6B35 var(--v,50%),#eee var(--v,50%));border-radius:4px;outline:none;cursor:pointer;}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:17px;height:17px;border-radius:50%;background:#FF6B35;box-shadow:0 0 0 3px #FFF0EB;}
+.slbl{display:flex;justify-content:space-between;font-size:10px;color:#aaa;margin-bottom:7px;}
+.sv{text-align:center;font-size:24px;font-weight:800;color:#FF6B35;margin-top:7px;}
+.acts{display:flex;gap:8px;justify-content:flex-end;margin-top:16px;flex-wrap:wrap;}
+.dv{height:1px;background:#f0f0f0;margin:14px 0;border:none;}
+.dr{margin:12px 0;}
+.drw{display:flex;align-items:center;gap:7px;margin-bottom:8px;}
+.drl{font-size:10px;width:100px;flex-shrink:0;color:#666;font-weight:500;}
+.drb{flex:1;height:5px;background:#f0f0f0;border-radius:5px;overflow:hidden;}
+.drf{height:100%;border-radius:5px;transition:width .7s ease;}
+.drv{font-size:10px;font-weight:700;width:26px;text-align:right;flex-shrink:0;}
+.sem{display:flex;align-items:flex-start;gap:9px;padding:10px 13px;border-radius:9px;font-size:11px;line-height:1.45;border:1px solid;margin-bottom:6px;}
+.sdd{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:2px;}
+.alrt{display:flex;gap:8px;padding:11px 13px;border-radius:9px;font-size:11px;align-items:flex-start;margin:7px 0;background:#FFFBEB;border:1px solid #fde68a;color:#92400e;}
+.stps{display:flex;align-items:center;margin-bottom:18px;gap:0;overflow-x:auto;padding-bottom:2px;}
+.sti{display:flex;align-items:center;gap:4px;flex-shrink:0;}
+.stc2{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;border:1.5px solid #eee;color:#aaa;background:white;transition:all .3s;}
+.stc2.done{background:#22c55e;border-color:#22c55e;color:white;}
+.stc2.active{background:#FF6B35;border-color:#FF6B35;color:white;}
+.stl{font-size:10px;color:#aaa;white-space:nowrap;}
+.stl.active{color:#1a1a2e;font-weight:700;}
+.sln{width:14px;height:1.5px;background:#eee;flex-shrink:0;}
+.sln.done{background:#22c55e;}
+.dsc{text-align:center;padding:34px 14px;}
+.acard{display:flex;gap:11px;padding:13px;border-radius:11px;border:1.5px solid #eee;background:#fafafa;cursor:pointer;transition:all .18s;margin-bottom:8px;align-items:flex-start;}
+.acard:hover,.acard.on{border-color:#FF6B35;background:#FFF0EB;}
+.aico{width:40px;height:40px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px;background:white;flex-shrink:0;border:1px solid #eee;}
+.at{font-size:13px;font-weight:700;margin-bottom:2px;}
+.am{font-size:10px;color:#aaa;}
+.cm{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:12px 0;}
+.cb2b{padding:14px;border-radius:11px;text-align:center;border:1px solid;}
+.clb{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#aaa;margin-bottom:5px;}
+.cnb{font-size:34px;font-weight:800;}
+.grw{display:flex;align-items:center;gap:9px;padding:11px 13px;border-radius:9px;border:1px solid #f0f0f0;margin-bottom:7px;cursor:pointer;transition:all .18s;background:white;}
+.grw:hover,.grw.on{border-color:#FF6B35;background:#FFF0EB;}
+.gn{font-size:13px;font-weight:700;flex:1;}
+.gnn{font-size:10px;color:#aaa;margin-right:10px;}
+.gsc{font-size:12px;font-weight:700;}
+.aib{background:linear-gradient(135deg,#fff8f5,#f0f4ff);border:1.5px solid #e8e0ff;border-radius:12px;padding:14px;margin:10px 0;}
+.aih{display:flex;align-items:center;gap:6px;font-size:10px;font-weight:700;color:#7c3aed;letter-spacing:.8px;text-transform:uppercase;margin-bottom:7px;}
+.ait{font-size:12px;color:#444;line-height:1.55;}
+.exr{display:flex;align-items:center;justify-content:space-between;padding:11px 13px;border-radius:9px;border:1px solid #f0f0f0;margin-bottom:7px;background:white;}
+.exl{font-size:12px;font-weight:600;}
+.exm{font-size:10px;color:#aaa;}
+.ikgrid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin:10px 0;}
+.ikb{padding:11px;border-radius:11px;border:1.5px solid #eee;background:#fafafa;}
+.ikt{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:5px;}
+.lp{background:#fafafa;border:1.5px solid #eee;border-radius:11px;padding:14px;}
+.lh{font-size:11px;color:#aaa;margin-bottom:8px;font-style:italic;}
+.cw{padding:6px 12px;border-radius:999px;font-size:12px;font-weight:500;display:inline-block;margin:2px;}
+.tw{display:flex;flex-wrap:wrap;min-height:50px;padding:8px;border-radius:9px;border:1.5px dashed #eee;margin:10px 0;}
+/* Modal */
+.modal-overlay{position:fixed;inset:0;z-index:400;background:rgba(0,0,0,.55);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;padding:20px;animation:fi .2s ease;}
+.modal{background:white;border-radius:20px;padding:36px;width:100%;max-width:480px;box-shadow:0 24px 60px rgba(0,0,0,.15);animation:up .3s ease;position:relative;}
+.modal-close{position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;border:none;background:#f5f5f5;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;}
+.modal-close:hover{background:#eee;}
+.field{margin-bottom:16px;}
+.field label{display:block;font-size:12px;font-weight:700;color:#1a1a2e;margin-bottom:5px;}
+.field input,.field select{width:100%;padding:11px 14px;border:1.5px solid #eee;border-radius:9px;font-size:14px;outline:none;transition:border .2s;color:#1a1a2e;background:white;}
+.field input:focus,.field select:focus{border-color:#FF6B35;}
+.field input::placeholder{color:#ccc;}
+/* Tour */
+.tour-tooltip{position:sticky;top:0;z-index:20;margin:-18px -18px 18px;background:linear-gradient(135deg,#FF6B35,#ff4500);border-radius:0 0 16px 16px;padding:18px 20px;}
+.tour-progress{display:flex;gap:5px;margin-bottom:12px;}
+.tour-pip{height:3px;border-radius:3px;flex:1;background:rgba(255,255,255,.3);}
+.tour-pip.done{background:white;}
+.tour-title{font-size:14px;font-weight:800;color:white;margin-bottom:4px;}
+.tour-body{font-size:12px;color:rgba(255,255,255,.88);line-height:1.5;margin-bottom:12px;}
+.tour-btns{display:flex;gap:8px;align-items:center;}
+.tour-skip{font-size:11px;color:rgba(255,255,255,.65);background:none;border:none;cursor:pointer;padding:0;}
+.tour-skip:hover{color:white;}
+/* FAQ / Mockup accordion */
+.faq-item{border-radius:12px;border:1.5px solid #eee;overflow:hidden;transition:border-color .2s;margin-bottom:8px;}
+.faq-item.open{border-color:#FF6B35;}
+.faq-btn{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 20px;background:white;border:none;cursor:pointer;text-align:left;}
+.faq-item.open .faq-btn{background:#FFF0EB;}
+.faq-q{font-size:14px;font-weight:600;color:#1a1a2e;line-height:1.4;}
+.faq-arrow{font-size:18px;color:#ccc;flex-shrink:0;display:inline-block;transition:transform .2s;}
+.faq-item.open .faq-arrow{transform:rotate(180deg);color:#FF6B35;}
+.faq-a{display:none;padding:0 20px 16px;font-size:13px;color:#555;line-height:1.7;}
+.faq-item.open .faq-a{display:block;}
+.mock-item{border:1.5px solid #f0f0f0;border-radius:14px;overflow:hidden;transition:border-color .2s;margin-bottom:8px;}
+.mock-item.open{border-color:#FF6B35;}
+.mock-btn{width:100%;display:flex;align-items:center;gap:14px;padding:16px 20px;background:white;border:none;cursor:pointer;text-align:left;}
+.mock-item.open .mock-btn{background:#FFF0EB;}
+.mock-body{display:none;padding:0 20px 20px;}
+.mock-item.open .mock-body{display:block;}
+.mock-arrow{font-size:18px;color:#ccc;flex-shrink:0;display:inline-block;transition:transform .2s;}
+.mock-item.open .mock-arrow{transform:rotate(180deg);color:#FF6B35;}
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;padding:48px 20px;}
+  .hv{display:none;}
+  .rg{grid-template-columns:1fr 1fr;}
+  .stg{grid-template-columns:1fr 1fr;}
+  .dg{grid-template-columns:1fr 1fr;}
+  .pg{grid-template-columns:1fr 1fr;}
+  .s{padding:56px 20px;}
+  .sf{padding:56px 20px;}
+  .ctab{padding:40px 22px;margin:0 16px 60px;}
+}
+@media(max-width:600px){
+  .nav{padding:0 14px;}
+  .nav-links{display:none;}
+  .rg,.stg,.dg{grid-template-columns:1fr;}
+  .pg{grid-template-columns:1fr 1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-logo">
+    <svg width="34" height="34" viewBox="0 0 100 100" fill="none"><defs><linearGradient id="kg1" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#FFB300"/><stop offset="100%" stop-color="#FF5500"/></linearGradient></defs><rect x="4" y="4" width="92" height="92" rx="18" ry="18" fill="url(#kg1)"/><path d="M 10 85 Q 30 60 55 45 Q 72 34 90 28" stroke="white" stroke-width="12" stroke-linecap="round" fill="none"/><path d="M 8 92 Q 20 80 35 72" stroke="white" stroke-width="7" stroke-linecap="round" fill="none" opacity="0.7"/></svg>
+    <span>Klaizen</span>
+  </div>
+  <div class="nav-links">
+    <button class="nl" onclick="showAbout()">Sobre nosotros</button>
+    <button class="nl" onclick="document.getElementById('platform-section').scrollIntoView({behavior:'smooth'})">Funcionalidades</button>
+    <button class="nl" onclick="showPricing()">Precios</button>
+  </div>
+  <div class="nav-r">
+    <button class="lang on" id="lang-es" onclick="setLang('es')">ES</button>
+    <button class="lang" id="lang-eu" onclick="setLang('eu')">EU</button>
+    <button class="btn bo bs" onclick="showApp()">Acceder</button>
+    <button class="btn bp bs" onclick="showDemo()">Solicitar demo</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div>
+    <div class="hero-tag">Para centros de secundaria del País Vasco</div>
+    <h1 class="hero-h1">El bienestar del aula,<br/><span>en tus manos.</span></h1>
+    <p class="hero-sub">Klaizen ayuda a docentes, orientación y dirección a diagnosticar el clima emocional del aula, proponer intervenciones y medir su impacto. Todo de forma anónima y segura.</p>
+    <div class="hero-btns">
+      <button class="btn bp" onclick="showDemo()">Solicitar demo gratuita</button>
+      <button class="btn bo" onclick="showApp()">Ver cómo funciona</button>
+    </div>
+  </div>
+  <div class="hv">
+    <div class="hcard">
+      <div class="hcard-lbl">ESTADO DEL AULA · 2º BACH A</div>
+      <div class="mbars">
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;height:100%;justify-content:flex-end;gap:3px"><div class="mbar" style="height:58%;background:#DC2626;width:100%"></div><div class="mbar-l">Pertenencia</div></div>
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;height:100%;justify-content:flex-end;gap:3px"><div class="mbar" style="height:72%;background:#D97706;width:100%"></div><div class="mbar-l">Motivación</div></div>
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;height:100%;justify-content:flex-end;gap:3px"><div class="mbar" style="height:82%;background:#059669;width:100%"></div><div class="mbar-l">Bienestar</div></div>
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;height:100%;justify-content:flex-end;gap:3px"><div class="mbar" style="height:64%;background:#7C3AED;width:100%"></div><div class="mbar-l">Estrés</div></div>
+      </div>
+    </div>
+    <div class="hcard" style="display:flex;justify-content:space-between;align-items:center">
+      <div>
+        <div class="hcard-lbl">INTERVENCIÓN</div>
+        <div style="font-size:14px;font-weight:700">🌡️ Termómetro del grupo</div>
+        <div style="font-size:11px;color:#aaa">15 min · Cohesión</div>
+      </div>
+      <button class="btn bp bs" onclick="showApp()">Ver</button>
+    </div>
+    <div class="hcard" style="background:#f0fdf4;border:1px solid #bbf7d0">
+      <span class="pdot"></span><span style="font-size:12px;font-weight:700;color:#166534">Pertenencia +1.1 puntos tras la intervención</span>
+    </div>
+  </div>
+</section>
+
+<!-- ROLES -->
+<div class="sf">
+  <div style="max-width:1100px;margin:0 auto">
+    <div class="stag">PARA QUIÉN</div>
+    <h2 class="sh">Diseñado para todos los perfiles del centro</h2>
+    <div class="rg">
+      <div class="rc"><div class="ri">👩‍🏫</div><div class="rn">Tutores/as</div><div class="rd">Conoce el estado real de tu clase en minutos. Lanza intervenciones con un clic y mide si funcionan.</div></div>
+      <div class="rc"><div class="ri">🧭</div><div class="rn">Orientación</div><div class="rd">Accede a diagnósticos anónimos por grupo. Detecta patrones y prioriza el apoyo de forma informada.</div></div>
+      <div class="rc"><div class="ri">🏫</div><div class="rn">Dirección</div><div class="rd">Visualiza el bienestar de todo el centro. Exporta informes y toma decisiones basadas en datos reales.</div></div>
+      <div class="rc"><div class="ri">🧑‍🎓</div><div class="rn">Alumnado</div><div class="rd">Comparte cómo te sientes en 3 minutos. Accede a actividades que te ayudan a crecer. Todo es anónimo.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- HOW -->
+<div class="s">
+  <div class="stag">CÓMO FUNCIONA</div>
+  <h2 class="sh">Un ciclo completo, de diagnóstico a mejora</h2>
+  <div class="stg">
+    <div class="stc"><div class="stn">01</div><div class="stt">Check-in del alumnado</div><div class="std">12 preguntas sobre motivación, bienestar, pertenencia, autoconfianza, relaciones y estrés. En 3 minutos, desde cualquier dispositivo.</div></div>
+    <div class="stc"><div class="stn">02</div><div class="stt">Diagnóstico del aula</div><div class="std">Dashboard con 6 dimensiones, alertas suaves y evolución semanal. IA analiza el diagnóstico y propone acciones.</div></div>
+    <div class="stc"><div class="stn">03</div><div class="stt">Intervención recomendada</div><div class="std">Klaizen propone actividades adaptadas al diagnóstico real. Listas para aplicar sin preparación extra.</div></div>
+    <div class="stc"><div class="stn">04</div><div class="stt">Actividad interactiva en clase</div><div class="std">El alumnado completa la actividad dentro de la app. Ikigai, cartas al futuro, termómetro de grupo y más.</div></div>
+    <div class="stc"><div class="stn">05</div><div class="stt">Medición del impacto</div><div class="std">Nueva medición tras la intervención. Comparativa antes/después y recomendación de seguimiento.</div></div>
+  </div>
+</div>
+
+<!-- DIMS -->
+<div class="sf">
+  <div style="max-width:1100px;margin:0 auto">
+    <div class="stag">QUÉ MEDIMOS</div>
+    <h2 class="sh">6 dimensiones del bienestar escolar</h2>
+    <p class="ssub">Medimos lo que importa, sin etiquetas clínicas.</p>
+    <div class="dg">
+      <div class="dc" style="background:#FFF0EB"><div class="de">🔥</div><div><div class="dl">Motivación</div><div class="dd">Energía y ganas de aprender</div></div></div>
+      <div class="dc" style="background:#E0F7FA"><div class="de">💙</div><div><div class="dl">Bienestar emocional</div><div class="dd">Estado emocional general</div></div></div>
+      <div class="dc" style="background:#F0EBFF"><div class="de">🤝</div><div><div class="dl">Pertenencia</div><div class="dd">Sentirse parte del grupo</div></div></div>
+      <div class="dc" style="background:#FFFBEB"><div class="de">⭐</div><div><div class="dl">Autoconfianza</div><div class="dd">Seguridad en las propias capacidades</div></div></div>
+      <div class="dc" style="background:#FFF0F0"><div class="de">💬</div><div><div class="dl">Relaciones</div><div class="dd">Clima interpersonal del aula</div></div></div>
+      <div class="dc" style="background:#ECFDF5"><div class="de">🌀</div><div><div class="dl">Estrés académico</div><div class="dd">Presión y carga percibida</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- PRIVACY -->
+<div class="s">
+  <div class="stag">PRIVACIDAD Y SEGURIDAD</div>
+  <h2 class="sh">Anónimo, seguro y educativo</h2>
+  <div class="pg">
+    <div class="pc"><div class="pi">🔒</div><div class="pt">Datos 100% anónimos</div><div class="pd2">El profesorado solo ve resultados agregados del grupo, nunca individuales.</div></div>
+    <div class="pc"><div class="pi">📊</div><div class="pt">No es diagnóstico clínico</div><div class="pd2">Klaizen es una herramienta educativa. No etiqueta ni sustituye al apoyo psicológico.</div></div>
+    <div class="pc"><div class="pi">🇪🇺</div><div class="pt">RGPD compliant</div><div class="pd2">Todos los datos se almacenan en servidores europeos bajo la normativa vigente.</div></div>
+    <div class="pc"><div class="pi">🌐</div><div class="pt">Bilingüe ES / EU</div><div class="pd2">Interfaz completa en castellano y euskera para todos los usuarios.</div></div>
+  </div>
+</div>
+
+<!-- PLATFORM -->
+<div id="platform-section" style="background:#fff;border-top:1px solid #f0f0f0">
+  <div class="s" style="padding-bottom:40px">
+    <div class="stag">LA PLATAFORMA</div>
+    <h2 class="sh">Cada módulo, en detalle</h2>
+    <p class="ssub">Haz clic en cada módulo para ver cómo se ve en la app.</p>
+    <div id="mockups-container"></div>
+  </div>
+  <div style="background:#f8f8fa;padding:60px 32px">
+    <div style="max-width:700px;margin:0 auto">
+      <div class="stag">PREGUNTAS FRECUENTES</div>
+      <h2 class="sh">Todo lo que necesitas saber</h2>
+      <div id="faq-container" style="margin-top:32px"></div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="ctab">
+  <h2>Empieza con tu centro hoy</h2>
+  <p>Demo gratuita, sin compromiso. Te lo mostramos en 30 minutos.</p>
+  <button class="btn bw" onclick="showDemo()">Solicitar demo gratuita</button>
+</div>
+<footer><p>© 2025 Klaizen · Plataforma educativa para el bienestar del aula · País Vasco</p></footer>
+
+<!-- APP PANEL -->
+<div id="app-panel" style="display:none" class="panel" onclick="if(event.target===this)closeApp()">
+  <div class="sheet">
+    <div class="ah">
+      <div class="alogo">
+        <svg width="22" height="22" viewBox="0 0 100 100" fill="none"><defs><linearGradient id="kg2" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#FFB300"/><stop offset="100%" stop-color="#FF5500"/></linearGradient></defs><rect x="4" y="4" width="92" height="92" rx="18" ry="18" fill="url(#kg2)"/><path d="M 10 85 Q 30 60 55 45 Q 72 34 90 28" stroke="white" stroke-width="12" stroke-linecap="round" fill="none"/><path d="M 8 92 Q 20 80 35 72" stroke="white" stroke-width="7" stroke-linecap="round" fill="none" opacity="0.7"/></svg>
+        <span>Klaizen</span>
+      </div>
+      <div class="atabs">
+        <button class="atab on" id="tab-profe" onclick="switchRole('profe')">Docente</button>
+        <button class="atab" id="tab-alumno" onclick="switchRole('alumno')">Alumno/a</button>
+      </div>
+      <button id="btn-tour" onclick="startTour()" style="font-size:11px;font-weight:600;color:#FF6B35;background:#FFF0EB;border:1px solid #ffd4c0;border-radius:999px;padding:5px 11px;cursor:pointer;white-space:nowrap;flex-shrink:0">🗺 Tour</button>
+      <button class="xbtn" onclick="closeApp()">✕</button>
+    </div>
+    <div class="ab" style="padding-top:0" id="app-content"></div>
+  </div>
+</div>
+
+<!-- DEMO MODAL -->
+<div id="demo-modal" style="display:none" class="modal-overlay" onclick="if(event.target===this)closeDemo()">
+  <div class="modal">
+    <button class="modal-close" onclick="closeDemo()">✕</button>
+    <h2>Solicita tu demo gratuita</h2>
+    <p style="font-size:13px;color:#666;margin-bottom:24px;line-height:1.5">Te contactamos en menos de 24h. Sin compromiso.</p>
+    <div id="demo-form">
+      <div class="field"><label>Nombre y apellidos</label><input id="demo-name" placeholder="Ej: Miren Etxeberria"/></div>
+      <div class="field"><label>Email profesional</label><input id="demo-email" type="email" placeholder="miren@ikastetxea.eus"/></div>
+      <div class="field"><label>Centro educativo</label><input id="demo-centro" placeholder="Nombre del centro"/></div>
+      <div class="field"><label>Tu rol</label><select id="demo-rol"><option>Tutor/a</option><option>Orientación</option><option>Dirección</option><option>Otro</option></select></div>
+      <button class="btn bp" style="width:100%;justify-content:center" onclick="submitDemo()">Enviar solicitud →</button>
+      <p style="font-size:11px;color:#aaa;text-align:center;margin-top:10px">Sin spam. Solo te escribimos para coordinar la demo.</p>
+    </div>
+    <div id="demo-sent" style="display:none;text-align:center;padding:20px 0">
+      <div style="font-size:52px;margin-bottom:14px">🎉</div>
+      <h3 style="font-size:20px;font-weight:800;margin-bottom:8px">¡Solicitud recibida!</h3>
+      <p style="font-size:13px;color:#666">Nos ponemos en contacto contigo en menos de 24h.</p>
+      <button class="btn bp bs" style="margin-top:20px" onclick="closeDemo()">Cerrar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT MODAL -->
+<div id="about-modal" style="display:none" class="modal-overlay" onclick="if(event.target===this)closeAbout()">
+  <div class="modal" style="max-width:560px;max-height:90vh;overflow-y:auto">
+    <button class="modal-close" onclick="closeAbout()">✕</button>
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px">
+      <div style="width:44px;height:44px;border-radius:12px;background:#FFF0EB;border:1.5px solid #ffd4c0;display:flex;align-items:center;justify-content:center;font-size:22px">💙</div>
+      <div><div style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#FF6B35;margin-bottom:2px">SOBRE NOSOTROS</div><div style="font-size:20px;font-weight:800;color:#1a1a2e">Klaizen</div></div>
+    </div>
+    <div style="background:linear-gradient(135deg,#FFF0EB,#f0f4ff);border-radius:14px;padding:18px 20px;margin-bottom:18px;border:1px solid #fde4d0">
+      <div style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#FF6B35;margin-bottom:8px">NUESTRA MISIÓN</div>
+      <div style="font-size:15px;font-weight:700;color:#1a1a2e;line-height:1.45">Que ningún docente tenga que adivinar cómo se siente su clase.</div>
+    </div>
+    <div style="font-size:14px;color:#555;line-height:1.7;margin-bottom:18px">Klaizen nace de una pregunta sencilla: <strong style="color:#1a1a2e">¿cómo está realmente el aula?</strong> No las notas, no la asistencia — el clima emocional real, el que determina si el aprendizaje es posible.<br><br>Creamos Klaizen para que tutores, orientadores y equipos directivos del País Vasco puedan diagnosticar ese clima, actuar sobre él y medir si su intervención ha funcionado.</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px">
+      <div style="padding:14px;border-radius:12px;background:#f8f8fa;border:1px solid #f0f0f0"><div style="font-size:20px;margin-bottom:6px">🔒</div><div style="font-size:13px;font-weight:700;color:#1a1a2e;margin-bottom:3px">Privacidad ante todo</div><div style="font-size:12px;color:#888;line-height:1.45">Datos anónimos, sin etiquetas, sin perfilado de menores.</div></div>
+      <div style="padding:14px;border-radius:12px;background:#f8f8fa;border:1px solid #f0f0f0"><div style="font-size:20px;margin-bottom:6px">🎓</div><div style="font-size:13px;font-weight:700;color:#1a1a2e;margin-bottom:3px">Enfoque educativo</div><div style="font-size:12px;color:#888;line-height:1.45">No somos clínicos. Somos herramienta de apoyo al docente.</div></div>
+      <div style="padding:14px;border-radius:12px;background:#f8f8fa;border:1px solid #f0f0f0"><div style="font-size:20px;margin-bottom:6px">🌐</div><div style="font-size:13px;font-weight:700;color:#1a1a2e;margin-bottom:3px">Raíces vascas</div><div style="font-size:12px;color:#888;line-height:1.45">Diseñado para la realidad de los centros del País Vasco.</div></div>
+      <div style="padding:14px;border-radius:12px;background:#f8f8fa;border:1px solid #f0f0f0"><div style="font-size:20px;margin-bottom:6px">⚡</div><div style="font-size:13px;font-weight:700;color:#1a1a2e;margin-bottom:3px">Simple y rápido</div><div style="font-size:12px;color:#888;line-height:1.45">Si no cabe en una tutoría, no sirve.</div></div>
+    </div>
+    <button class="btn bp" style="width:100%;justify-content:center" onclick="closeAbout();showDemo()">Solicitar demo gratuita →</button>
+  </div>
+</div>
+
+<!-- PRICING MODAL -->
+<div id="pricing-modal" style="display:none" class="modal-overlay" onclick="if(event.target===this)closePricing()">
+  <div style="width:100%;max-width:900px;background:white;max-height:90vh;overflow-y:auto;border-radius:20px;position:relative">
+    <div style="position:sticky;top:0;z-index:10;background:white;border-bottom:1px solid #f0f0f0;padding:14px 32px;display:flex;align-items:center;justify-content:space-between">
+      <div style="display:flex;align-items:center;gap:8px">
+        <svg width="24" height="24" viewBox="0 0 100 100" fill="none"><defs><linearGradient id="kg3" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#FFB300"/><stop offset="100%" stop-color="#FF5500"/></linearGradient></defs><rect x="4" y="4" width="92" height="92" rx="18" ry="18" fill="url(#kg3)"/><path d="M 10 85 Q 30 60 55 45 Q 72 34 90 28" stroke="white" stroke-width="12" stroke-linecap="round" fill="none"/><path d="M 8 92 Q 20 80 35 72" stroke="white" stroke-width="7" stroke-linecap="round" fill="none" opacity="0.7"/></svg>
+        <span style="font-size:17px;font-weight:800;color:#3a3a3a">Klaizen · Precios</span>
+      </div>
+      <button class="xbtn" style="margin-left:0" onclick="closePricing()">✕</button>
+    </div>
+    <div style="padding:48px 32px 32px;text-align:center;background:linear-gradient(135deg,#fff8f5,#f0f4ff)">
+      <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#FF6B35;margin-bottom:12px">PLANES Y PRECIOS</div>
+      <h1 style="font-size:clamp(24px,4vw,40px);font-weight:800;letter-spacing:-1px;color:#1a1a2e;margin-bottom:14px;line-height:1.1">Empieza gratis con una clase.<br/><span style="color:#FF6B35">Si ves impacto, escala al centro.</span></h1>
+      <p style="font-size:15px;color:#666;max-width:480px;margin:0 auto 20px;line-height:1.6">Sin permanencia. Sin tarjeta de crédito para empezar. Cancela cuando quieras.</p>
+    </div>
+    <div style="padding:32px 24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px" id="plans-grid"></div>
+    <div style="margin:0 24px 32px;background:linear-gradient(135deg,#FF6B35,#ff4500);border-radius:20px;padding:28px;text-align:center">
+      <div style="font-size:20px;font-weight:800;color:white;margin-bottom:8px">¿No sabes qué plan te conviene?</div>
+      <div style="font-size:13px;color:rgba(255,255,255,.88);margin-bottom:16px">Demo de 30 minutos, sin compromiso.</div>
+      <button class="btn bw" onclick="closePricing();showDemo()">Hablar con el equipo →</button>
+    </div>
+    <div style="padding:0 24px 40px">
+      <div style="max-width:600px;margin:0 auto">
+        <h2 style="font-size:22px;font-weight:800;color:#1a1a2e;margin-bottom:20px">Preguntas frecuentes</h2>
+        <div id="pricing-faq"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── State ─────────────────────────────────────────────────────────────────
+var LANG = 'es';
+var APP_ROLE = 'profe';
+var PROFE_STEP = 'mg';
+var SELECTED_GROUP = null;
+var SELECTED_ACT = null;
+var CHECKIN_STEP = 'name';
+var CHECKIN_STUDENT = null;
+var CHECKIN_QI = 0;
+var CHECKIN_ANS = {};
+var CHECKIN_CUR = null;
+var CHECKIN_CHIPS = [];
+var ACT_PHASE = null;
+var STUDENT_SEARCH = '';
+var SELECTED_STUDENT = null;
+var IKIGAI_STEP = 0;
+var IKIGAI_DATA = {a:'',b:'',c:'',e:''};
+var CARTA_STEP = 0;
+var CARTA_DATA = {a:'',b:'',c:''};
+var MOTORES_SEL = [];
+var MOTORES_DONE = false;
+var TERM_CHOICE = null;
+var WORD_CLOUD = [
+  {w:'Con energía',c:'#FF6B35'},{w:'Tranquilo/a',c:'#0891B2'},
+  {w:'Motivado/a',c:'#059669'},{w:'Ilusionado/a',c:'#7C3AED'},{w:'Cansado/a',c:'#D97706'}
+];
+var TOUR_ACTIVE = false;
+var TOUR_STEP = 0;
+
+// ── Data ──────────────────────────────────────────────────────────────────
+var DIMS = [
+  {id:'motivacion',color:'#FF6B35',bg:'#FFF0EB',e:'🔥',es:'Motivación',eu:'Motibazioa'},
+  {id:'bienestar',color:'#0891B2',bg:'#E0F7FA',e:'💙',es:'Bienestar',eu:'Ongizatea'},
+  {id:'pertenencia',color:'#7C3AED',bg:'#F0EBFF',e:'🤝',es:'Pertenencia',eu:'Kidetasuna'},
+  {id:'autoconfianza',color:'#D97706',bg:'#FFFBEB',e:'⭐',es:'Autoconfianza',eu:'Autokonf.'},
+  {id:'relaciones',color:'#DC2626',bg:'#FFF0F0',e:'💬',es:'Relaciones',eu:'Harremanak'},
+  {id:'estres',color:'#059669',bg:'#ECFDF5',e:'🌀',es:'Estrés',eu:'Estresa'}
+];
+
+var GRUPOS = [
+  {id:'2ba',name:'2º Bach A',n:24,scores:{motivacion:2.9,bienestar:3.6,pertenencia:2.4,autoconfianza:2.8,relaciones:2.3,estres:3.9}},
+  {id:'2bb',name:'2º Bach B',n:22,scores:{motivacion:3.4,bienestar:3.8,pertenencia:3.1,autoconfianza:3.2,relaciones:3.3,estres:3.3}},
+  {id:'1ba',name:'1º Bach A',n:26,scores:{motivacion:3.7,bienestar:4.0,pertenencia:3.5,autoconfianza:3.5,relaciones:3.6,estres:2.9}},
+  {id:'4a', name:'4º ESO A', n:28,scores:{motivacion:3.1,bienestar:3.3,pertenencia:3.0,autoconfianza:2.9,relaciones:2.8,estres:3.6}}
+];
+
+var SCORES_AFTER = {motivacion:3.6,bienestar:3.8,pertenencia:3.5,autoconfianza:3.3,relaciones:3.4,estres:3.1};
+
+var ACTS = [
+  {id:'ikigai',icon:'🌀',es:'Ikigai del aula',eu:'Gelako Ikigaia',tyes:'Autoconocimiento',tyeu:'Autoezagutza',dur:'25 min',des:'Reflexiona sobre qué te gusta, qué se te da bien, qué necesita el mundo y qué puedes aportar.',deu:'Hausnartu zer gustatzen zaizun, zer ondo egiten duzun, zer behar duen munduak.'},
+  {id:'termometro',icon:'🌡️',es:'Termómetro del grupo',eu:'Taldeko termometroa',tyes:'Cohesión',tyeu:'Kohesioa',dur:'15 min',des:'Elige una palabra que describe cómo ves al grupo hoy.',deu:'Aukeratu gaur taldea nola ikusten duzun deskribatzen duen hitz bat.'},
+  {id:'carta',icon:'✉️',es:'Carta a mi yo futuro',eu:'Gutuna nire etorkizuneko niari',tyes:'Motivación',tyeu:'Motibazioa',dur:'20 min',des:'Escribe desde tu yo de dentro de 6 meses.',deu:'Idatzi 6 hilabeteren buruko zerorengandik.'},
+  {id:'motores',icon:'⚡',es:'Mis 3 motores',eu:'Nire 3 motorrak',tyes:'Motivación',tyeu:'Motibazioa',dur:'10 min',des:'Identifica las tres cosas que más te impulsan ahora mismo.',deu:'Identifikatu gaur bertan gehien bultzatzen zaituzten hiru gauzak.'}
+];
+
+var QUESTIONS = [
+  {id:1,dim:'motivacion',type:'emoji5',es:'Con cuánta energía y ganas llegas hoy a clase?',eu:'Ze energia eta gogorekin etortzen zara gaur klasera?'},
+  {id:2,dim:'motivacion',type:'slider',es:'Cuánto te importa lo que estás aprendiendo esta semana?',eu:'Zenbateraino axola zaizu aste honetan ikasten ari zarena?',mnes:'Nada',mxes:'Muchísimo',mneu:'Ezer ez',mxeu:'Izugarri'},
+  {id:3,dim:'bienestar',type:'emoji5',es:'Cómo te sientes emocionalmente hoy, en general?',eu:'Nola sentitzen zara emozionalki gaur, orokorrean?'},
+  {id:4,dim:'bienestar',type:'chips',es:'Hay algo que te esté pesando hoy?',eu:'Ba al dago gaur pisatzen ari zaizun zerbait?',oes:['Cansancio','Nervios','Tristeza','Presión','Soledad','Rabia','Nada especial','Alegría'],oeu:['Nekea','Urduria','Tristura','Presioa','Bakardadea','Haserrea','Ezer berezirik ez','Alaitasuna']},
+  {id:5,dim:'pertenencia',type:'emoji5',es:'Sientes que encajas bien en este grupo?',eu:'Talde honetan ondo sartzen zarela sentitzen al duzu?'},
+  {id:6,dim:'pertenencia',type:'slider',es:'En qué medida sientes que el grupo te apoya cuando lo necesitas?',eu:'Neurri batean sentitzen al duzu taldeak laguntzen zaizula?',mnes:'Para nada',mxes:'Siempre',mneu:'Batere ez',mxeu:'Beti'},
+  {id:7,dim:'autoconfianza',type:'emoji5',es:'Cómo de seguro/a te sientes hoy en tus capacidades?',eu:'Zenbateraino sentitzen zara seguru gaur zure gaitasunetan?'},
+  {id:8,dim:'autoconfianza',type:'open',es:'Escribe una cosa que se te da bien.',eu:'Idatzi ondo egiten duzula sentitzen duzun gauza bat.',phes:'Ej: escuchar, el dibujo, resolver problemas...',pheu:'Adib.: entzutea, marrazketa...'},
+  {id:9,dim:'relaciones',type:'chips',es:'Cómo están tus relaciones dentro del aula esta semana?',eu:'Nola daude zure harremanak gelan aste honetan?',oes:['Bien con todos/as','Tensión con alguien','Me siento ignorado/a','Me siento valorado/a','Conflicto sin resolver','Tranquilo/a'],oeu:['Ondo denekin','Tentsio norbaitrekin','Baztertua sentitzen naiz','Baloratua sentitzen naiz','Konpondu gabeko gatazka','Lasai']},
+  {id:10,dim:'relaciones',type:'open',es:'Hay algo sobre las relaciones en el aula que quieras compartir? (opcional)',eu:'Ba al dago gelan harremanei buruz partekatu nahi duzun zerbait? (aukerakoa)',phes:'Puedes escribir lo que quieras, es anónimo...',pheu:'Nahi duzuna idatz dezakezu, anonimoa da...'},
+  {id:11,dim:'estres',type:'slider',es:'Cuánta presión o carga académica sientes esta semana?',eu:'Zenbat presio edo lan akademiko sentitzen duzu aste honetan?',mnes:'Sin presión',mxes:'Mucha presión',mneu:'Presiorik ez',mxeu:'Presio handia'},
+  {id:12,dim:'estres',type:'chips',es:'Qué te genera más estrés ahora mismo?',eu:'Zer sortzen dizu estres gehien orain?',oes:['Los exámenes','Las notas','El tiempo','Las tareas','Nada','El futuro'],oeu:['Azterketak','Notak','Denbora','Lanak','Ezer ez','Etorkizuna']}
+];
+
+var EMOJI_SCALE = [
+  {v:1,e:'😔',es:'Muy bajo',eu:'Oso baxua'},
+  {v:2,e:'😐',es:'Bajo',eu:'Baxua'},
+  {v:3,e:'🙂',es:'Regular',eu:'Normala'},
+  {v:4,e:'😊',es:'Bien',eu:'Ondo'},
+  {v:5,e:'🤩',es:'Genial',eu:'Bikain'}
+];
+
+var ROSTER = ['Aitana Fernández','Amaia Etxeberria','Aritz Gaztañaga','Beñat Zubiaurre','Edurne Larrea','Ekhi Mendizabal','Garazi Aizpurua','Haritz Urrutia','Iker Olazabal','Irene Castillo','Izaro Bengoa','Jon Iñaki Aguirre','Julen Kortabarria','Leire Alonso','Lide Mujika','Maddi Arrieta','Mikel Zabala','Nerea Bilbao','Oier Landa','Peru Goikoetxea','Sara Vázquez','Unai Iriarte','Uxue Uribe','Ziortza Txapartegi','Ainhoa Ruiz','Jokin Aperribay'];
+
+var STUDENT_HISTORY = {
+  'Aitana Fernández': [{w:1,m:3.5,b:4.0,p:3.2,a:3.8,r:3.5,e:3.0},{w:2,m:3.2,b:3.8,p:2.8,a:3.5,r:3.0,e:3.4},{w:3,m:2.8,b:3.5,p:2.4,a:3.0,r:2.6,e:3.8},{w:4,m:2.5,b:3.2,p:2.0,a:2.8,r:2.2,e:4.2}],
+  'Garazi Aizpurua':  [{w:1,m:2.5,b:2.8,p:2.2,a:2.5,r:2.0,e:4.5},{w:2,m:2.2,b:2.5,p:1.8,a:2.2,r:1.8,e:4.8},{w:3,m:2.0,b:2.2,p:1.5,a:2.0,r:1.5,e:5.0},{w:4,m:1.8,b:2.0,p:1.2,a:1.8,r:1.2,e:5.0}],
+  'Mikel Zabala':     [{w:1,m:3.8,b:3.5,p:3.5,a:3.8,r:3.6,e:3.0},{w:2,m:3.6,b:3.4,p:3.2,a:3.6,r:3.4,e:3.2},{w:3,m:3.5,b:3.5,p:3.0,a:3.5,r:3.2,e:3.4},{w:4,m:3.4,b:3.4,p:2.8,a:3.4,r:3.0,e:3.6}]
+};
+
+var TOUR_STEPS = [
+  {role:'profe',title:'👋 Bienvenido al tour de Klaizen',body:'Te guiamos por las pantallas clave. Empieza con la vista del docente: aquí verás el dashboard con el estado real del aula.',btn:'Empezar →'},
+  {role:'profe',title:'📊 Paso 1 · Dashboard del aula',body:'El docente ve las 6 dimensiones de bienestar, alertas automáticas y una recomendación generada por IA basada en el diagnóstico.',btn:'Siguiente →'},
+  {role:'profe',title:'🎯 Paso 2 · Áreas de mejora',body:'Klaizen identifica qué dimensiones necesitan atención y por qué. Todo con semáforos claros y contexto para actuar.',btn:'Siguiente →'},
+  {role:'profe',title:'⚡ Paso 3 · Intervención recomendada',body:'El sistema propone actividades concretas adaptadas al diagnóstico. El docente elige y puede previsualizarlas antes de lanzarlas.',btn:'Siguiente →'},
+  {role:'alumno',title:'🧑‍🎓 Ahora: vista del alumnado',body:'Así es como los estudiantes hacen el check-in: 12 preguntas anónimas en 3 minutos desde cualquier dispositivo.',btn:'Ver check-in →'},
+  {role:'alumno',title:'✅ Tour completado',body:'Esto es Klaizen: diagnóstico → intervención → impacto, todo en un ciclo continuo.',btn:'Solicitar demo gratuita'}
+];
+
+var FAQ_DATA = [
+  {q:'¿Los datos de los alumnos son anónimos?',a:'Sí, siempre. El profesorado solo accede a resultados agregados del grupo. Nunca se muestran datos individuales.'},
+  {q:'¿Es un diagnóstico psicológico?',a:'No. Klaizen es una herramienta educativa, no clínica. No diagnostica trastornos ni sustituye al orientador/a.'},
+  {q:'¿Cuánto tiempo necesita el alumnado?',a:'El check-in dura entre 2 y 3 minutos. Las actividades interactivas entre 10 y 25 minutos.'},
+  {q:'¿Qué dispositivos necesitan?',a:'Cualquier dispositivo con navegador: móvil, tablet o ordenador. No requiere instalación de ninguna app.'},
+  {q:'¿Quién puede ver los informes?',a:'Tutores/as ven el estado de su grupo. Orientación y dirección acceden a informes anónimos comparativos entre grupos.'},
+  {q:'¿Cumple con el RGPD?',a:'Sí. Todos los datos se almacenan en servidores europeos, sin publicidad ni perfilado de menores.'},
+  {q:'¿En qué idiomas está disponible?',a:'Interfaz completa en castellano y euskera.'},
+  {q:'¿Cuánto cuesta?',a:'Contacta con nosotros para conocer los planes disponibles. Ofrecemos un periodo de prueba gratuito.'}
+];
+
+var PRICING_FAQ = [
+  {q:'¿Quién paga, el centro o el profesorado?',a:'El centro educativo. Klaizen es una herramienta institucional que contrata el equipo directivo u orientación.'},
+  {q:'¿Cómo se implementa?',a:'La implementación dura menos de una semana: configuración del centro, alta de docentes y primera sesión de diagnóstico.'},
+  {q:'¿Cuánto tiempo necesita el profesorado?',a:'El check-in del alumnado dura 3 minutos. Revisar el dashboard y lanzar una actividad lleva entre 5 y 10 minutos.'},
+  {q:'¿Se puede empezar con solo una clase?',a:'Sí, el Plan Aula es gratuito y permite empezar con una sola clase.'},
+  {q:'¿Qué pasa con los datos al cancelar?',a:'Los datos permanecen accesibles 30 días tras la cancelación, para exportarlos. Después se eliminan conforme al RGPD.'}
+];
+
+var PLANS = [
+  {icon:'🌱',name:'Plan Aula',badge:null,price:'0€',period:'gratis para siempre',tagline:'Pruébalo sin riesgo. Sin tarjeta.',highlight:'Empieza hoy con una clase.',features:['1 clase','Diagnóstico del aula','1–2 ejercicios guiados','Informe descargable'],primary:false},
+  {icon:'🚀',name:'Plan Starter',badge:null,price:'490€',period:'/ año',tagline:'Para tutores que quieren ir más allá.',highlight:'Hasta 4 clases con seguimiento.',features:['Hasta 4 clases','Diagnóstico + intervenciones','Informes descargables','Soporte por email'],primary:false},
+  {icon:'🧠',name:'Plan Pro',badge:'Recomendado',price:'1.290€',period:'/ año',tagline:'El más elegido por orientación.',highlight:'Dashboard de centro y comparativas.',features:['Hasta 12 clases','Dashboard de centro','Comparativas entre clases','Histórico de evolución','1 sesión de acompañamiento'],primary:true},
+  {icon:'🏫',name:'Plan Centro',badge:null,price:'2.490€',period:'/ año',tagline:'Para centros que apuestan por el bienestar.',highlight:'Clases ilimitadas y formación.',features:['Clases ilimitadas','Dashboard completo','Formación al profesorado','Soporte prioritario'],primary:false},
+  {icon:'🏛️',name:'Institucional',badge:null,price:'A medida',period:'',tagline:'Para redes de centros e ikastolas.',highlight:'Múltiples centros con datos agregados.',features:['Múltiples centros','Datos agregados','Acompañamiento estratégico'],primary:false}
+];
+
+// ── Init ──────────────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', function() {
+  buildFAQ('faq-container', FAQ_DATA, 'faq');
+  buildFAQ('pricing-faq', PRICING_FAQ, 'pfaq');
+  buildMockups();
+  buildPlans();
+});
+
+// ── Lang ──────────────────────────────────────────────────────────────────
+function setLang(l) {
+  LANG = l;
+  document.getElementById('lang-es').classList.toggle('on', l === 'es');
+  document.getElementById('lang-eu').classList.toggle('on', l === 'eu');
+  renderApp();
+}
+
+// ── Helpers ───────────────────────────────────────────────────────────────
+function isEs() { return LANG !== 'eu'; }
+function t(es, eu) { return isEs() ? es : eu; }
+function scoreColor(v) { return v < 2.5 ? '#DC2626' : v < 3.5 ? '#D97706' : '#059669'; }
+function groupAvg(scores) {
+  var vals = Object.values(scores);
+  return (vals.reduce(function(a, b) { return a + b; }, 0) / vals.length).toFixed(1);
+}
+
+function dimBarsHTML(scores) {
+  return '<div style="margin:12px 0">' + DIMS.map(function(d) {
+    var v = scores[d.id] || 0;
+    var pct = ((v / 5) * 100).toFixed(0);
+    var c = scoreColor(v);
+    return '<div style="display:flex;align-items:center;gap:7px;margin-bottom:8px">' +
+      '<div style="font-size:10px;width:100px;flex-shrink:0;color:#666;font-weight:500">' + d.e + ' ' + (isEs() ? d.es : d.eu) + '</div>' +
+      '<div style="flex:1;height:5px;background:#f0f0f0;border-radius:5px;overflow:hidden"><div style="width:' + pct + '%;height:100%;background:' + c + ';border-radius:5px"></div></div>' +
+      '<div style="font-size:10px;font-weight:700;width:26px;text-align:right;color:' + c + '">' + v.toFixed(1) + '</div></div>';
+  }).join('') + '</div>';
+}
+
+function stepsBarHTML(cur) {
+  var lst = isEs()
+    ? ['Diagnóstico','Áreas','Intervención','Actividad','Impacto']
+    : ['Diagnostikoa','Eremuak','Esku-hartzea','Jarduera','Eragina'];
+  return '<div class="stps">' + lst.map(function(s, i) {
+    var done = i < cur, active = i === cur;
+    return '<div class="sti">' +
+      '<div class="stc2 ' + (done ? 'done' : active ? 'active' : '') + '">' + (done ? '✓' : (i + 1)) + '</div>' +
+      '<span class="stl ' + (active ? 'active' : '') + '">' + s + '</span>' +
+      (i < lst.length - 1 ? '<div class="sln ' + (done ? 'done' : '') + '"></div>' : '') +
+      '</div>';
+  }).join('') + '</div>';
+}
+
+// ── Modals ────────────────────────────────────────────────────────────────
+function showApp() { document.getElementById('app-panel').style.display = 'flex'; renderApp(); }
+function closeApp() { document.getElementById('app-panel').style.display = 'none'; }
+function showDemo() { document.getElementById('demo-modal').style.display = 'flex'; }
+function closeDemo() {
+  document.getElementById('demo-modal').style.display = 'none';
+  document.getElementById('demo-form').style.display = 'block';
+  document.getElementById('demo-sent').style.display = 'none';
+}
+function showAbout() { document.getElementById('about-modal').style.display = 'flex'; }
+function closeAbout() { document.getElementById('about-modal').style.display = 'none'; }
+function showPricing() { document.getElementById('pricing-modal').style.display = 'flex'; }
+function closePricing() { document.getElementById('pricing-modal').style.display = 'none'; }
+
+function submitDemo() {
+  var n = document.getElementById('demo-name').value;
+  var e = document.getElementById('demo-email').value;
+  var c = document.getElementById('demo-centro').value;
+  if (!n || !e || !c) return;
+  document.getElementById('demo-form').style.display = 'none';
+  document.getElementById('demo-sent').style.display = 'block';
+}
+
+// ── FAQ ───────────────────────────────────────────────────────────────────
+function buildFAQ(containerId, data, prefix) {
+  var c = document.getElementById(containerId);
+  if (!c) return;
+  c.innerHTML = data.map(function(f, i) {
+    return '<div class="faq-item" id="' + prefix + '-' + i + '">' +
+      '<button class="faq-btn" onclick="toggleFaqItem(\'' + prefix + '-' + i + '\')">' +
+      '<span class="faq-q">' + f.q + '</span><span class="faq-arrow">⌄</span></button>' +
+      '<div class="faq-a">' + f.a + '</div></div>';
+  }).join('');
+}
+function toggleFaqItem(id) {
+  document.getElementById(id).classList.toggle('open');
+}
+
+// ── Mockups ───────────────────────────────────────────────────────────────
+var MOCKUPS = [
+  {icon:'📋', title:'Check-in del alumnado', desc:'12 preguntas anónimas en 3 minutos. Cubre 6 dimensiones de bienestar desde cualquier dispositivo.', html: function() {
+    return '<div style="background:#f8f8fa;border-radius:14px;padding:16px;border:1px solid #eee">' +
+      '<div style="font-size:11px;font-weight:700;color:#FF6B35;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px">Pregunta 3 de 12 · Pertenencia</div>' +
+      '<div style="font-size:15px;font-weight:700;margin-bottom:14px;line-height:1.35">¿Sientes que encajas bien en este grupo?</div>' +
+      '<div style="display:grid;grid-template-columns:repeat(5,1fr);gap:6px">' +
+      [['😔','Muy bajo'],['😐','Bajo'],['🙂','Regular'],['😊','Bien'],['🤩','Genial']].map(function(em, i) {
+        return '<div style="display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 4px;border-radius:10px;border:1.5px solid ' + (i===3?'#FF6B35':'#eee') + ';background:' + (i===3?'#FFF0EB':'#fff') + ';font-size:20px">' + em[0] + '<span style="font-size:9px;color:' + (i===3?'#FF6B35':'#aaa') + '">' + em[1] + '</span></div>';
+      }).join('') +
+      '</div><div style="margin-top:12px;height:3px;background:#f0f0f0;border-radius:3px;overflow:hidden"><div style="width:25%;height:100%;background:#FF6B35;border-radius:3px"></div></div></div>';
+  }},
+  {icon:'📊', title:'Dashboard del docente', desc:'Vista instantánea del estado del aula con 6 dimensiones, alertas y recomendación IA.', html: function() {
+    return '<div style="background:#f8f8fa;border-radius:14px;padding:16px;border:1px solid #eee">' +
+      '<div style="font-size:11px;font-weight:700;color:#aaa;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px">2º BACH A · SEMANA 14</div>' +
+      [['🔥','Motivación',2.9,'#D97706'],['💙','Bienestar',3.6,'#059669'],['🤝','Pertenencia',2.4,'#DC2626'],['⭐','Autoconfianza',2.8,'#D97706'],['💬','Relaciones',2.3,'#DC2626'],['🌀','Estrés',3.9,'#D97706']].map(function(d) {
+        return '<div style="display:flex;align-items:center;gap:8px;margin-bottom:7px"><span style="font-size:13px;width:18px">' + d[0] + '</span><span style="font-size:11px;width:88px;color:#555;font-weight:500">' + d[1] + '</span><div style="flex:1;height:5px;background:#eee;border-radius:5px;overflow:hidden"><div style="width:' + ((d[2]/5)*100) + '%;height:100%;background:' + d[3] + ';border-radius:5px"></div></div><span style="font-size:11px;font-weight:700;color:' + d[3] + ';width:24px;text-align:right">' + d[2] + '</span></div>';
+      }).join('') +
+      '<div style="margin-top:10px;padding:8px 12px;border-radius:9px;background:#FFFBEB;border:1px solid #fde68a;font-size:11px;color:#92400e">⚠️ Pertenencia y Relaciones por debajo del umbral recomendado</div></div>';
+  }},
+  {icon:'✨', title:'Recomendación por IA', desc:'Klaizen analiza el diagnóstico y genera una recomendación contextualizada en segundos.', html: function() {
+    return '<div style="background:linear-gradient(135deg,#fff8f5,#f0f4ff);border-radius:14px;padding:16px;border:1.5px solid #e8e0ff">' +
+      '<div style="display:flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:#7c3aed;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px">✨ Recomendación IA</div>' +
+      '<div style="font-size:13px;color:#444;line-height:1.6">Detecto caída sostenida en <strong>pertenencia</strong> (-0.6 en 4 semanas) y <strong>relaciones</strong> bajas (2.3/5). Recomiendo priorizar cohesión grupal esta semana.</div>' +
+      '<div style="margin-top:12px;display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;background:white;border:1px solid #eee"><span style="font-size:20px">🌡️</span><div><div style="font-size:13px;font-weight:700">Termómetro del grupo</div><div style="font-size:11px;color:#aaa">15 min · Cohesión</div></div></div></div>';
+  }},
+  {icon:'⚡', title:'Actividades interactivas', desc:'Ikigai, Termómetro, Carta al futuro, Mis 3 motores. Sin preparación extra para el docente.', html: function() {
+    return '<div style="background:#f8f8fa;border-radius:14px;padding:16px;border:1px solid #eee">' +
+      '<div style="font-size:11px;font-weight:700;color:#aaa;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px">Actividades disponibles</div>' +
+      [['🌀','Ikigai del aula','25 min','Autoconocimiento'],['🌡️','Termómetro del grupo','15 min','Cohesión'],['✉️','Carta a mi yo futuro','20 min','Motivación'],['⚡','Mis 3 motores','10 min','Motivación']].map(function(a) {
+        return '<div style="display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:9px;border:1px solid #eee;background:white;margin-bottom:6px"><span style="font-size:18px">' + a[0] + '</span><div style="flex:1"><div style="font-size:12px;font-weight:700">' + a[1] + '</div><div style="font-size:10px;color:#aaa">' + a[3] + ' · ' + a[2] + '</div></div><div style="width:8px;height:8px;border-radius:50%;background:#22c55e"></div></div>';
+      }).join('') + '</div>';
+  }},
+  {icon:'📈', title:'Medición de impacto', desc:'Tras cada intervención, compara el antes y el después. El docente ve en segundos si funcionó.', html: function() {
+    return '<div style="background:#f8f8fa;border-radius:14px;padding:16px;border:1px solid #eee">' +
+      '<div style="font-size:11px;font-weight:700;color:#aaa;letter-spacing:1px;text-transform:uppercase;margin-bottom:12px">Pertenencia · Antes vs. Después</div>' +
+      '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">' +
+      '<div style="padding:14px;border-radius:12px;background:#fef2f2;border:1px solid #fecaca;text-align:center"><div style="font-size:10px;font-weight:700;color:#aaa;margin-bottom:4px;text-transform:uppercase">Antes</div><div style="font-size:36px;font-weight:800;color:#DC2626">2.4</div></div>' +
+      '<div style="padding:14px;border-radius:12px;background:#f0fdf4;border:1px solid #bbf7d0;text-align:center"><div style="font-size:10px;font-weight:700;color:#aaa;margin-bottom:4px;text-transform:uppercase">Después</div><div style="font-size:36px;font-weight:800;color:#059669">3.5</div><div style="font-size:11px;color:#059669;font-weight:700">+1.1 ↑</div></div>' +
+      '</div><div style="padding:9px 12px;border-radius:9px;background:#f0fdf4;border:1px solid #bbf7d0;font-size:11px;color:#166534">✅ Mejora significativa tras la intervención</div></div>';
+  }}
+];
+
+function buildMockups() {
+  var c = document.getElementById('mockups-container');
+  if (!c) return;
+  c.innerHTML = MOCKUPS.map(function(m, i) {
+    return '<div class="mock-item" id="mock-' + i + '">' +
+      '<button class="mock-btn" onclick="toggleMock(' + i + ')">' +
+      '<div style="width:40px;height:40px;border-radius:10px;background:#f5f5f5;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">' + m.icon + '</div>' +
+      '<div style="flex:1"><div style="font-size:15px;font-weight:700;color:#1a1a2e;margin-bottom:2px">' + m.title + '</div><div style="font-size:12px;color:#888;line-height:1.4">' + m.desc + '</div></div>' +
+      '<span class="mock-arrow">⌄</span></button>' +
+      '<div class="mock-body">' + m.html() + '</div></div>';
+  }).join('');
+}
+function toggleMock(i) { document.getElementById('mock-' + i).classList.toggle('open'); }
+
+// ── Plans ─────────────────────────────────────────────────────────────────
+function buildPlans() {
+  var c = document.getElementById('plans-grid');
+  if (!c) return;
+  c.innerHTML = PLANS.map(function(p) {
+    var badge = p.badge ? '<div style="position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:#FF6B35;color:white;font-size:11px;font-weight:700;padding:4px 14px;border-radius:999px;white-space:nowrap">' + p.badge + '</div>' : '';
+    var feats = p.features.map(function(f) { return '<div style="display:flex;align-items:flex-start;gap:7px;margin-bottom:6px;font-size:12px;color:#444"><span style="color:#22c55e;font-weight:700;flex-shrink:0">✓</span>' + f + '</div>'; }).join('');
+    return '<div style="border-radius:18px;border:2px solid ' + (p.primary ? '#FF6B35' : '#eee') + ';padding:22px 18px;position:relative;background:white;box-shadow:' + (p.primary ? '0 8px 32px rgba(255,107,53,.12)' : 'none') + ';display:flex;flex-direction:column">' +
+      badge +
+      '<div style="font-size:24px;margin-bottom:10px">' + p.icon + '</div>' +
+      '<div style="font-size:13px;font-weight:700;color:#FF6B35;margin-bottom:4px">' + p.name + '</div>' +
+      '<div style="margin-bottom:8px"><span style="font-size:' + (p.price === 'A medida' ? 20 : 28) + 'px;font-weight:800;color:#1a1a2e;letter-spacing:-1px">' + p.price + '</span>' + (p.period ? '<span style="font-size:12px;color:#aaa;margin-left:4px">' + p.period + '</span>' : '') + '</div>' +
+      '<div style="font-size:12px;color:#555;margin-bottom:6px;line-height:1.4;font-style:italic">' + p.tagline + '</div>' +
+      '<div style="font-size:12px;font-weight:600;color:#1a1a2e;margin-bottom:12px;line-height:1.4;padding:8px 10px;background:#f8f8fa;border-radius:8px">' + p.highlight + '</div>' +
+      '<div style="flex:1;margin-bottom:14px">' + feats + '</div>' +
+      '<button onclick="closePricing();showDemo()" style="width:100%;padding:10px 0;border-radius:9px;font-family:\'Plus Jakarta Sans\',sans-serif;font-size:13px;font-weight:700;cursor:pointer;border:' + (p.primary ? 'none' : '2px solid #FF6B35') + ';background:' + (p.primary ? '#FF6B35' : 'white') + ';color:' + (p.primary ? 'white' : '#FF6B35') + '">Solicitar demo →</button>' +
+      '</div>';
+  }).join('');
+}
+
+// ── App render ────────────────────────────────────────────────────────────
+function switchRole(r) {
+  APP_ROLE = r;
+  document.getElementById('tab-profe').classList.toggle('on', r === 'profe');
+  document.getElementById('tab-alumno').classList.toggle('on', r === 'alumno');
+  if (r === 'profe') { PROFE_STEP = 'mg'; SELECTED_GROUP = null; SELECTED_ACT = null; }
+  else { resetCheckin(); }
+  renderApp();
+}
+
+function resetCheckin() {
+  CHECKIN_STEP = 'name'; CHECKIN_STUDENT = null; CHECKIN_QI = 0;
+  CHECKIN_ANS = {}; CHECKIN_CUR = null; CHECKIN_CHIPS = [];
+  STUDENT_SEARCH = ''; ACT_PHASE = null;
+  IKIGAI_STEP = 0; IKIGAI_DATA = {a:'',b:'',c:'',e:''};
+  CARTA_STEP = 0; CARTA_DATA = {a:'',b:'',c:''};
+  MOTORES_SEL = []; MOTORES_DONE = false;
+  TERM_CHOICE = null;
+}
+
+function renderApp() {
+  var c = document.getElementById('app-content');
+  if (!c) return;
+  var html = renderTourOverlay();
+  if (APP_ROLE === 'alumno') html += renderAlumno();
+  else html += renderProfe();
+  c.innerHTML = html;
+}
+
+// ── Tour ──────────────────────────────────────────────────────────────────
+function renderTourOverlay() {
+  if (!TOUR_ACTIVE) return '';
+  var step = TOUR_STEPS[TOUR_STEP];
+  var pips = TOUR_STEPS.map(function(_, i) {
+    return '<div class="tour-pip ' + (i <= TOUR_STEP ? 'done' : '') + '"></div>';
+  }).join('');
+  return '<div class="tour-tooltip">' +
+    '<div class="tour-progress">' + pips + '</div>' +
+    '<div class="tour-title">' + step.title + '</div>' +
+    '<div class="tour-body">' + step.body + '</div>' +
+    '<div class="tour-btns">' +
+    '<button class="btn bw" style="padding:7px 16px;font-size:12px" onclick="tourAdvance()">' + step.btn + '</button>' +
+    '<button class="tour-skip" onclick="stopTour()">' + t('Saltar tour','Tourra saltatu') + '</button>' +
+    '</div></div>';
+}
+
+function startTour() {
+  TOUR_ACTIVE = true; TOUR_STEP = 0;
+  var btn = document.getElementById('btn-tour');
+  if (btn) { btn.textContent = '✕ Salir'; btn.onclick = stopTour; }
+  if (APP_ROLE !== TOUR_STEPS[0].role) switchRole(TOUR_STEPS[0].role);
+  else renderApp();
+}
+
+function stopTour() {
+  TOUR_ACTIVE = false;
+  var btn = document.getElementById('btn-tour');
+  if (btn) { btn.textContent = '🗺 Tour'; btn.onclick = startTour; }
+  renderApp();
+}
+
+function tourAdvance() {
+  if (TOUR_STEP === TOUR_STEPS.length - 1) { stopTour(); closeApp(); showDemo(); return; }
+  TOUR_STEP++;
+  var step = TOUR_STEPS[TOUR_STEP];
+  if (step.role !== APP_ROLE) {
+    switchRole(step.role);
+  } else {
+    if (step.role === 'profe') {
+      if (TOUR_STEP === 1) PROFE_STEP = 0;
+      if (TOUR_STEP === 2) PROFE_STEP = 1;
+      if (TOUR_STEP === 3) PROFE_STEP = 2;
+    }
+    renderApp();
+  }
+}
+
+// ── Alumno ────────────────────────────────────────────────────────────────
+function renderAlumno() {
+  if (CHECKIN_STEP === 'name') return renderNameSelect();
+  if (CHECKIN_STEP === 'w')    return renderWelcome();
+  if (CHECKIN_STEP === 'q')    return renderQuestion();
+  if (CHECKIN_STEP === 'dc')   return renderCheckinDone();
+  if (CHECKIN_STEP === 'act')  return renderActStart();
+  if (CHECKIN_STEP === 'dact') return renderActDone();
+  return '';
+}
+
+function renderNameSelect() {
+  var filtered = ROSTER.filter(function(n) { return n.toLowerCase().includes(STUDENT_SEARCH.toLowerCase()); });
+  var listHTML = filtered.length === 0
+    ? '<div style="text-align:center;padding:24px;color:#aaa;font-size:13px">' + t('No encontrado.','Ez da aurkitu.') + '</div>'
+    : filtered.map(function(name) {
+        var safe = name.replace(/'/g, "\\'");
+        return '<button onclick="CHECKIN_STUDENT=\'' + safe + '\';CHECKIN_STEP=\'w\';renderApp()" ' +
+          'style="display:flex;align-items:center;gap:10px;padding:11px 14px;border-radius:10px;border:1.5px solid #eee;background:white;cursor:pointer;text-align:left;width:100%;font-family:\'Plus Jakarta Sans\',sans-serif;margin-bottom:5px" ' +
+          'onmouseover="this.style.borderColor=\'#FF6B35\';this.style.background=\'#FFF0EB\'" onmouseout="this.style.borderColor=\'#eee\';this.style.background=\'white\'">' +
+          '<div style="width:32px;height:32px;border-radius:50%;background:#f5f5f5;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#aaa;flex-shrink:0">' + name.charAt(0) + '</div>' +
+          '<span style="font-size:14px;font-weight:500;color:#1a1a2e">' + name + '</span></button>';
+      }).join('');
+  return '<div class="card">' +
+    '<div class="ey">Check-in · Klaizen</div>' +
+    '<div class="ch2" style="font-size:18px;margin-bottom:4px">' + t('¿Quién eres?','Nor zara zu?') + '</div>' +
+    '<div class="cb2t" style="margin-bottom:16px;font-size:12px">' + t('Busca tu nombre en la lista. Tus respuestas son confidenciales.','Bilatu zure izena zerrendan. Zure erantzunak konfidentzialak dira.') + '</div>' +
+    '<div style="position:relative;margin-bottom:10px"><span style="position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:14px;color:#aaa">🔍</span>' +
+    '<input type="text" value="' + STUDENT_SEARCH + '" oninput="STUDENT_SEARCH=this.value;renderApp()" placeholder="' + t('Escribe tu nombre...','Idatzi zure izena...') + '" ' +
+    'style="width:100%;padding:11px 12px 11px 36px;border:1.5px solid #eee;border-radius:10px;font-size:14px;outline:none;color:#1a1a2e;background:#fafafa" ' +
+    'onfocus="this.style.borderColor=\'#FF6B35\'" onblur="this.style.borderColor=\'#eee\'"/></div>' +
+    '<div style="max-height:260px;overflow-y:auto">' + listHTML + '</div>' +
+    '<div style="margin-top:14px;padding:10px 12px;border-radius:9px;background:#f8f8fa;border:1px solid #eee;display:flex;gap:8px;align-items:flex-start"><span>🔒</span><div style="font-size:11px;color:#888;line-height:1.5">' + t('Solo tu tutor/a y orientación pueden ver tu evolución.','Tutoreak eta orientazioak bakarrik ikus dezakete zure bilakaera.') + '</div></div></div>';
+}
+
+function renderWelcome() {
+  var first = CHECKIN_STUDENT ? CHECKIN_STUDENT.split(' ')[0] : '';
+  return '<div class="card" style="text-align:center;padding:32px 20px">' +
+    '<div style="width:52px;height:52px;border-radius:50%;background:#FFF0EB;border:2px solid #ffd4c0;display:flex;align-items:center;justify-content:center;font-size:22px;margin:0 auto 14px">' + CHECKIN_STUDENT.charAt(0) + '</div>' +
+    '<div class="ey" style="display:block">Check-in · Klaizen</div>' +
+    '<div class="ch2" style="text-align:center;font-size:19px;margin-bottom:6px">' + t('Hola, ','Kaixo, ') + first + ' 👋</div>' +
+    '<div class="cb2t" style="text-align:center;margin-bottom:20px;font-size:12px">' + t('12 preguntas · 3 minutos · anónimo','12 galdera · 3 minutu · anonimoa') + '</div>' +
+    '<div style="display:flex;justify-content:center;flex-wrap:wrap;gap:5px;margin-bottom:22px">' +
+    DIMS.map(function(d) { return '<span style="font-size:10px;padding:3px 9px;border-radius:999px;background:' + d.bg + ';color:' + d.color + ';font-weight:600">' + d.e + ' ' + (isEs() ? d.es : d.eu) + '</span>'; }).join('') +
+    '</div><div style="display:flex;gap:8px;justify-content:center">' +
+    '<button class="bgbtn" onclick="CHECKIN_STEP=\'name\';renderApp()">' + t('← Cambiar nombre','← Izena aldatu') + '</button>' +
+    '<button class="btn bp bs" onclick="CHECKIN_STEP=\'q\';CHECKIN_QI=0;renderApp()">' + t('Empezar ✨','Hasi ✨') + '</button></div></div>';
+}
+
+function renderQuestion() {
+  var q = QUESTIONS[CHECKIN_QI];
+  var dim = DIMS.find(function(d) { return d.id === q.dim; });
+  var prog = ((CHECKIN_QI) / QUESTIONS.length * 100).toFixed(0);
+  var qt = isEs() ? q.es : q.eu;
+  var html = '<div class="card"><div class="pt2"><div class="pf" style="width:' + prog + '%"></div></div>';
+  if (dim) html += '<div style="display:inline-flex;align-items:center;gap:5px;padding:2px 9px;border-radius:999px;background:' + dim.bg + ';color:' + dim.color + ';font-size:10px;font-weight:700;margin-bottom:9px">' + dim.e + ' ' + (isEs() ? dim.es : dim.eu) + '</div>';
+  html += '<div style="font-size:10px;color:#aaa;margin-bottom:9px">' + t('Pregunta ','') + (CHECKIN_QI + 1) + t(' de ',' / ') + QUESTIONS.length + '</div>';
+  html += '<div style="font-size:15px;font-weight:700;line-height:1.35;margin-bottom:18px">' + qt + '</div>';
+
+  if (q.type === 'emoji5') {
+    html += '<div class="eg">' + EMOJI_SCALE.map(function(em) {
+      return '<button class="eb ' + (CHECKIN_CUR === em.v ? 'on' : '') + '" onclick="CHECKIN_CUR=' + em.v + ';renderApp()"><span class="ee">' + em.e + '</span><span class="el">' + (isEs() ? em.es : em.eu) + '</span></button>';
+    }).join('') + '</div>';
+  } else if (q.type === 'slider') {
+    var v = CHECKIN_CUR || 3;
+    var pct = (((v - 1) / 4) * 100).toFixed(0);
+    html += '<div class="slbl"><span>' + (isEs() ? q.mnes : q.mneu) + '</span><span>' + (isEs() ? q.mxes : q.mxeu) + '</span></div>';
+    html += '<input type="range" min="1" max="5" step="1" value="' + v + '" style="--v:' + pct + '%" oninput="CHECKIN_CUR=parseInt(this.value);var p=((this.value-1)/4*100);this.style.setProperty(\'--v\',p+\'%\');document.getElementById(\'sv-val\').textContent=this.value">';
+    html += '<div class="sv" id="sv-val">' + v + '</div>';
+  } else if (q.type === 'chips') {
+    var opts = isEs() ? q.oes : q.oeu;
+    html += '<div class="cpg">' + opts.map(function(o) {
+      var safe = o.replace(/'/g, "\\'");
+      return '<div class="cp ' + (CHECKIN_CHIPS.indexOf(o) >= 0 ? 'on' : '') + '" onclick="var i=CHECKIN_CHIPS.indexOf(\'' + safe + '\');if(i>=0){CHECKIN_CHIPS.splice(i,1)}else{CHECKIN_CHIPS.push(\'' + safe + '\')}renderApp()">' + o + '</div>';
+    }).join('') + '</div>';
+  } else if (q.type === 'open') {
+    var ph = isEs() ? q.phes : q.pheu;
+    html += '<textarea rows="3" placeholder="' + ph + '" oninput="CHECKIN_CUR=this.value">' + (CHECKIN_CUR || '') + '</textarea>';
+  }
+
+  var ok = q.type === 'open' || (q.type === 'chips' && CHECKIN_CHIPS.length > 0) || (q.type !== 'open' && q.type !== 'chips' && CHECKIN_CUR !== null);
+  html += '<div class="acts">';
+  if (CHECKIN_QI > 0) html += '<button class="bgbtn" onclick="CHECKIN_CUR=CHECKIN_ANS[QUESTIONS[CHECKIN_QI-1].id]||null;CHECKIN_CHIPS=[];CHECKIN_QI--;renderApp()">' + t('← Anterior','← Aurrekoa') + '</button>';
+  html += '<button class="btn bp bs" ' + (ok ? '' : 'disabled style="opacity:.4"') + ' onclick="advanceQuestion()">' + (CHECKIN_QI === QUESTIONS.length - 1 ? t('Finalizar →','Bukatu →') : t('Siguiente →','Hurrengoa →')) + '</button></div></div>';
+  return html;
+}
+
+function advanceQuestion() {
+  var q = QUESTIONS[CHECKIN_QI];
+  CHECKIN_ANS[q.id] = q.type === 'chips' ? CHECKIN_CHIPS.slice() : CHECKIN_CUR;
+  CHECKIN_CUR = null; CHECKIN_CHIPS = [];
+  if (CHECKIN_QI < QUESTIONS.length - 1) { CHECKIN_QI++; renderApp(); }
+  else { CHECKIN_STEP = 'dc'; renderApp(); }
+}
+
+function renderCheckinDone() {
+  var first = CHECKIN_STUDENT ? CHECKIN_STUDENT.split(' ')[0] : '';
+  return '<div class="card"><div class="dsc"><div style="font-size:48px;margin-bottom:12px">🎉</div>' +
+    '<div style="font-size:20px;font-weight:800;margin-bottom:5px">' + t('¡Check-in completado!','Check-in osatu da!') + '</div>' +
+    '<div style="font-size:12px;color:#666;margin-bottom:20px">' + t('Gracias, ','Eskerrik asko, ') + first + '. ' + t('Tu tutor/a puede ver tu evolución de forma confidencial.','Tutoreak zure bilakaera konfidentzialki ikus dezake.') + '</div>' +
+    '<div style="background:#FFF0EB;border-radius:12px;padding:14px 16px;margin-bottom:18px;text-align:left">' +
+    '<div style="font-size:10px;color:#FF6B35;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:7px">' + t('Actividad de hoy','Gaurko jarduera') + '</div>' +
+    '<div style="display:flex;gap:9px;align-items:flex-start"><div style="font-size:22px">⚡</div><div>' +
+    '<div style="font-weight:800;font-size:13px;margin-bottom:2px">' + t('Mis 3 motores','Nire 3 motorrak') + '</div>' +
+    '<div style="font-size:11px;color:#aaa;margin-bottom:9px">10 min · ' + t('Motivación','Motibazioa') + '</div>' +
+    '<button class="btn bp bs" onclick="SELECTED_ACT=ACTS[3];CHECKIN_STEP=\'act\';MOTORES_SEL=[];MOTORES_DONE=false;renderApp()">' + t('Hacer la actividad →','Jarduera egin →') + '</button>' +
+    '</div></div></div>' +
+    '<button class="bgbtn" onclick="resetCheckin();renderApp()">' + t('Volver al inicio','Hasierara itzuli') + '</button></div></div>';
+}
+
+function renderActStart() {
+  if (!SELECTED_ACT) return renderCheckinDone();
+  var a = SELECTED_ACT;
+  var inner = '';
+  if (a.id === 'motores')    inner = renderMotoresAct();
+  else if (a.id === 'ikigai')     inner = renderIkigaiAct();
+  else if (a.id === 'termometro') inner = renderTermAct();
+  else if (a.id === 'carta')      inner = renderCartaAct();
+  return '<div class="card"><div class="ey">' + (isEs() ? a.tyes : a.tyeu) + ' · ' + a.dur + '</div>' +
+    '<div class="ch2" style="font-size:16px;margin-bottom:3px">' + a.icon + ' ' + (isEs() ? a.es : a.eu) + '</div>' +
+    '<div class="cb2t" style="margin-bottom:14px;font-size:11px">' + (isEs() ? a.des : a.deu) + '</div>' +
+    '<hr class="dv"/>' + inner + '</div>';
+}
+
+function renderActDone() {
+  return '<div class="card"><div class="dsc"><div style="font-size:48px;margin-bottom:12px">🌟</div>' +
+    '<div style="font-size:20px;font-weight:800;margin-bottom:5px">' + t('¡Actividad completada!','Jarduera osatu da!') + '</div>' +
+    '<div style="font-size:12px;color:#666;margin-bottom:18px">' + t('Tu tutor/a verá el impacto en el próximo diagnóstico.','Tutoreak eragina ikusiko du hurrengo diagnostikoan.') + '</div>' +
+    '<button class="btn bp bs" onclick="resetCheckin();renderApp()">' + t('Volver al inicio','Hasierara itzuli') + '</button></div></div>';
+}
+
+// ── Activities ────────────────────────────────────────────────────────────
+function renderMotoresAct() {
+  var motores = isEs()
+    ? ['Aprender cosas nuevas','Ayudar a otros','Sentirme capaz','Mis amigos/as','Mi familia','El deporte','La creatividad','El reconocimiento','Superarme','El futuro que imagino','La música / el arte','Sentirme libre']
+    : ['Gauza berriak ikastea','Besteei laguntzea','Gai sentitzea','Nire lagunak','Nire familia','Kirola','Sormena','Aitorpena','Nire burua gainditzea','Imajinatu dudan etorkizuna','Musika / artea','Libre sentitzea'];
+  var cols = ['#FF6B35','#D97706','#7C3AED'];
+  if (MOTORES_DONE) {
+    return '<div class="ey">' + t('Tus 3 motores','Zure 3 motorrak') + '</div>' +
+      MOTORES_SEL.map(function(m, i) {
+        return '<div style="display:flex;align-items:center;gap:9px;padding:11px 13px;border-radius:9px;border:1.5px solid ' + cols[i] + '33;background:' + cols[i] + '11;margin-bottom:7px">' +
+          '<div style="width:26px;height:26px;border-radius:50%;background:' + cols[i] + ';display:flex;align-items:center;justify-content:center;font-weight:800;color:white;font-size:11px;flex-shrink:0">' + (i + 1) + '</div>' +
+          '<div style="font-size:13px;font-weight:700">' + m + '</div></div>';
+      }).join('') +
+      '<div class="alrt"><span>🤔</span><div>' + t('Comparte uno de tus motores con alguien de al lado.','Zure motorrengandik bat partekatu alboko norbaitekin.') + '</div></div>' +
+      '<div class="acts"><button class="btn bp bs" onclick="CHECKIN_STEP=\'dact\';renderApp()">' + t('Actividad completada ✓','Jarduera bukatu ✓') + '</button></div>';
+  }
+  return '<div class="ch2" style="font-size:15px;margin-bottom:5px">' + t('¿Qué te mueve ahora mismo?','Orain bertan zer bultzatzen zaitu?') + '</div>' +
+    '<div class="cb2t" style="margin-bottom:10px;font-size:11px">' + t('Elige exactamente ','Aukeratu zehazki ') + '<strong style="color:#FF6B35">3 ' + t('motores','motor') + '</strong>.</div>' +
+    '<div class="cpg">' + motores.map(function(m) {
+      var safe = m.replace(/'/g, "\\'");
+      return '<div class="cp ' + (MOTORES_SEL.indexOf(m) >= 0 ? 'on' : '') + '" onclick="var i=MOTORES_SEL.indexOf(\'' + safe + '\');if(i>=0){MOTORES_SEL.splice(i,1)}else if(MOTORES_SEL.length<3){MOTORES_SEL.push(\'' + safe + '\')}renderApp()">' + (MOTORES_SEL.indexOf(m) >= 0 ? '⚡ ' : '') + m + '</div>';
+    }).join('') + '</div>' +
+    '<div style="text-align:center;font-size:11px;color:#aaa;margin:7px 0">' + MOTORES_SEL.length + '/3</div>' +
+    '<div class="acts"><button class="btn bp bs" ' + (MOTORES_SEL.length !== 3 ? 'disabled style="opacity:.4"' : '') + ' onclick="MOTORES_DONE=true;renderApp()">' + t('Ver mis motores →','Motorrak ikusi →') + '</button></div>';
+}
+
+function renderIkigaiAct() {
+  var bx = isEs()
+    ? [{k:'a',t:'Lo que me gusta',c:'#FF6B35',p:'¿Qué actividades o temas te apasionan?'},{k:'b',t:'Lo que se me da bien',c:'#DC2626',p:'¿En qué destacas?'},{k:'c',t:'Lo que el mundo necesita',c:'#D97706',p:'¿Qué problemas te importan?'},{k:'e',t:'Por lo que me valorarían',c:'#7C3AED',p:'¿Qué habilidades tuyas son útiles para otros?'}]
+    : [{k:'a',t:'Gustuko dudana',c:'#FF6B35',p:'Zer jarduera sutsutzen zaitu?'},{k:'b',t:'Ondo egiten dudana',c:'#DC2626',p:'Zertan nabarmentzen zara?'},{k:'c',t:'Munduak behar duena',c:'#D97706',p:'Zein arazo kezkatzen zaitu?'},{k:'e',t:'Balio izango nukeena',c:'#7C3AED',p:'Zein trebetasun baliagarri litzateke?'}];
+  if (IKIGAI_STEP < 4) {
+    var b = bx[IKIGAI_STEP];
+    return '<div class="ey">' + t('Paso ','') + (IKIGAI_STEP+1) + t(' de 4',' / 4') + ' · ' + b.t + '</div>' +
+      '<div class="ch2" style="font-size:15px;margin-bottom:8px">' + b.p + '</div>' +
+      '<textarea rows="3" placeholder="' + t('Escribe aquí...','Idatzi hemen...') + '" oninput="IKIGAI_DATA[\'' + b.k + '\']=this.value">' + IKIGAI_DATA[b.k] + '</textarea>' +
+      '<div class="acts">' + (IKIGAI_STEP > 0 ? '<button class="bgbtn" onclick="IKIGAI_STEP--;renderApp()">' + t('← Anterior','← Aurrekoa') + '</button>' : '') +
+      '<button class="btn bp bs" onclick="if(IKIGAI_DATA[\'' + b.k + '\'].trim()){IKIGAI_STEP++;renderApp()}">' + (IKIGAI_STEP === 3 ? t('Ver Ikigai →','Ikigaia ikusi →') : t('Siguiente →','Hurrengoa →')) + '</button></div>';
+  }
+  return '<div class="ey">' + t('Tu Ikigai personal','Zure Ikigai pertsonala') + '</div>' +
+    '<div class="ikgrid">' + bx.map(function(b) { return '<div class="ikb"><div class="ikt" style="color:' + b.c + '">' + b.t + '</div><div style="font-size:11px;line-height:1.45">' + (IKIGAI_DATA[b.k] || '—') + '</div></div>'; }).join('') + '</div>' +
+    '<div class="alrt" style="background:#f0fdf4;border-color:#bbf7d0;color:#166534"><span>💡</span><div>' + t('Tu propósito puede estar en la intersección de estas cuatro áreas.','Zure xedea lau eremu hauen gurutzaketan egon daiteke.') + '</div></div>' +
+    '<div class="acts"><button class="btn bp bs" onclick="CHECKIN_STEP=\'dact\';renderApp()">' + t('Finalizar actividad ✓','Jarduera bukatu ✓') + '</button></div>';
+}
+
+function renderTermAct() {
+  var opts = isEs()
+    ? ['🔥 Con energía','😴 Cansado/a','🤔 Pensativo/a','😰 Estresado/a','😊 Tranquilo/a','💪 Motivado/a','❄️ Desconectado/a','🌟 Ilusionado/a']
+    : ['🔥 Energiaz','😴 Nekatuta','🤔 Pentsatuta','😰 Estresatuta','😊 Lasai','💪 Motibatuta','❄️ Deskonektatuta','🌟 Ilusioz'];
+  var wc = ['#FF6B35','#0891B2','#7C3AED','#D97706','#DC2626','#059669'];
+  if (!TERM_CHOICE) {
+    return '<div class="ch2" style="font-size:15px;margin-bottom:6px">' + t('¿Una palabra: cómo ves al grupo hoy?','Gaur taldea nola ikusten duzu?') + '</div>' +
+      '<div class="cpg">' + opts.map(function(o) {
+        var safe = o.replace(/'/g, "\\'");
+        var word = o.split(' ').slice(1).join(' ').replace(/'/g, "\\'");
+        var color = wc[Math.floor(Math.random() * wc.length)];
+        return '<div class="cp" onclick="TERM_CHOICE=\'' + safe + '\';WORD_CLOUD.push({w:\'' + word + '\',c:\'' + color + '\'});renderApp()">' + o + '</div>';
+      }).join('') + '</div>';
+  }
+  return '<div class="ey">' + t('Nube del aula','Gelako nubea') + '</div>' +
+    '<div class="ch2" style="font-size:15px;margin-bottom:6px">' + t('Así se siente el grupo hoy','Taldea gaur honela sentitzen da') + '</div>' +
+    '<div class="tw">' + WORD_CLOUD.map(function(w) { return '<span class="cw" style="background:' + w.c + '22;color:' + w.c + ';border:1px solid ' + w.c + '44">' + w.w + '</span>'; }).join('') + '</div>' +
+    '<div class="alrt" style="background:#faf5ff;border-color:#e9d5ff;color:#6b21a8"><span>🤔</span><div>' + t('¿Qué te dice esta nube sobre el grupo?','Zer esaten dizu nube honek taldearen inguruan?') + '</div></div>' +
+    '<div class="acts"><button class="btn bp bs" onclick="CHECKIN_STEP=\'dact\';renderApp()">' + t('Reflexión completada ✓','Hausnarketa osatu ✓') + '</button></div>';
+}
+
+function renderCartaAct() {
+  var ps = isEs()
+    ? [{k:'a',t:'Tus logros futuros',p:'Imagina que han pasado 6 meses. ¿Qué has conseguido?',ph:'En estos 6 meses he conseguido...'},{k:'b',t:'Lo que habrás aprendido',p:'¿Qué habrás aprendido sobre ti mismo/a?',ph:'He aprendido que...'},{k:'c',t:'Un consejo para hoy',p:'¿Qué le diría tu yo futuro a tu yo de ahora?',ph:'Lo que te diría es...'}]
+    : [{k:'a',t:'Etorkizuneko lorpenak',p:'Imajinatu 6 hilabete igaro direla. Zer lortu duzu?',ph:'Sei hilabete hauetan lortu dut...'},{k:'b',t:'Ikasiko duzuna',p:'Zer ikasiko duzu zeure buruari buruz?',ph:'Ikasi dut...'},{k:'c',t:'Gaurko aholkua',p:'Zer esango lioke etorkizuneko nik oraingo niari?',ph:'Esango nizkiokeen hitzak dira...'}];
+  if (CARTA_STEP < 3) {
+    var p = ps[CARTA_STEP];
+    return '<div class="ey">' + t('Paso ','') + (CARTA_STEP+1) + t(' de 3',' / 3') + ' · ' + p.t + '</div>' +
+      '<div class="ch2" style="font-size:15px;margin-bottom:10px">' + p.p + '</div>' +
+      '<div class="lp"><div class="lh">' + t('Carta de mi yo dentro de 6 meses...','6 hilabeteren buruko gutunetik...') + '</div>' +
+      '<textarea rows="3" placeholder="' + p.ph + '" style="background:transparent;border:none;border-bottom:1px dashed #eee;border-radius:0;padding:6px 0" oninput="CARTA_DATA[\'' + p.k + '\']=this.value">' + CARTA_DATA[p.k] + '</textarea></div>' +
+      '<div class="acts">' + (CARTA_STEP > 0 ? '<button class="bgbtn" onclick="CARTA_STEP--;renderApp()">' + t('← Anterior','← Aurrekoa') + '</button>' : '') +
+      '<button class="btn bp bs" onclick="if(CARTA_DATA[\'' + p.k + '\'].trim()){CARTA_STEP++;renderApp()}">' + (CARTA_STEP === 2 ? t('Ver mi carta →','Gutuna ikusi →') : t('Siguiente →','Hurrengoa →')) + '</button></div>';
+  }
+  return '<div class="ey">' + t('Tu carta completa','Zure gutun osoa') + '</div>' +
+    '<div class="lp"><div class="lh">' + t('Querido/a yo...','Nire oraingo niari...') + '</div>' +
+    '<div style="font-size:12px;line-height:1.65;color:#444">' + ps.map(function(p) { return CARTA_DATA[p.k] ? '<p style="margin-bottom:8px"><em>' + p.t + ':</em><br/>' + CARTA_DATA[p.k] + '</p>' : ''; }).join('') + '</div></div>' +
+    '<div class="acts"><button class="btn bp bs" onclick="CHECKIN_STEP=\'dact\';renderApp()">' + t('Actividad completada ✓','Jarduera bukatu ✓') + '</button></div>';
+}
+
+// ── Profe ─────────────────────────────────────────────────────────────────
+function renderProfe() {
+  var html = renderTourOverlay();
+  if (PROFE_STEP === 'mg') html += renderMultiGroup();
+  else if (PROFE_STEP === 0) html += renderDashboard();
+  else if (PROFE_STEP === 1) html += renderAreas();
+  else if (PROFE_STEP === 2) html += renderIntervenciones();
+  else if (PROFE_STEP === 3) html += renderActividad();
+  else if (PROFE_STEP === 4) html += renderImpacto();
+  return html;
+}
+
+function renderMultiGroup() {
+  var html = '<div class="card"><div class="ey">' + t('GESTIÓN DE GRUPOS','TALDEEN KUDEAKETA') + '</div>' +
+    '<div class="ch2" style="font-size:17px;margin-bottom:5px">' + t('Tus grupos','Zure taldeak') + '</div>' +
+    '<div class="cb2t" style="margin-bottom:12px;font-size:11px">' + t('Selecciona un grupo para ver su diagnóstico.','Hautatu talde bat diagnostikoa ikusteko.') + '</div>';
+  GRUPOS.forEach(function(g) {
+    var a = parseFloat(groupAvg(g.scores));
+    var c = scoreColor(a);
+    var sel = SELECTED_GROUP && SELECTED_GROUP.id === g.id;
+    html += '<div class="grw ' + (sel ? 'on' : '') + '" onclick="SELECTED_GROUP=GRUPOS.find(function(x){return x.id===\'' + g.id + '\'});renderApp()">' +
+      '<div class="gn">' + g.name + '</div><div class="gnn">' + g.n + ' ' + t('alumn.','ikasle') + '</div>' +
+      '<div class="gsc" style="color:' + c + '">' + a + '/5</div>' +
+      '<div style="font-size:14px;margin-left:3px">' + (a < 2.5 ? '🔴' : a < 3.5 ? '🟡' : '🟢') + '</div></div>';
+  });
+  if (SELECTED_GROUP) {
+    html += '<div style="margin-top:14px;padding:14px;background:#f8f8fa;border-radius:11px;border:1px solid #eee">' +
+      '<div style="font-weight:700;font-size:13px;margin-bottom:9px">' + SELECTED_GROUP.name + '</div>' +
+      dimBarsHTML(SELECTED_GROUP.scores) +
+      '<button class="btn bp bs" style="margin-top:9px" onclick="PROFE_STEP=0;renderApp()">' + t('Ver diagnóstico completo →','Diagnostiko osoa →') + '</button></div>';
+  }
+  html += '</div>';
+  // Alertas individuales
+  html += '<div class="card"><div class="ey">' + t('ALERTAS INDIVIDUALES','BANAKAKO ALERTAK') + '</div>' +
+    '<div class="ch2" style="font-size:17px;margin-bottom:5px">' + t('Alumnado que necesita atención','Arreta behar duten ikasleak') + '</div>' +
+    '<div class="cb2t" style="margin-bottom:12px;font-size:11px">' + t('Visible solo para tutor/a, orientación y dirección.','Tutoreari, orientazioari eta zuzendaritzari bakarrik ikusgai.') + '</div>';
+  ['Aitana Fernández','Garazi Aizpurua'].forEach(function(name) {
+    var safe = name.replace(/'/g, "\\'");
+    html += '<div style="display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:11px;background:#fef2f2;border:1.5px solid #fecaca;margin-bottom:8px;cursor:pointer" onclick="SELECTED_STUDENT=SELECTED_STUDENT===\'' + safe + '\'?null:\'' + safe + '\';renderApp()">' +
+      '<div style="width:36px;height:36px;border-radius:50%;background:#DC2626;color:white;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;flex-shrink:0">' + name.charAt(0) + '</div>' +
+      '<div style="flex:1"><div style="font-size:13px;font-weight:700;color:#1a1a2e">' + name + '</div><div style="font-size:11px;color:#DC2626;font-weight:600">🔴 ' + t('Riesgo alto','Arrisku altua') + '</div></div>' +
+      '<div style="font-size:11px;color:#DC2626;font-weight:600">' + t('Ver →','Ikusi →') + '</div></div>';
+    if (SELECTED_STUDENT === name && STUDENT_HISTORY[name]) html += renderStudentHistory(name, '#DC2626');
+  });
+  ['Mikel Zabala'].forEach(function(name) {
+    var safe = name.replace(/'/g, "\\'");
+    html += '<div style="display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:11px;background:#FFFBEB;border:1.5px solid #fde68a;margin-bottom:8px;cursor:pointer" onclick="SELECTED_STUDENT=SELECTED_STUDENT===\'' + safe + '\'?null:\'' + safe + '\';renderApp()">' +
+      '<div style="width:36px;height:36px;border-radius:50%;background:#D97706;color:white;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;flex-shrink:0">' + name.charAt(0) + '</div>' +
+      '<div style="flex:1"><div style="font-size:13px;font-weight:700;color:#1a1a2e">' + name + '</div><div style="font-size:11px;color:#D97706;font-weight:600">🟡 ' + t('Atención','Arreta') + '</div></div>' +
+      '<div style="font-size:11px;color:#D97706;font-weight:600">' + t('Ver →','Ikusi →') + '</div></div>';
+    if (SELECTED_STUDENT === name && STUDENT_HISTORY[name]) html += renderStudentHistory(name, '#D97706');
+  });
+  html += '</div>';
+  return html;
+}
+
+function renderStudentHistory(name, riskColor) {
+  var hist = STUDENT_HISTORY[name];
+  var keys = ['m','b','p','a','r','e'];
+  var labels = isEs() ? ['Motivación','Bienestar','Pertenencia','Autoconf.','Relaciones','Estrés'] : ['Motibazioa','Ongizatea','Kidetasuna','Autokonf.','Harremanak','Estresa'];
+  var dColors = ['#FF6B35','#0891B2','#7C3AED','#D97706','#DC2626','#059669'];
+  var html = '<div style="padding:14px;background:#f8f8fa;border-radius:0 0 11px 11px;border:1.5px solid ' + riskColor + ';border-top:none;margin-top:-8px;margin-bottom:8px">' +
+    '<div style="font-weight:800;font-size:13px;margin-bottom:10px">📈 ' + t('Evolución de ','Bilakaera: ') + name + '</div>';
+  keys.forEach(function(k, i) {
+    var vals = hist.map(function(w) { return w[k]; });
+    var last = vals[vals.length - 1];
+    var trend = last - vals[0];
+    var c = scoreColor(last);
+    html += '<div style="margin-bottom:10px"><div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:11px;font-weight:600;color:#555">' + labels[i] + '</span><span style="font-size:11px;font-weight:700;color:' + c + '">' + last.toFixed(1) + ' ' + (trend < -0.5 ? '↓' : trend > 0.5 ? '↑' : '→') + '</span></div>' +
+      '<div style="display:flex;gap:3px;align-items:flex-end;height:28px">' +
+      vals.map(function(v, wi) {
+        return '<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px"><div style="width:100%;border-radius:3px 3px 0 0;height:' + (v/5*24).toFixed(0) + 'px;background:' + (wi === vals.length-1 ? dColors[i] : dColors[i]+'66') + '"></div><span style="font-size:8px;color:#aaa">S' + (wi+1) + '</span></div>';
+      }).join('') + '</div></div>';
+  });
+  html += '</div>';
+  return html;
+}
+
+function renderDashboard() {
+  var g = SELECTED_GROUP || {name:'2º Bach A',n:24,scores:{motivacion:2.9,bienestar:3.6,pertenencia:2.4,autoconfianza:2.8,relaciones:2.3,estres:3.9}};
+  return stepsBarHTML(0) +
+    '<div class="card"><div class="ey">Dashboard · ' + g.name + ' · ' + t('Semana 14','14. astea') + '</div>' +
+    '<div class="ch2">' + t('Estado del aula','Gelako egoera') + '</div>' +
+    '<div class="cb2t" style="margin-bottom:10px;font-size:11px">' + g.n + ' ' + t('respuestas recibidas','erantzun jasota') + '</div>' +
+    dimBarsHTML(g.scores) +
+    '<div class="aib"><div class="aih"><span>✨</span>' + t('Recomendación IA','AAren gomendioa') + '</div>' +
+    '<div class="ait">' + t('Detecto caída sostenida en pertenencia (-0.6 en 4 semanas) y relaciones bajas (2.3/5). Recomiendo priorizar cohesión grupal esta semana. El "Termómetro del grupo" sería efectivo ya que externaliza emociones colectivas sin señalar a nadie individualmente.','Kidetasunean behera egonkorra (-0,6 4 astetan) eta harremanak baxuak (2,3/5) detektatzen ditut. Aste honetan talde-kohesioa lehenetsi gomendatzen dut.') + '</div></div>' +
+    '<div class="alrt"><span>⚠️</span><div><strong>2 ' + t('alertas','alerta') + ':</strong> ' + t('Pertenencia (2.4) y Relaciones (2.3) bajo el umbral recomendado.','Kidetasuna (2,4) eta Harremanak (2,3) atalasearen azpian.') + '</div></div>' +
+    '<div class="acts"><button class="bgbtn" onclick="PROFE_STEP=\'mg\';renderApp()">← ' + t('Grupos','Taldeak') + '</button><button class="btn bp bs" onclick="PROFE_STEP=1;renderApp()">' + t('Ver áreas de mejora →','Hobetze-eremuak →') + '</button></div></div>';
+}
+
+function renderAreas() {
+  var areas = [
+    {di:4,sc:2.3,es:'Tensión interpersonal. El 34% reporta conflicto sin resolver.',eu:'Tentsio interpertsonala. %34ak konpondu gabeko gatazka.',c:'#DC2626',lv:'Alta'},
+    {di:2,sc:2.4,es:'Baja percepción de pertenencia. Tendencia negativa 4 semanas.',eu:'Kidetasun hautemate txikia. Joera negatiboa 4 astetan.',c:'#DC2626',lv:'Alta'},
+    {di:3,sc:2.8,es:'Nivel moderado-bajo. Puede relacionarse con la carga académica.',eu:'Maila moderatu-baxua.',c:'#D97706',lv:'Media'},
+    {di:0,sc:2.9,es:'Motivación bajo la media. Conectada con estrés elevado.',eu:'Motibazioa batez azpian.',c:'#D97706',lv:'Media'},
+    {di:5,sc:3.9,es:'Estrés elevado. Coincide con periodo de exámenes.',eu:'Estres altua. Azterketa garaiarekin bat dator.',c:'#D97706',lv:'Atenc.'},
+    {di:1,sc:3.6,es:'Bienestar estable. No requiere intervención inmediata.',eu:'Ongizate egonkorra.',c:'#059669',lv:'OK'}
+  ];
+  var html = stepsBarHTML(1) + '<div class="card"><div class="ey">' + t('Áreas de mejora','Hobetze-eremuak') + '</div>' +
+    '<div class="ch2" style="font-size:17px;margin-bottom:5px">' + t('¿Qué necesita el aula?','Gelak zer behar du?') + '</div>' +
+    '<div class="cb2t" style="margin-bottom:12px;font-size:11px">' + t('Basado en el diagnóstico de hoy y evolución reciente.','Gaurko diagnostikoan oinarrituta.') + '</div>';
+  areas.forEach(function(a) {
+    var d = DIMS[a.di];
+    html += '<div class="sem" style="background:' + a.c + '0d;border-color:' + a.c + '33;color:#1a1a2e"><div class="sdd" style="background:' + a.c + '"></div><div style="flex:1"><div style="display:flex;justify-content:space-between;margin-bottom:2px"><strong style="font-size:12px">' + d.e + ' ' + (isEs() ? d.es : d.eu) + '</strong><span style="font-size:9px;font-weight:700;color:' + a.c + ';background:' + a.c + '1a;padding:1px 6px;border-radius:999px">' + a.lv + ' · ' + a.sc + '/5</span></div><div style="font-size:11px;color:#666">' + (isEs() ? a.es : a.eu) + '</div></div></div>';
+  });
+  html += '<div class="acts"><button class="bgbtn" onclick="PROFE_STEP=0;renderApp()">← ' + t('Volver','Atzera') + '</button><button class="btn bp bs" onclick="PROFE_STEP=2;renderApp()">' + t('Ver intervenciones →','Esku-hartzeak →') + '</button></div></div>';
+  return html;
+}
+
+function renderIntervenciones() {
+  var html = stepsBarHTML(2) + '<div class="card"><div class="ey">' + t('Intervenciones recomendadas','Gomendatutako jarduerak') + '</div>' +
+    '<div class="ch2" style="font-size:17px;margin-bottom:5px">' + t('Elige una actividad','Aukeratu jarduera bat') + '</div>' +
+    '<div class="cb2t" style="margin-bottom:12px;font-size:11px">' + t('Listas para aplicar en clase sin preparación extra.','Prestaketa gehigarririk gabe aplikatzeko prest.') + '</div>';
+  ACTS.forEach(function(a) {
+    html += '<div class="acard ' + (SELECTED_ACT && SELECTED_ACT.id === a.id ? 'on' : '') + '" onclick="SELECTED_ACT=ACTS.find(function(x){return x.id===\'' + a.id + '\'});renderApp()">' +
+      '<div class="aico">' + a.icon + '</div><div style="flex:1"><div class="at">' + (isEs() ? a.es : a.eu) + '</div><div class="am">' + (isEs() ? a.tyes : a.tyeu) + ' · ' + a.dur + '</div>' +
+      '<div style="font-size:11px;color:#666;margin-top:3px;line-height:1.4">' + (isEs() ? a.des : a.deu) + '</div></div></div>';
+  });
+  html += '<div class="acts"><button class="bgbtn" onclick="PROFE_STEP=1;renderApp()">← ' + t('Volver','Atzera') + '</button>' +
+    '<button class="btn bp bs" ' + (SELECTED_ACT ? '' : 'disabled style="opacity:.4"') + ' onclick="PROFE_STEP=3;renderApp()">' + t('Lanzar actividad →','Jarduera abian jarri →') + '</button></div></div>';
+  return html;
+}
+
+function renderActividad() {
+  var a = SELECTED_ACT;
+  if (!a) return renderIntervenciones();
+  return stepsBarHTML(3) + '<div class="card"><div class="ey">' + t('Actividad seleccionada','Hautatutako jarduera') + '</div>' +
+    '<div class="ch2" style="font-size:16px;margin-bottom:3px">' + a.icon + ' ' + (isEs() ? a.es : a.eu) + '</div>' +
+    '<div class="cb2t" style="margin-bottom:14px;font-size:11px">' + (isEs() ? a.des : a.deu) + '</div>' +
+    '<div style="background:#f8f8fa;border-radius:11px;padding:13px 14px;margin-bottom:12px">' +
+    '<div style="font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#FF6B35;margin-bottom:7px">' + t('Instrucciones para el docente','Irakasleak eman beharreko argibideak') + '</div>' +
+    '<div style="font-size:11px;color:#666;line-height:1.65">' + t('1. Indica al alumnado que abran Klaizen.<br/>2. Seleccionen "Alumno/a" en el menú.<br/>3. Hagan el check-in y accederán a la actividad.<br/>4. Deja ' + a.dur + ' para completarla.<br/>5. Guía una reflexión colectiva de 5 minutos.','1. Esan ikasleei Klaizen ireki dezatela.<br/>2. Hautatu "Ikasle/ak" menuan.<br/>3. Check-in egin eta jarduerara sartuko dira.<br/>4. Utzi ' + a.dur + ' osatzeko.<br/>5. 5 minutuko hausnarketa gidatu.') + '</div></div>' +
+    '<div class="acts"><button class="bgbtn" onclick="PROFE_STEP=2;renderApp()">← ' + t('Volver','Atzera') + '</button>' +
+    '<button class="btn bp bs" onclick="PROFE_STEP=4;renderApp()">' + t('Marcar como realizada ✓','Eginda gisa markatu ✓') + '</button></div></div>';
+}
+
+function renderImpacto() {
+  var a = SELECTED_ACT;
+  return stepsBarHTML(4) + '<div class="card"><div class="ey">' + t('Evaluación de impacto','Eraginaren ebaluazioa') + '</div>' +
+    '<div class="ch2" style="font-size:17px;margin-bottom:5px">' + t('¿Funcionó la intervención?','Esku-hartzeak funtzionatu al du?') + '</div>' +
+    '<div class="cb2t" style="font-size:11px;margin-bottom:12px">' + t('Actividad: ','Jarduera: ') + '<strong>' + (a ? (isEs() ? a.es : a.eu) : '') + '</strong></div>' +
+    '<div class="cm">' +
+    '<div class="cb2b" style="background:#fef2f2;border-color:#fecaca"><div class="clb">' + t('Antes','Aurretik') + '</div><div class="cnb" style="color:#DC2626">2.4</div><div style="font-size:10px;color:#aaa;margin-top:2px">' + t('Pertenencia','Kidetasuna') + '</div></div>' +
+    '<div class="cb2b" style="background:#f0fdf4;border-color:#bbf7d0"><div class="clb">' + t('Después','Ostean') + '</div><div class="cnb" style="color:#059669">3.5</div><div style="font-size:10px;color:#059669;margin-top:2px">+1.1 ↑</div></div></div>' +
+    dimBarsHTML(SCORES_AFTER) +
+    '<div class="sem" style="background:#f0fdf4;border-color:#bbf7d0;color:#1a1a2e;margin-top:4px"><div class="sdd" style="background:#059669"></div><div style="font-size:11px"><strong>' + t('Mejora significativa.','Hobekuntza nabarmena.') + '</strong> ' + t('Pertenencia +1.1. Relaciones +1.1.','Kidetasuna +1,1. Harremanak +1,1.') + '</div></div>' +
+    '<div class="alrt"><span>📋</span><div style="font-size:11px">' + t('Recomendación: repetir actividad de cohesión en 2 semanas.','Gomendioa: 2 asteren buruan talde-kohesiorako jarduera errepikatu.') + '</div></div>' +
+    '<div class="acts"><button class="bgbtn" onclick="PROFE_STEP=3;renderApp()">← ' + t('Volver','Atzera') + '</button>' +
+    '<button class="btn bp bs" onclick="PROFE_STEP=\'mg\';SELECTED_ACT=null;renderApp()">' + t('Nuevo ciclo ↺','Ziklo berria ↺') + '</button></div></div>';
+}
+</script>
+</body>
+</html>
