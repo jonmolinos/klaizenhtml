@@ -227,7 +227,6 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:17px;heigh
   <div class="nav-links">
     <button class="nl" onclick="showAbout()">Sobre nosotros</button>
     <button class="nl" onclick="document.getElementById('platform-section').scrollIntoView({behavior:'smooth'})">Funcionalidades</button>
-    <button class="nl" onclick="showPricing()">Precios</button>
   </div>
   <div class="nav-r">
     <button class="lang on" id="lang-es" onclick="setLang('es')">ES</button>
@@ -316,17 +315,6 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:17px;heigh
   </div>
 </div>
 
-<!-- PRIVACY -->
-<div class="s">
-  <div class="stag">PRIVACIDAD Y SEGURIDAD</div>
-  <h2 class="sh">Anónimo, seguro y educativo</h2>
-  <div class="pg">
-    <div class="pc"><div class="pi">🔒</div><div class="pt">Datos 100% anónimos</div><div class="pd2">El profesorado solo ve resultados agregados del grupo, nunca individuales.</div></div>
-    <div class="pc"><div class="pi">📊</div><div class="pt">No es diagnóstico clínico</div><div class="pd2">Klaizen es una herramienta educativa. No etiqueta ni sustituye al apoyo psicológico.</div></div>
-    <div class="pc"><div class="pi">🇪🇺</div><div class="pt">RGPD compliant</div><div class="pd2">Todos los datos se almacenan en servidores europeos bajo la normativa vigente.</div></div>
-    <div class="pc"><div class="pi">🌐</div><div class="pt">Bilingüe ES / EU</div><div class="pd2">Interfaz completa en castellano y euskera para todos los usuarios.</div></div>
-  </div>
-</div>
 
 <!-- PLATFORM -->
 <div id="platform-section" style="background:#fff;border-top:1px solid #f0f0f0">
@@ -640,9 +628,26 @@ function submitDemo() {
   var n = document.getElementById('demo-name').value;
   var e = document.getElementById('demo-email').value;
   var c = document.getElementById('demo-centro').value;
+  var r = document.getElementById('demo-rol').value;
   if (!n || !e || !c) return;
-  document.getElementById('demo-form').style.display = 'none';
-  document.getElementById('demo-sent').style.display = 'block';
+  var btn = document.querySelector('#demo-form .btn');
+  if (btn) { btn.disabled = true; btn.textContent = 'Enviando...'; }
+  fetch('https://formspree.io/f/xqewazog', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify({ nombre: n, email: e, centro: c, rol: r })
+  }).then(function(res) {
+    if (res.ok) {
+      document.getElementById('demo-form').style.display = 'none';
+      document.getElementById('demo-sent').style.display = 'block';
+    } else {
+      if (btn) { btn.disabled = false; btn.textContent = 'Enviar solicitud \u2192'; }
+      alert('Ha ocurrido un error. Por favor, inténtalo de nuevo.');
+    }
+  }).catch(function() {
+    if (btn) { btn.disabled = false; btn.textContent = 'Enviar solicitud \u2192'; }
+    alert('Ha ocurrido un error de red. Por favor, inténtalo de nuevo.');
+  });
 }
 
 // ── FAQ ───────────────────────────────────────────────────────────────────
