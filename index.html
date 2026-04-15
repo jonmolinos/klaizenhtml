@@ -437,6 +437,23 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:17px;heigh
           <div class="stag" id="ps-s1tag">SECCIÓN 1 · CONTEXTO</div>
           <h3 style="font-size:15px;font-weight:800;color:#1a1a2e;margin-bottom:3px;" id="ps-s1h">Cuéntanos sobre ti</h3>
           <p style="font-size:12px;color:#888;margin-bottom:14px;" id="ps-s1sub">Para interpretar mejor las respuestas.</p>
+
+          <!-- Campos de contacto -->
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;" class="vw-grid-2">
+            <div class="vw-fg">
+              <label for="nombre">Nombre completo</label>
+              <input type="text" name="nombre" id="nombre" placeholder="Ej: Jon Molinos" required/>
+            </div>
+            <div class="vw-fg">
+              <label for="email">Email <span style="color:#FF6B35">*</span></label>
+              <input type="email" name="email" id="email" placeholder="ejemplo@email.com" required/>
+            </div>
+          </div>
+          <div class="vw-fg" style="margin-bottom:16px;">
+            <label for="telefono">Teléfono <span style="font-weight:400;color:#aaa">(recomendado)</span></label>
+            <input type="tel" name="telefono" id="telefono" placeholder="+34 600 000 000" style="max-width:220px;"/>
+          </div>
+
           <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;" class="vw-grid-3">
             <div class="vw-fg">
               <label for="rol" id="ps-lrol">Tu rol</label>
@@ -572,9 +589,20 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:17px;heigh
           <div class="vw-fg">
             <label id="ps-lpr">¿Hay presupuesto disponible para herramientas educativas digitales?</label>
             <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;">
-              <label class="vw-radio"><input type="radio" name="hay_presupuesto" value="si"/><span id="ps-prsi">Sí</span></label>
-              <label class="vw-radio"><input type="radio" name="hay_presupuesto" value="no"/><span id="ps-prno">No</span></label>
-              <label class="vw-radio"><input type="radio" name="hay_presupuesto" value="no_lo_se"/><span id="ps-prns">No lo sé</span></label>
+              <label class="vw-radio"><input type="radio" name="hay_presupuesto" value="si" onchange="vwToggleBudget(this.value)"/><span id="ps-prsi">Sí</span></label>
+              <label class="vw-radio"><input type="radio" name="hay_presupuesto" value="no" onchange="vwToggleBudget(this.value)"/><span id="ps-prno">No</span></label>
+              <label class="vw-radio"><input type="radio" name="hay_presupuesto" value="no_lo_se" onchange="vwToggleBudget(this.value)"/><span id="ps-prns">No lo sé</span></label>
+            </div>
+          </div>
+          <!-- Campo condicional presupuesto -->
+          <div id="vw-budget-wrap" style="display:none;margin-top:14px;padding:14px 16px;background:#f8f8fa;border-radius:12px;border:1.5px solid #eee;transition:all .2s;">
+            <div class="vw-fg">
+              <label for="presupuesto_aproximado">¿Qué presupuesto aproximado tendríais?</label>
+              <div class="vw-price-input" style="max-width:220px;">
+                <span class="vw-euro">€</span>
+                <input type="number" name="presupuesto_aproximado" id="presupuesto_aproximado" min="0" placeholder="Ej: 1200"/>
+              </div>
+              <span style="font-size:11px;color:#aaa;margin-top:4px;">Puedes indicar un rango o estimación anual para todo el centro</span>
             </div>
           </div>
         </div>
@@ -607,8 +635,8 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:17px;heigh
 .vw-fg{display:flex;flex-direction:column;gap:6px;}
 .vw-fg label{font-size:12px;font-weight:700;color:#1a1a2e;line-height:1.4;}
 .vw-fg label small{display:block;font-size:11px;font-weight:400;color:#888;margin-top:2px;}
-.vw-fg input[type=number],.vw-fg select,.vw-fg textarea{padding:10px 13px;border:1.5px solid #eee;border-radius:9px;font-size:13px;outline:none;transition:border .2s;color:#1a1a2e;background:white;font-family:'Plus Jakarta Sans',sans-serif;width:100%;}
-.vw-fg input[type=number]:focus,.vw-fg select:focus,.vw-fg textarea:focus{border-color:#FF6B35;}
+.vw-fg input[type=number],.vw-fg input[type=text],.vw-fg input[type=email],.vw-fg input[type=tel],.vw-fg select,.vw-fg textarea{padding:10px 13px;border:1.5px solid #eee;border-radius:9px;font-size:13px;outline:none;transition:border .2s;color:#1a1a2e;background:white;font-family:'Plus Jakarta Sans',sans-serif;width:100%;}
+.vw-fg input[type=number]:focus,.vw-fg input[type=text]:focus,.vw-fg input[type=email]:focus,.vw-fg input[type=tel]:focus,.vw-fg select:focus,.vw-fg textarea:focus{border-color:#FF6B35;}
 .vw-fg textarea{resize:vertical;line-height:1.55;}
 .vw-price{padding:14px;border-radius:12px;border:1.5px solid #eee;background:#fafafa;transition:border .2s;}
 .vw-price:focus-within{border-color:#FF6B35;background:white;}
@@ -1568,6 +1596,19 @@ function renderImpacto() {
     '<div class="alrt"><span>📋</span><div style="font-size:11px">' + t('Recomendación: repetir actividad de cohesión en 2 semanas.','Gomendioa: 2 asteren buruan talde-kohesiorako jarduera errepikatu.','Recommendation: repeat cohesion activity in 2 weeks.') + '</div></div>' +
     '<div class="acts"><button class="bgbtn" onclick="PROFE_STEP=3;renderApp()">← ' + t('Volver','Atzera','Back') + '</button>' +
     '<button class="btn bp bs" onclick="PROFE_STEP=\'mg\';SELECTED_ACT=null;renderApp()">' + t('Nuevo ciclo ↺','Ziklo berria ↺','New cycle ↺') + '</button></div></div>';
+}
+
+// ── Presupuesto condicional ───────────────────────────────────────────────
+function vwToggleBudget(val) {
+  var wrap = document.getElementById('vw-budget-wrap');
+  var input = document.getElementById('presupuesto_aproximado');
+  if (!wrap) return;
+  if (val === 'si') {
+    wrap.style.display = 'block';
+  } else {
+    wrap.style.display = 'none';
+    if (input) input.value = '';
+  }
 }
 
 // ── Formulario Van Westendorp – submit via fetch ───────────────────────────
