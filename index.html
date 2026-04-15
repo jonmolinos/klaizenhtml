@@ -225,12 +225,14 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:17px;heigh
     <span>Klaizen</span>
   </div>
   <div class="nav-links">
-    <button class="nl" onclick="showAbout()">Sobre nosotros</button>
-    <button class="nl" onclick="document.getElementById('platform-section').scrollIntoView({behavior:'smooth'})">Funcionalidades</button>
+    <button class="nl" id="nav-about" onclick="showAbout()">Sobre nosotros</button>
+    <button class="nl" id="nav-func" onclick="document.getElementById('platform-section').scrollIntoView({behavior:'smooth'})">Funcionalidades</button>
+    <button class="nl" id="nav-precios" onclick="showPricing()">Precios</button>
   </div>
   <div class="nav-r">
     <button class="lang on" id="lang-es" onclick="setLang('es')">ES</button>
     <button class="lang" id="lang-eu" onclick="setLang('eu')">EU</button>
+    <button class="lang" id="lang-en" onclick="setLang('en')">EN</button>
     <button class="btn bo bs" onclick="showApp()">Acceder</button>
     <button class="btn bp bs" onclick="showDemo()">Solicitar demo</button>
   </div>
@@ -406,35 +408,225 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:17px;heigh
   </div>
 </div>
 
-<!-- PRICING MODAL -->
+<!-- PRICING MODAL (Van Westendorp) -->
 <div id="pricing-modal" style="display:none" class="modal-overlay" onclick="if(event.target===this)closePricing()">
-  <div style="width:100%;max-width:900px;background:white;max-height:90vh;overflow-y:auto;border-radius:20px;position:relative">
-    <div style="position:sticky;top:0;z-index:10;background:white;border-bottom:1px solid #f0f0f0;padding:14px 32px;display:flex;align-items:center;justify-content:space-between">
-      <div style="display:flex;align-items:center;gap:8px">
+  <div style="width:100%;max-width:680px;background:white;max-height:90vh;overflow-y:auto;border-radius:20px;position:relative;box-shadow:0 24px 60px rgba(0,0,0,.15);animation:up .3s ease;">
+
+    <!-- HEADER sticky -->
+    <div style="position:sticky;top:0;z-index:10;background:white;border-bottom:1px solid #f0f0f0;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;">
+      <div style="display:flex;align-items:center;gap:8px;">
         <svg width="24" height="24" viewBox="0 0 100 100" fill="none"><defs><linearGradient id="kg3" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#FFB300"/><stop offset="100%" stop-color="#FF5500"/></linearGradient></defs><rect x="4" y="4" width="92" height="92" rx="18" ry="18" fill="url(#kg3)"/><path d="M 10 85 Q 30 60 55 45 Q 72 34 90 28" stroke="white" stroke-width="12" stroke-linecap="round" fill="none"/><path d="M 8 92 Q 20 80 35 72" stroke="white" stroke-width="7" stroke-linecap="round" fill="none" opacity="0.7"/></svg>
-        <span style="font-size:17px;font-weight:800;color:#3a3a3a">Klaizen · Precios</span>
+        <span style="font-size:16px;font-weight:800;color:#3a3a3a" id="pm-title">Klaizen · ¿Cuánto pagarías?</span>
       </div>
       <button class="xbtn" style="margin-left:0" onclick="closePricing()">✕</button>
     </div>
-    <div style="padding:48px 32px 32px;text-align:center;background:linear-gradient(135deg,#fff8f5,#f0f4ff)">
-      <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#FF6B35;margin-bottom:12px">PLANES Y PRECIOS</div>
-      <h1 style="font-size:clamp(24px,4vw,40px);font-weight:800;letter-spacing:-1px;color:#1a1a2e;margin-bottom:14px;line-height:1.1">Empieza gratis con una clase.<br/><span style="color:#FF6B35">Si ves impacto, escala al centro.</span></h1>
-      <p style="font-size:15px;color:#666;max-width:480px;margin:0 auto 20px;line-height:1.6">Sin permanencia. Sin tarjeta de crédito para empezar. Cancela cuando quieras.</p>
+
+    <!-- INTRO -->
+    <div style="padding:24px 28px 0;background:linear-gradient(135deg,#FFF0EB,#f0f4ff);">
+      <div class="stag" id="ps-tag">PRECIOS</div>
+      <h2 style="font-size:clamp(20px,3vw,28px);font-weight:800;letter-spacing:-.6px;color:#1a1a2e;margin-bottom:8px;line-height:1.2;" id="ps-h2">¿Cuánto pagarías por Klaizen?</h2>
+      <p style="font-size:13px;color:#666;line-height:1.6;padding-bottom:20px;" id="ps-desc">Klaizen es una herramienta de evaluación y mejora continua en el aula, pensada para centros educativos. El servicio se ofrece por clase durante todo el curso. Tu opinión nos ayuda a definir un precio justo.</p>
     </div>
-    <div style="padding:32px 24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px" id="plans-grid"></div>
-    <div style="margin:0 24px 32px;background:linear-gradient(135deg,#FF6B35,#ff4500);border-radius:20px;padding:28px;text-align:center">
-      <div style="font-size:20px;font-weight:800;color:white;margin-bottom:8px">¿No sabes qué plan te conviene?</div>
-      <div style="font-size:13px;color:rgba(255,255,255,.88);margin-bottom:16px">Demo de 30 minutos, sin compromiso.</div>
-      <button class="btn bw" onclick="closePricing();showDemo()">Hablar con el equipo →</button>
-    </div>
-    <div style="padding:0 24px 40px">
-      <div style="max-width:600px;margin:0 auto">
-        <h2 style="font-size:22px;font-weight:800;color:#1a1a2e;margin-bottom:20px">Preguntas frecuentes</h2>
-        <div id="pricing-faq"></div>
+
+    <!-- FORMULARIO -->
+    <div id="vw-form-wrap">
+      <form id="vw-form" action="https://formspree.io/f/xwvapbzv" method="POST" novalidate>
+
+        <!-- S1 CONTEXTO -->
+        <div style="padding:20px 28px;border-bottom:1px solid #f5f5f5;">
+          <div class="stag" id="ps-s1tag">SECCIÓN 1 · CONTEXTO</div>
+          <h3 style="font-size:15px;font-weight:800;color:#1a1a2e;margin-bottom:3px;" id="ps-s1h">Cuéntanos sobre ti</h3>
+          <p style="font-size:12px;color:#888;margin-bottom:14px;" id="ps-s1sub">Para interpretar mejor las respuestas.</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;" class="vw-grid-3">
+            <div class="vw-fg">
+              <label for="rol" id="ps-lrol">Tu rol</label>
+              <select name="rol" id="rol" required>
+                <option value="" id="ps-rolph">Selecciona...</option>
+                <option value="docente" id="ps-rol1">Docente</option>
+                <option value="equipo_directivo" id="ps-rol2">Equipo directivo</option>
+                <option value="orientador" id="ps-rol3">Orientación</option>
+                <option value="otro" id="ps-rol4">Otro</option>
+              </select>
+            </div>
+            <div class="vw-fg">
+              <label for="tipo_centro" id="ps-ltc">Tipo de centro</label>
+              <select name="tipo_centro" id="tipo_centro" required>
+                <option value="" id="ps-tcph">Selecciona...</option>
+                <option value="publico" id="ps-tc1">Público</option>
+                <option value="concertado" id="ps-tc2">Concertado</option>
+                <option value="privado" id="ps-tc3">Privado</option>
+              </select>
+            </div>
+            <div class="vw-fg">
+              <label for="etapa" id="ps-let">Etapa educativa</label>
+              <select name="etapa" id="etapa" required>
+                <option value="" id="ps-etph">Selecciona...</option>
+                <option value="primaria" id="ps-et1">Primaria</option>
+                <option value="secundaria" id="ps-et2">Secundaria</option>
+                <option value="bachillerato" id="ps-et3">Bachillerato</option>
+                <option value="fp" id="ps-et4">FP</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- S2 PRECIO VAN WESTENDORP -->
+        <div style="padding:20px 28px;border-bottom:1px solid #f5f5f5;">
+          <div class="stag" id="ps-s2tag">SECCIÓN 2 · DISPOSICIÓN A PAGAR</div>
+          <h3 style="font-size:15px;font-weight:800;color:#1a1a2e;margin-bottom:3px;" id="ps-s2h">Las 4 preguntas clave</h3>
+          <p style="font-size:12px;color:#888;margin-bottom:14px;" id="ps-s2sub">Indica precios por clase y año (€/clase/año). No hay respuestas correctas.</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;" class="vw-grid-2">
+            <div class="vw-fg vw-price">
+              <label for="ganga" id="ps-lganga">
+                <span style="font-size:15px;">🟢</span>
+                <span id="ps-lganga-t">Precio ganga</span>
+                <small id="ps-lganga-s">Tan barato que lo comprarías sin dudar (€/clase/año)</small>
+              </label>
+              <div class="vw-price-input">
+                <span class="vw-euro">€</span>
+                <input type="number" name="ganga" id="ganga" min="0" max="9999" step="1" placeholder="0" required/>
+              </div>
+            </div>
+            <div class="vw-fg vw-price">
+              <label for="caro_pero_lo_compro" id="ps-lcaro">
+                <span style="font-size:15px;">🔵</span>
+                <span id="ps-lcaro-t">Caro pero lo compraría</span>
+                <small id="ps-lcaro-s">Caro, pero el valor lo justifica (€/clase/año)</small>
+              </label>
+              <div class="vw-price-input">
+                <span class="vw-euro">€</span>
+                <input type="number" name="caro_pero_lo_compro" id="caro_pero_lo_compro" min="0" max="9999" step="1" placeholder="0" required/>
+              </div>
+            </div>
+            <div class="vw-fg vw-price">
+              <label for="demasiado_barato" id="ps-lbarato">
+                <span style="font-size:15px;">🟡</span>
+                <span id="ps-lbarato-t">Demasiado barato</span>
+                <small id="ps-lbarato-s">Tan barato que dudarías de la calidad (€/clase/año)</small>
+              </label>
+              <div class="vw-price-input">
+                <span class="vw-euro">€</span>
+                <input type="number" name="demasiado_barato" id="demasiado_barato" min="0" max="9999" step="1" placeholder="0" required/>
+              </div>
+            </div>
+            <div class="vw-fg vw-price">
+              <label for="demasiado_caro" id="ps-ldcaro">
+                <span style="font-size:15px;">🔴</span>
+                <span id="ps-ldcaro-t">Demasiado caro</span>
+                <small id="ps-ldcaro-s">Tan caro que no lo comprarías (€/clase/año)</small>
+              </label>
+              <div class="vw-price-input">
+                <span class="vw-euro">€</span>
+                <input type="number" name="demasiado_caro" id="demasiado_caro" min="0" max="9999" step="1" placeholder="0" required/>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- S3 COMPRA -->
+        <div style="padding:20px 28px;border-bottom:1px solid #f5f5f5;">
+          <div class="stag" id="ps-s3tag">SECCIÓN 3 · INTENCIÓN DE COMPRA</div>
+          <h3 style="font-size:15px;font-weight:800;color:#1a1a2e;margin-bottom:14px;" id="ps-s3h">¿Lo contratarías?</h3>
+          <div class="vw-fg" style="margin-bottom:14px;">
+            <label id="ps-lcontr">¿Contratarías Klaizen para tu centro?</label>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;">
+              <label class="vw-radio"><input type="radio" name="contrataria" value="si" required/><span id="ps-rsi">Sí, lo contrataría</span></label>
+              <label class="vw-radio"><input type="radio" name="contrataria" value="depende"/><span id="ps-rdep">Depende del precio</span></label>
+              <label class="vw-radio"><input type="radio" name="contrataria" value="no"/><span id="ps-rno">No por ahora</span></label>
+            </div>
+          </div>
+          <div class="vw-fg">
+            <label for="numero_clases" id="ps-lnc">¿Cuántas clases tiene tu centro?</label>
+            <input type="number" name="numero_clases" id="numero_clases" min="1" max="200" placeholder="Ej: 12" style="max-width:140px;"/>
+          </div>
+        </div>
+
+        <!-- S4 VALOR -->
+        <div style="padding:20px 28px;border-bottom:1px solid #f5f5f5;">
+          <div class="stag" id="ps-s4tag">SECCIÓN 4 · PROPUESTA DE VALOR</div>
+          <h3 style="font-size:15px;font-weight:800;color:#1a1a2e;margin-bottom:14px;" id="ps-s4h">¿Qué valoras?</h3>
+          <div class="vw-fg" style="margin-bottom:12px;">
+            <label for="valor_mas_importante" id="ps-lval">¿Qué es lo más importante para ti de una herramienta como Klaizen?</label>
+            <textarea name="valor_mas_importante" id="valor_mas_importante" rows="2" placeholder="Ej: que sea fácil de usar, que los datos sean anónimos..."></textarea>
+          </div>
+          <div class="vw-fg">
+            <label for="que_deberia_incluir" id="ps-linc">¿Qué debería incluir para justificar el precio?</label>
+            <textarea name="que_deberia_incluir" id="que_deberia_incluir" rows="2" placeholder="Ej: informes para la dirección, integración con el cuaderno del tutor..."></textarea>
+          </div>
+        </div>
+
+        <!-- S5 DECISIÓN -->
+        <div style="padding:20px 28px;border-bottom:1px solid #f5f5f5;">
+          <div class="stag" id="ps-s5tag">SECCIÓN 5 · PROCESO DE DECISIÓN</div>
+          <h3 style="font-size:15px;font-weight:800;color:#1a1a2e;margin-bottom:14px;" id="ps-s5h">¿Quién decide?</h3>
+          <div class="vw-fg" style="margin-bottom:14px;">
+            <label for="quien_decide" id="ps-lqd">¿Quién toma la decisión de compra en tu centro?</label>
+            <select name="quien_decide" id="quien_decide">
+              <option value="" id="ps-qdph">Selecciona...</option>
+              <option value="docente" id="ps-qd1">El/la docente directamente</option>
+              <option value="direccion" id="ps-qd2">Dirección del centro</option>
+              <option value="departamento" id="ps-qd3">Departamento / Orientación</option>
+              <option value="administracion" id="ps-qd4">Administración educativa</option>
+            </select>
+          </div>
+          <div class="vw-fg">
+            <label id="ps-lpr">¿Hay presupuesto disponible para herramientas educativas digitales?</label>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;">
+              <label class="vw-radio"><input type="radio" name="hay_presupuesto" value="si"/><span id="ps-prsi">Sí</span></label>
+              <label class="vw-radio"><input type="radio" name="hay_presupuesto" value="no"/><span id="ps-prno">No</span></label>
+              <label class="vw-radio"><input type="radio" name="hay_presupuesto" value="no_lo_se"/><span id="ps-prns">No lo sé</span></label>
+            </div>
+          </div>
+        </div>
+
+        <!-- SUBMIT -->
+        <div style="padding:20px 28px;text-align:center;background:#fafafa;border-radius:0 0 20px 20px;">
+          <button type="submit" class="btn bp" style="padding:13px 36px;font-size:14px;width:100%;max-width:300px;justify-content:center;" id="vw-submit-btn">
+            <span id="ps-btnlbl">Enviar respuestas →</span>
+          </button>
+          <p style="font-size:11px;color:#aaa;margin-top:10px;" id="ps-priv">Sin spam. Tus respuestas son anónimas y nos ayudan a mejorar Klaizen.</p>
+        </div>
+      </form>
+
+      <!-- SUCCESS -->
+      <div id="vw-success" style="display:none;padding:52px 28px;text-align:center;">
+        <div style="font-size:52px;margin-bottom:14px;">🎉</div>
+        <h3 style="font-size:20px;font-weight:800;color:#1a1a2e;margin-bottom:8px;" id="ps-thx">¡Gracias por tu respuesta!</h3>
+        <p style="font-size:13px;color:#666;max-width:340px;margin:0 auto;" id="ps-thxsub">Tu opinión es clave para definir un precio justo. Te avisaremos cuando Klaizen esté disponible.</p>
+        <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:20px;">
+          <button class="btn bp bs" onclick="document.getElementById('vw-success').style.display='none';document.getElementById('vw-form').style.display='block';" id="ps-again">Enviar otra respuesta</button>
+          <button class="btn bo bs" onclick="closePricing()">Cerrar</button>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
+<!-- VW STYLES -->
+<style>
+.vw-fg{display:flex;flex-direction:column;gap:6px;}
+.vw-fg label{font-size:12px;font-weight:700;color:#1a1a2e;line-height:1.4;}
+.vw-fg label small{display:block;font-size:11px;font-weight:400;color:#888;margin-top:2px;}
+.vw-fg input[type=number],.vw-fg select,.vw-fg textarea{padding:10px 13px;border:1.5px solid #eee;border-radius:9px;font-size:13px;outline:none;transition:border .2s;color:#1a1a2e;background:white;font-family:'Plus Jakarta Sans',sans-serif;width:100%;}
+.vw-fg input[type=number]:focus,.vw-fg select:focus,.vw-fg textarea:focus{border-color:#FF6B35;}
+.vw-fg textarea{resize:vertical;line-height:1.55;}
+.vw-price{padding:14px;border-radius:12px;border:1.5px solid #eee;background:#fafafa;transition:border .2s;}
+.vw-price:focus-within{border-color:#FF6B35;background:white;}
+.vw-price label{display:flex;flex-direction:column;gap:4px;margin-bottom:8px;}
+.vw-price-input{display:flex;align-items:center;gap:6px;}
+.vw-euro{font-size:15px;font-weight:800;color:#FF6B35;}
+.vw-price-input input{flex:1;padding:9px 11px;border:1.5px solid #eee;border-radius:8px;font-size:17px;font-weight:700;color:#1a1a2e;outline:none;background:white;transition:border .2s;}
+.vw-price-input input:focus{border-color:#FF6B35;}
+.vw-radio{display:flex;align-items:center;gap:8px;padding:9px 14px;border-radius:9px;border:1.5px solid #eee;background:#fafafa;cursor:pointer;font-size:12px;font-weight:600;color:#555;transition:all .18s;flex:1;min-width:120px;}
+.vw-radio:hover{border-color:#FF6B35;background:#FFF0EB;color:#FF6B35;}
+.vw-radio input[type=radio]{accent-color:#FF6B35;}
+.vw-radio:has(input:checked){border-color:#FF6B35;background:#FFF0EB;color:#FF6B35;}
+@media(max-width:600px){
+  .vw-grid-3,.vw-grid-2{display:flex!important;flex-direction:column!important;}
+  .vw-radio{min-width:unset;flex:unset;width:100%;}
+  #pricing-modal>div{border-radius:16px 16px 0 0;position:fixed;bottom:0;left:0;right:0;max-height:92vh;}
+}
+</style>
 
 <script>
 // ── State ─────────────────────────────────────────────────────────────────
@@ -468,12 +660,12 @@ var TOUR_STEP = 0;
 
 // ── Data ──────────────────────────────────────────────────────────────────
 var DIMS = [
-  {id:'motivacion',color:'#FF6B35',bg:'#FFF0EB',e:'🔥',es:'Motivación',eu:'Motibazioa'},
-  {id:'bienestar',color:'#0891B2',bg:'#E0F7FA',e:'💙',es:'Bienestar',eu:'Ongizatea'},
-  {id:'pertenencia',color:'#7C3AED',bg:'#F0EBFF',e:'🤝',es:'Pertenencia',eu:'Kidetasuna'},
-  {id:'autoconfianza',color:'#D97706',bg:'#FFFBEB',e:'⭐',es:'Autoconfianza',eu:'Autokonf.'},
-  {id:'relaciones',color:'#DC2626',bg:'#FFF0F0',e:'💬',es:'Relaciones',eu:'Harremanak'},
-  {id:'estres',color:'#059669',bg:'#ECFDF5',e:'🌀',es:'Estrés',eu:'Estresa'}
+  {id:'motivacion',color:'#FF6B35',bg:'#FFF0EB',e:'🔥',es:'Motivación',eu:'Motibazioa',en:'Motivation'},
+  {id:'bienestar',color:'#0891B2',bg:'#E0F7FA',e:'💙',es:'Bienestar',eu:'Ongizatea',en:'Wellbeing'},
+  {id:'pertenencia',color:'#7C3AED',bg:'#F0EBFF',e:'🤝',es:'Pertenencia',eu:'Kidetasuna',en:'Belonging'},
+  {id:'autoconfianza',color:'#D97706',bg:'#FFFBEB',e:'⭐',es:'Autoconfianza',eu:'Autokonf.',en:'Self-conf.'},
+  {id:'relaciones',color:'#DC2626',bg:'#FFF0F0',e:'💬',es:'Relaciones',eu:'Harremanak',en:'Relationships'},
+  {id:'estres',color:'#059669',bg:'#ECFDF5',e:'🌀',es:'Estrés',eu:'Estresa',en:'Stress'}
 ];
 
 var GRUPOS = [
@@ -562,9 +754,7 @@ var PLANS = [
 // ── Init ──────────────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', function() {
   buildFAQ('faq-container', FAQ_DATA, 'faq');
-  buildFAQ('pricing-faq', PRICING_FAQ, 'pfaq');
   buildMockups();
-  buildPlans();
 });
 
 // ── Lang ──────────────────────────────────────────────────────────────────
@@ -572,12 +762,19 @@ function setLang(l) {
   LANG = l;
   document.getElementById('lang-es').classList.toggle('on', l === 'es');
   document.getElementById('lang-eu').classList.toggle('on', l === 'eu');
+  document.getElementById('lang-en').classList.toggle('on', l === 'en');
   renderApp();
+  updateLandingLang();
 }
 
 // ── Helpers ───────────────────────────────────────────────────────────────
-function isEs() { return LANG !== 'eu'; }
-function t(es, eu) { return isEs() ? es : eu; }
+function isEs() { return LANG === 'es'; }
+function isEu() { return LANG === 'eu'; }
+function t(es, eu, en) {
+  if (LANG === 'eu') return eu;
+  if (LANG === 'en') return (en !== undefined ? en : es);
+  return es;
+}
 function scoreColor(v) { return v < 2.5 ? '#DC2626' : v < 3.5 ? '#D97706' : '#059669'; }
 function groupAvg(scores) {
   var vals = Object.values(scores);
@@ -590,16 +787,18 @@ function dimBarsHTML(scores) {
     var pct = ((v / 5) * 100).toFixed(0);
     var c = scoreColor(v);
     return '<div style="display:flex;align-items:center;gap:7px;margin-bottom:8px">' +
-      '<div style="font-size:10px;width:100px;flex-shrink:0;color:#666;font-weight:500">' + d.e + ' ' + (isEs() ? d.es : d.eu) + '</div>' +
+      '<div style="font-size:10px;width:100px;flex-shrink:0;color:#666;font-weight:500">' + d.e + ' ' + (LANG==='eu' ? d.eu : LANG==='en' ? (d.en||d.es) : d.es) + '</div>' +
       '<div style="flex:1;height:5px;background:#f0f0f0;border-radius:5px;overflow:hidden"><div style="width:' + pct + '%;height:100%;background:' + c + ';border-radius:5px"></div></div>' +
       '<div style="font-size:10px;font-weight:700;width:26px;text-align:right;color:' + c + '">' + v.toFixed(1) + '</div></div>';
   }).join('') + '</div>';
 }
 
 function stepsBarHTML(cur) {
-  var lst = isEs()
-    ? ['Diagnóstico','Áreas','Intervención','Actividad','Impacto']
-    : ['Diagnostikoa','Eremuak','Esku-hartzea','Jarduera','Eragina'];
+  var lst = LANG==='eu'
+    ? ['Diagnostikoa','Eremuak','Esku-hartzea','Jarduera','Eragina']
+    : LANG==='en'
+    ? ['Diagnosis','Areas','Intervention','Activity','Impact']
+    : ['Diagnóstico','Áreas','Intervención','Actividad','Impacto'];
   return '<div class="stps">' + lst.map(function(s, i) {
     var done = i < cur, active = i === cur;
     return '<div class="sti">' +
@@ -621,8 +820,33 @@ function closeDemo() {
 }
 function showAbout() { document.getElementById('about-modal').style.display = 'flex'; }
 function closeAbout() { document.getElementById('about-modal').style.display = 'none'; }
-function showPricing() { document.getElementById('pricing-modal').style.display = 'flex'; }
-function closePricing() { document.getElementById('pricing-modal').style.display = 'none'; }
+function showPricing() {
+  var modal = document.getElementById('pricing-modal');
+  if (!modal) return;
+  // Resetear si se había enviado
+  var form = document.getElementById('vw-form');
+  var success = document.getElementById('vw-success');
+  var btn = document.getElementById('vw-submit-btn');
+  var lbl = document.getElementById('ps-btnlbl');
+  if (form) form.style.display = 'block';
+  if (success) success.style.display = 'none';
+  if (btn) btn.disabled = false;
+  if (lbl) lbl.textContent = T_BTN ? (T_BTN[LANG] || T_BTN.es) : 'Enviar respuestas →';
+  modal.style.display = 'flex';
+  updateLandingLang();
+}
+function closePricing() {
+  var modal = document.getElementById('pricing-modal');
+  if (modal) modal.style.display = 'none';
+}
+
+// Abrir modal desde URL (#pricing o ?open=pricing)
+window.addEventListener('DOMContentLoaded', function() {
+  var url = new URL(window.location.href);
+  if (url.hash === '#pricing' || url.searchParams.get('open') === 'pricing') {
+    showPricing();
+  }
+});
 
 function submitDemo() {
   var n = document.getElementById('demo-name').value;
@@ -1046,16 +1270,196 @@ function renderProfe() {
   return html;
 }
 
+// ── Datos históricos grupales (semanas 10–14) ──────────────────────────────
+var GROUP_HISTORY = {
+  '2ba': [
+    {w:10,motivacion:3.4,bienestar:3.9,pertenencia:3.1,autoconfianza:3.3,relaciones:3.0,estres:3.2},
+    {w:11,motivacion:3.2,bienestar:3.8,pertenencia:2.9,autoconfianza:3.1,relaciones:2.8,estres:3.4},
+    {w:12,motivacion:3.1,bienestar:3.7,pertenencia:2.7,autoconfianza:3.0,relaciones:2.6,estres:3.6},
+    {w:13,motivacion:3.0,bienestar:3.6,pertenencia:2.5,autoconfianza:2.9,relaciones:2.4,estres:3.8},
+    {w:14,motivacion:2.9,bienestar:3.6,pertenencia:2.4,autoconfianza:2.8,relaciones:2.3,estres:3.9}
+  ],
+  '2bb': [
+    {w:10,motivacion:3.5,bienestar:3.9,pertenencia:3.2,autoconfianza:3.4,relaciones:3.4,estres:3.0},
+    {w:11,motivacion:3.5,bienestar:3.8,pertenencia:3.2,autoconfianza:3.3,relaciones:3.4,estres:3.1},
+    {w:12,motivacion:3.4,bienestar:3.8,pertenencia:3.1,autoconfianza:3.3,relaciones:3.3,estres:3.2},
+    {w:13,motivacion:3.4,bienestar:3.8,pertenencia:3.1,autoconfianza:3.2,relaciones:3.3,estres:3.3},
+    {w:14,motivacion:3.4,bienestar:3.8,pertenencia:3.1,autoconfianza:3.2,relaciones:3.3,estres:3.3}
+  ],
+  '1ba': [
+    {w:10,motivacion:3.5,bienestar:3.8,pertenencia:3.3,autoconfianza:3.3,relaciones:3.4,estres:2.7},
+    {w:11,motivacion:3.6,bienestar:3.9,pertenencia:3.4,autoconfianza:3.4,relaciones:3.5,estres:2.8},
+    {w:12,motivacion:3.7,bienestar:4.0,pertenencia:3.5,autoconfianza:3.5,relaciones:3.6,estres:2.9},
+    {w:13,motivacion:3.7,bienestar:4.0,pertenencia:3.5,autoconfianza:3.5,relaciones:3.6,estres:2.9},
+    {w:14,motivacion:3.7,bienestar:4.0,pertenencia:3.5,autoconfianza:3.5,relaciones:3.6,estres:2.9}
+  ],
+  '4a': [
+    {w:10,motivacion:3.4,bienestar:3.6,pertenencia:3.3,autoconfianza:3.2,relaciones:3.1,estres:3.2},
+    {w:11,motivacion:3.3,bienestar:3.5,pertenencia:3.2,autoconfianza:3.1,relaciones:3.0,estres:3.4},
+    {w:12,motivacion:3.2,bienestar:3.4,pertenencia:3.1,autoconfianza:3.0,relaciones:2.9,estres:3.5},
+    {w:13,motivacion:3.1,bienestar:3.3,pertenencia:3.0,autoconfianza:2.9,relaciones:2.8,estres:3.6},
+    {w:14,motivacion:3.1,bienestar:3.3,pertenencia:3.0,autoconfianza:2.9,relaciones:2.8,estres:3.6}
+  ]
+};
+
+// ── Gráfico de evolución grupal SVG ───────────────────────────────────────
+function groupEvolutionChartHTML(groupId) {
+  var hist = GROUP_HISTORY[groupId];
+  if (!hist || hist.length < 2) return '';
+  var keys  = ['motivacion','bienestar','pertenencia','autoconfianza','relaciones','estres'];
+  var colors = ['#FF6B35','#0891B2','#7C3AED','#D97706','#DC2626','#059669'];
+  var labelsEs = ['Motivación','Bienestar','Pertenencia','Autoconf.','Relaciones','Estrés'];
+  var labelsEu = ['Motibazioa','Ongizatea','Kidetasuna','Autokonf.','Harremanak','Estresa'];
+  var labelsEn = ['Motivation','Wellbeing','Belonging','Self-conf.','Relationships','Stress'];
+  var labels = LANG==='eu' ? labelsEu : LANG==='en' ? labelsEn : labelsEs;
+
+  var W = 420, H = 140, PL = 28, PR = 10, PT = 10, PB = 22;
+  var cW = W - PL - PR, cH = H - PT - PB;
+  var weeks = hist.map(function(w){ return w.w; });
+  var xStep = cW / (weeks.length - 1);
+
+  function xPos(i){ return PL + i * xStep; }
+  function yPos(v){ return PT + cH - ((v - 1) / 4) * cH; }
+
+  // grid lines y labels Y
+  var gridSVG = '';
+  [1,2,3,4,5].forEach(function(v){
+    var y = yPos(v);
+    gridSVG += '<line x1="' + PL + '" y1="' + y + '" x2="' + (W-PR) + '" y2="' + y + '" stroke="#f0f0f0" stroke-width="1"/>';
+    gridSVG += '<text x="' + (PL-4) + '" y="' + (y+3) + '" font-size="7" fill="#ccc" text-anchor="end">' + v + '</text>';
+  });
+  // X labels (semanas)
+  var xLabelsSVG = weeks.map(function(w,i){
+    return '<text x="' + xPos(i) + '" y="' + (H-4) + '" font-size="7" fill="#bbb" text-anchor="middle">S' + w + '</text>';
+  }).join('');
+
+  // líneas por dimensión
+  var linesSVG = keys.map(function(k, ki){
+    var pts = hist.map(function(w,i){
+      return xPos(i) + ',' + yPos(w[k]);
+    }).join(' ');
+    // puntos finales con tooltip-like title
+    var dots = hist.map(function(w,i){
+      var cx = xPos(i), cy = yPos(w[k]);
+      var isLast = i === hist.length - 1;
+      return '<circle cx="' + cx + '" cy="' + cy + '" r="' + (isLast ? 3.5 : 2) + '" fill="' + colors[ki] + '" stroke="white" stroke-width="1"><title>' + labels[ki] + ' S' + w.w + ': ' + w[k].toFixed(1) + '</title></circle>';
+    }).join('');
+    return '<polyline points="' + pts + '" fill="none" stroke="' + colors[ki] + '" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.85"/>' + dots;
+  }).join('');
+
+  var svgHTML = '<svg width="100%" viewBox="0 0 ' + W + ' ' + H + '" style="display:block;overflow:visible">' +
+    gridSVG + xLabelsSVG + linesSVG + '</svg>';
+
+  // leyenda compacta 3 col
+  var legendHTML = '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px 10px;margin-top:10px">' +
+    keys.map(function(k,ki){
+      var last = hist[hist.length-1][k];
+      var first = hist[0][k];
+      var trend = last - first;
+      var arrow = trend < -0.15 ? ' ↓' : trend > 0.15 ? ' ↑' : ' →';
+      var c = scoreColor(last);
+      return '<div style="display:flex;align-items:center;gap:5px">' +
+        '<div style="width:10px;height:3px;border-radius:2px;background:' + colors[ki] + ';flex-shrink:0"></div>' +
+        '<span style="font-size:10px;color:#555;white-space:nowrap">' + labels[ki] + '</span>' +
+        '<span style="font-size:10px;font-weight:700;color:' + c + ';margin-left:auto">' + last.toFixed(1) + arrow + '</span></div>';
+    }).join('') + '</div>';
+
+  return '<div style="background:#f8f8fa;border-radius:12px;padding:14px 16px;border:1px solid #eee;margin-top:10px">' +
+    '<div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#FF6B35;margin-bottom:10px">📈 ' +
+    t('Evolución · Semanas 10–14','Bilakaera · 10–14. asteak','Evolution · Weeks 10–14') + '</div>' +
+    svgHTML + legendHTML + '</div>';
+}
+
+// ── renderDashboard actualizado con gráfico grupal ────────────────────────
+function renderDashboard() {
+  var g = SELECTED_GROUP || {id:'2ba',name:'2º Bach A',n:24,scores:{motivacion:2.9,bienestar:3.6,pertenencia:2.4,autoconfianza:2.8,relaciones:2.3,estres:3.9}};
+  return stepsBarHTML(0) +
+    '<div class="card"><div class="ey">Dashboard · ' + g.name + ' · ' + t('Semana 14','14. astea','Week 14') + '</div>' +
+    '<div class="ch2">' + t('Estado del aula','Gelako egoera','Classroom status') + '</div>' +
+    '<div class="cb2t" style="margin-bottom:10px;font-size:11px">' + g.n + ' ' + t('respuestas recibidas','erantzun jasota','responses received') + '</div>' +
+    dimBarsHTML(g.scores) +
+    groupEvolutionChartHTML(g.id || '2ba') +
+    '<div class="aib" style="margin-top:12px"><div class="aih"><span>✨</span>' + t('Recomendación IA','AAren gomendioa','AI Recommendation') + '</div>' +
+    '<div class="ait">' + t('Detecto caída sostenida en pertenencia (-0.6 en 4 semanas) y relaciones bajas (2.3/5). Recomiendo priorizar cohesión grupal esta semana.',
+      'Kidetasunean behera egonkorra (-0,6 4 astetan) eta harremanak baxuak (2,3/5) detektatzen ditut. Aste honetan talde-kohesioa lehenetsi gomendatzen dut.',
+      'I detect a sustained drop in belonging (-0.6 over 4 weeks) and low relationships (2.3/5). I recommend prioritising group cohesion this week.') + '</div></div>' +
+    '<div class="alrt"><span>⚠️</span><div><strong>2 ' + t('alertas','alerta','alerts') + ':</strong> ' +
+    t('Pertenencia (2.4) y Relaciones (2.3) bajo el umbral recomendado.','Kidetasuna (2,4) eta Harremanak (2,3) atalasearen azpian.','Belonging (2.4) and Relationships (2.3) below recommended threshold.') + '</div></div>' +
+    '<div class="acts"><button class="bgbtn" onclick="PROFE_STEP=\'mg\';renderApp()">← ' + t('Grupos','Taldeak','Groups') + '</button>' +
+    '<button class="btn bp bs" onclick="PROFE_STEP=1;renderApp()">' + t('Ver áreas de mejora →','Hobetze-eremuak →','View improvement areas →') + '</button></div></div>';
+}
+
+// ── renderStudentHistory actualizado con gráfico SVG ─────────────────────
+function renderStudentHistory(name, riskColor) {
+  var hist = STUDENT_HISTORY[name];
+  var keys   = ['m','b','p','a','r','e'];
+  var colors = ['#FF6B35','#0891B2','#7C3AED','#D97706','#DC2626','#059669'];
+  var labelsEs = ['Motivación','Bienestar','Pertenencia','Autoconf.','Relaciones','Estrés'];
+  var labelsEu = ['Motibazioa','Ongizatea','Kidetasuna','Autokonf.','Harremanak','Estresa'];
+  var labelsEn = ['Motivation','Wellbeing','Belonging','Self-conf.','Relationships','Stress'];
+  var labels = LANG==='eu' ? labelsEu : LANG==='en' ? labelsEn : labelsEs;
+
+  // SVG sparklines
+  var W = 380, H = 120, PL = 26, PR = 8, PT = 8, PB = 18;
+  var cW = W-PL-PR, cH = H-PT-PB;
+  var n = hist.length;
+  var xStep = cW / (n-1);
+  function xP(i){ return PL + i*xStep; }
+  function yP(v){ return PT + cH - ((v-1)/4)*cH; }
+
+  var gridSVG = '';
+  [1,2,3,4,5].forEach(function(v){
+    var y = yP(v);
+    gridSVG += '<line x1="'+PL+'" y1="'+y+'" x2="'+(W-PR)+'" y2="'+y+'" stroke="#f0f0f0" stroke-width="1"/>';
+    gridSVG += '<text x="'+(PL-4)+'" y="'+(y+3)+'" font-size="7" fill="#ccc" text-anchor="end">'+v+'</text>';
+  });
+  var xLabelsSVG = hist.map(function(w,i){
+    return '<text x="'+xP(i)+'" y="'+(H-3)+'" font-size="7" fill="#bbb" text-anchor="middle">S'+w.w+'</text>';
+  }).join('');
+
+  var linesSVG = keys.map(function(k,ki){
+    var pts = hist.map(function(w,i){ return xP(i)+','+yP(w[k]); }).join(' ');
+    var dots = hist.map(function(w,i){
+      var isLast = i===n-1;
+      return '<circle cx="'+xP(i)+'" cy="'+yP(w[k])+'" r="'+(isLast?3.2:1.8)+'" fill="'+colors[ki]+'" stroke="white" stroke-width="1"><title>'+labels[ki]+' S'+w.w+': '+w[k].toFixed(1)+'</title></circle>';
+    }).join('');
+    return '<polyline points="'+pts+'" fill="none" stroke="'+colors[ki]+'" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" opacity="0.85"/>'+dots;
+  }).join('');
+
+  var svgChart = '<svg width="100%" viewBox="0 0 '+W+' '+H+'" style="display:block;overflow:visible">'+
+    gridSVG+xLabelsSVG+linesSVG+'</svg>';
+
+  // leyenda con trend
+  var legendHTML = '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px 8px;margin-top:8px">' +
+    keys.map(function(k,ki){
+      var vals = hist.map(function(w){ return w[k]; });
+      var last = vals[vals.length-1], first = vals[0];
+      var trend = last - first;
+      var arrow = trend < -0.15 ? ' ↓' : trend > 0.15 ? ' ↑' : ' →';
+      var c = scoreColor(last);
+      return '<div style="display:flex;align-items:center;gap:4px">' +
+        '<div style="width:9px;height:3px;border-radius:2px;background:'+colors[ki]+';flex-shrink:0"></div>' +
+        '<span style="font-size:9px;color:#555">'+labels[ki]+'</span>' +
+        '<span style="font-size:9px;font-weight:700;color:'+c+';margin-left:auto">'+last.toFixed(1)+arrow+'</span></div>';
+    }).join('')+'</div>';
+
+  return '<div style="padding:14px;background:#f8f8fa;border-radius:0 0 11px 11px;border:1.5px solid '+riskColor+';border-top:none;margin-top:-8px;margin-bottom:8px">' +
+    '<div style="font-weight:800;font-size:12px;margin-bottom:10px;color:#1a1a2e">📈 ' +
+    t('Evolución individual · ','Banakako bilakaera · ','Individual evolution · ') + name + '</div>' +
+    svgChart + legendHTML + '</div>';
+}
+
+// ── renderMultiGroup: añadir minigráfico de evolución al expandir grupo ───
 function renderMultiGroup() {
-  var html = '<div class="card"><div class="ey">' + t('GESTIÓN DE GRUPOS','TALDEEN KUDEAKETA') + '</div>' +
-    '<div class="ch2" style="font-size:17px;margin-bottom:5px">' + t('Tus grupos','Zure taldeak') + '</div>' +
-    '<div class="cb2t" style="margin-bottom:12px;font-size:11px">' + t('Selecciona un grupo para ver su diagnóstico.','Hautatu talde bat diagnostikoa ikusteko.') + '</div>';
+  var html = '<div class="card"><div class="ey">' + t('GESTIÓN DE GRUPOS','TALDEEN KUDEAKETA','GROUP MANAGEMENT') + '</div>' +
+    '<div class="ch2" style="font-size:17px;margin-bottom:5px">' + t('Tus grupos','Zure taldeak','Your groups') + '</div>' +
+    '<div class="cb2t" style="margin-bottom:12px;font-size:11px">' + t('Selecciona un grupo para ver su diagnóstico.','Hautatu talde bat diagnostikoa ikusteko.','Select a group to view its diagnosis.') + '</div>';
   GRUPOS.forEach(function(g) {
     var a = parseFloat(groupAvg(g.scores));
     var c = scoreColor(a);
     var sel = SELECTED_GROUP && SELECTED_GROUP.id === g.id;
     html += '<div class="grw ' + (sel ? 'on' : '') + '" onclick="SELECTED_GROUP=GRUPOS.find(function(x){return x.id===\'' + g.id + '\'});renderApp()">' +
-      '<div class="gn">' + g.name + '</div><div class="gnn">' + g.n + ' ' + t('alumn.','ikasle') + '</div>' +
+      '<div class="gn">' + g.name + '</div><div class="gnn">' + g.n + ' ' + t('alumn.','ikasle','students') + '</div>' +
       '<div class="gsc" style="color:' + c + '">' + a + '/5</div>' +
       '<div style="font-size:14px;margin-left:3px">' + (a < 2.5 ? '🔴' : a < 3.5 ? '🟡' : '🟢') + '</div></div>';
   });
@@ -1063,129 +1467,282 @@ function renderMultiGroup() {
     html += '<div style="margin-top:14px;padding:14px;background:#f8f8fa;border-radius:11px;border:1px solid #eee">' +
       '<div style="font-weight:700;font-size:13px;margin-bottom:9px">' + SELECTED_GROUP.name + '</div>' +
       dimBarsHTML(SELECTED_GROUP.scores) +
-      '<button class="btn bp bs" style="margin-top:9px" onclick="PROFE_STEP=0;renderApp()">' + t('Ver diagnóstico completo →','Diagnostiko osoa →') + '</button></div>';
+      groupEvolutionChartHTML(SELECTED_GROUP.id) +
+      '<button class="btn bp bs" style="margin-top:12px" onclick="PROFE_STEP=0;renderApp()">' + t('Ver diagnóstico completo →','Diagnostiko osoa →','Full diagnosis →') + '</button></div>';
   }
   html += '</div>';
   // Alertas individuales
-  html += '<div class="card"><div class="ey">' + t('ALERTAS INDIVIDUALES','BANAKAKO ALERTAK') + '</div>' +
-    '<div class="ch2" style="font-size:17px;margin-bottom:5px">' + t('Alumnado que necesita atención','Arreta behar duten ikasleak') + '</div>' +
-    '<div class="cb2t" style="margin-bottom:12px;font-size:11px">' + t('Visible solo para tutor/a, orientación y dirección.','Tutoreari, orientazioari eta zuzendaritzari bakarrik ikusgai.') + '</div>';
+  html += '<div class="card"><div class="ey">' + t('ALERTAS INDIVIDUALES','BANAKAKO ALERTAK','INDIVIDUAL ALERTS') + '</div>' +
+    '<div class="ch2" style="font-size:17px;margin-bottom:5px">' + t('Alumnado que necesita atención','Arreta behar duten ikasleak','Students needing attention') + '</div>' +
+    '<div class="cb2t" style="margin-bottom:12px;font-size:11px">' + t('Visible solo para tutor/a, orientación y dirección.','Tutoreari, orientazioari eta zuzendaritzari bakarrik ikusgai.','Visible only to tutors, guidance and management.') + '</div>';
   ['Aitana Fernández','Garazi Aizpurua'].forEach(function(name) {
     var safe = name.replace(/'/g, "\\'");
     html += '<div style="display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:11px;background:#fef2f2;border:1.5px solid #fecaca;margin-bottom:8px;cursor:pointer" onclick="SELECTED_STUDENT=SELECTED_STUDENT===\'' + safe + '\'?null:\'' + safe + '\';renderApp()">' +
       '<div style="width:36px;height:36px;border-radius:50%;background:#DC2626;color:white;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;flex-shrink:0">' + name.charAt(0) + '</div>' +
-      '<div style="flex:1"><div style="font-size:13px;font-weight:700;color:#1a1a2e">' + name + '</div><div style="font-size:11px;color:#DC2626;font-weight:600">🔴 ' + t('Riesgo alto','Arrisku altua') + '</div></div>' +
-      '<div style="font-size:11px;color:#DC2626;font-weight:600">' + t('Ver →','Ikusi →') + '</div></div>';
+      '<div style="flex:1"><div style="font-size:13px;font-weight:700;color:#1a1a2e">' + name + '</div><div style="font-size:11px;color:#DC2626;font-weight:600">🔴 ' + t('Riesgo alto','Arrisku altua','High risk') + '</div></div>' +
+      '<div style="font-size:11px;color:#DC2626;font-weight:600">' + t('Ver →','Ikusi →','View →') + '</div></div>';
     if (SELECTED_STUDENT === name && STUDENT_HISTORY[name]) html += renderStudentHistory(name, '#DC2626');
   });
   ['Mikel Zabala'].forEach(function(name) {
     var safe = name.replace(/'/g, "\\'");
     html += '<div style="display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:11px;background:#FFFBEB;border:1.5px solid #fde68a;margin-bottom:8px;cursor:pointer" onclick="SELECTED_STUDENT=SELECTED_STUDENT===\'' + safe + '\'?null:\'' + safe + '\';renderApp()">' +
       '<div style="width:36px;height:36px;border-radius:50%;background:#D97706;color:white;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;flex-shrink:0">' + name.charAt(0) + '</div>' +
-      '<div style="flex:1"><div style="font-size:13px;font-weight:700;color:#1a1a2e">' + name + '</div><div style="font-size:11px;color:#D97706;font-weight:600">🟡 ' + t('Atención','Arreta') + '</div></div>' +
-      '<div style="font-size:11px;color:#D97706;font-weight:600">' + t('Ver →','Ikusi →') + '</div></div>';
+      '<div style="flex:1"><div style="font-size:13px;font-weight:700;color:#1a1a2e">' + name + '</div><div style="font-size:11px;color:#D97706;font-weight:600">🟡 ' + t('Atención','Arreta','Attention') + '</div></div>' +
+      '<div style="font-size:11px;color:#D97706;font-weight:600">' + t('Ver →','Ikusi →','View →') + '</div></div>';
     if (SELECTED_STUDENT === name && STUDENT_HISTORY[name]) html += renderStudentHistory(name, '#D97706');
   });
   html += '</div>';
   return html;
 }
 
-function renderStudentHistory(name, riskColor) {
-  var hist = STUDENT_HISTORY[name];
-  var keys = ['m','b','p','a','r','e'];
-  var labels = isEs() ? ['Motivación','Bienestar','Pertenencia','Autoconf.','Relaciones','Estrés'] : ['Motibazioa','Ongizatea','Kidetasuna','Autokonf.','Harremanak','Estresa'];
-  var dColors = ['#FF6B35','#0891B2','#7C3AED','#D97706','#DC2626','#059669'];
-  var html = '<div style="padding:14px;background:#f8f8fa;border-radius:0 0 11px 11px;border:1.5px solid ' + riskColor + ';border-top:none;margin-top:-8px;margin-bottom:8px">' +
-    '<div style="font-weight:800;font-size:13px;margin-bottom:10px">📈 ' + t('Evolución de ','Bilakaera: ') + name + '</div>';
-  keys.forEach(function(k, i) {
-    var vals = hist.map(function(w) { return w[k]; });
-    var last = vals[vals.length - 1];
-    var trend = last - vals[0];
-    var c = scoreColor(last);
-    html += '<div style="margin-bottom:10px"><div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:11px;font-weight:600;color:#555">' + labels[i] + '</span><span style="font-size:11px;font-weight:700;color:' + c + '">' + last.toFixed(1) + ' ' + (trend < -0.5 ? '↓' : trend > 0.5 ? '↑' : '→') + '</span></div>' +
-      '<div style="display:flex;gap:3px;align-items:flex-end;height:28px">' +
-      vals.map(function(v, wi) {
-        return '<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px"><div style="width:100%;border-radius:3px 3px 0 0;height:' + (v/5*24).toFixed(0) + 'px;background:' + (wi === vals.length-1 ? dColors[i] : dColors[i]+'66') + '"></div><span style="font-size:8px;color:#aaa">S' + (wi+1) + '</span></div>';
-      }).join('') + '</div></div>';
-  });
-  html += '</div>';
-  return html;
-}
-
-function renderDashboard() {
-  var g = SELECTED_GROUP || {name:'2º Bach A',n:24,scores:{motivacion:2.9,bienestar:3.6,pertenencia:2.4,autoconfianza:2.8,relaciones:2.3,estres:3.9}};
-  return stepsBarHTML(0) +
-    '<div class="card"><div class="ey">Dashboard · ' + g.name + ' · ' + t('Semana 14','14. astea') + '</div>' +
-    '<div class="ch2">' + t('Estado del aula','Gelako egoera') + '</div>' +
-    '<div class="cb2t" style="margin-bottom:10px;font-size:11px">' + g.n + ' ' + t('respuestas recibidas','erantzun jasota') + '</div>' +
-    dimBarsHTML(g.scores) +
-    '<div class="aib"><div class="aih"><span>✨</span>' + t('Recomendación IA','AAren gomendioa') + '</div>' +
-    '<div class="ait">' + t('Detecto caída sostenida en pertenencia (-0.6 en 4 semanas) y relaciones bajas (2.3/5). Recomiendo priorizar cohesión grupal esta semana. El "Termómetro del grupo" sería efectivo ya que externaliza emociones colectivas sin señalar a nadie individualmente.','Kidetasunean behera egonkorra (-0,6 4 astetan) eta harremanak baxuak (2,3/5) detektatzen ditut. Aste honetan talde-kohesioa lehenetsi gomendatzen dut.') + '</div></div>' +
-    '<div class="alrt"><span>⚠️</span><div><strong>2 ' + t('alertas','alerta') + ':</strong> ' + t('Pertenencia (2.4) y Relaciones (2.3) bajo el umbral recomendado.','Kidetasuna (2,4) eta Harremanak (2,3) atalasearen azpian.') + '</div></div>' +
-    '<div class="acts"><button class="bgbtn" onclick="PROFE_STEP=\'mg\';renderApp()">← ' + t('Grupos','Taldeak') + '</button><button class="btn bp bs" onclick="PROFE_STEP=1;renderApp()">' + t('Ver áreas de mejora →','Hobetze-eremuak →') + '</button></div></div>';
-}
-
+// ── renderAreas / renderIntervenciones / renderActividad / renderImpacto ──
 function renderAreas() {
   var areas = [
-    {di:4,sc:2.3,es:'Tensión interpersonal. El 34% reporta conflicto sin resolver.',eu:'Tentsio interpertsonala. %34ak konpondu gabeko gatazka.',c:'#DC2626',lv:'Alta'},
-    {di:2,sc:2.4,es:'Baja percepción de pertenencia. Tendencia negativa 4 semanas.',eu:'Kidetasun hautemate txikia. Joera negatiboa 4 astetan.',c:'#DC2626',lv:'Alta'},
-    {di:3,sc:2.8,es:'Nivel moderado-bajo. Puede relacionarse con la carga académica.',eu:'Maila moderatu-baxua.',c:'#D97706',lv:'Media'},
-    {di:0,sc:2.9,es:'Motivación bajo la media. Conectada con estrés elevado.',eu:'Motibazioa batez azpian.',c:'#D97706',lv:'Media'},
-    {di:5,sc:3.9,es:'Estrés elevado. Coincide con periodo de exámenes.',eu:'Estres altua. Azterketa garaiarekin bat dator.',c:'#D97706',lv:'Atenc.'},
-    {di:1,sc:3.6,es:'Bienestar estable. No requiere intervención inmediata.',eu:'Ongizate egonkorra.',c:'#059669',lv:'OK'}
+    {di:4,sc:2.3,es:'Tensión interpersonal. El 34% reporta conflicto sin resolver.',eu:'Tentsio interpertsonala. %34ak konpondu gabeko gatazka.',en:'Interpersonal tension. 34% report unresolved conflict.',c:'#DC2626',lv:'Alta'},
+    {di:2,sc:2.4,es:'Baja percepción de pertenencia. Tendencia negativa 4 semanas.',eu:'Kidetasun hautemate txikia. Joera negatiboa 4 astetan.',en:'Low sense of belonging. Negative trend 4 weeks.',c:'#DC2626',lv:'Alta'},
+    {di:3,sc:2.8,es:'Nivel moderado-bajo. Puede relacionarse con la carga académica.',eu:'Maila moderatu-baxua.',en:'Moderate-low level. May relate to academic workload.',c:'#D97706',lv:'Media'},
+    {di:0,sc:2.9,es:'Motivación bajo la media. Conectada con estrés elevado.',eu:'Motibazioa batez azpian.',en:'Motivation below average. Linked to elevated stress.',c:'#D97706',lv:'Media'},
+    {di:5,sc:3.9,es:'Estrés elevado. Coincide con periodo de exámenes.',eu:'Estres altua. Azterketa garaiarekin bat dator.',en:'Elevated stress. Coincides with exam period.',c:'#D97706',lv:'Atenc.'},
+    {di:1,sc:3.6,es:'Bienestar estable. No requiere intervención inmediata.',eu:'Ongizate egonkorra.',en:'Stable wellbeing. No immediate intervention needed.',c:'#059669',lv:'OK'}
   ];
-  var html = stepsBarHTML(1) + '<div class="card"><div class="ey">' + t('Áreas de mejora','Hobetze-eremuak') + '</div>' +
-    '<div class="ch2" style="font-size:17px;margin-bottom:5px">' + t('¿Qué necesita el aula?','Gelak zer behar du?') + '</div>' +
-    '<div class="cb2t" style="margin-bottom:12px;font-size:11px">' + t('Basado en el diagnóstico de hoy y evolución reciente.','Gaurko diagnostikoan oinarrituta.') + '</div>';
+  var html = stepsBarHTML(1) + '<div class="card"><div class="ey">' + t('Áreas de mejora','Hobetze-eremuak','Improvement areas') + '</div>' +
+    '<div class="ch2" style="font-size:17px;margin-bottom:5px">' + t('¿Qué necesita el aula?','Gelak zer behar du?','What does the classroom need?') + '</div>' +
+    '<div class="cb2t" style="margin-bottom:12px;font-size:11px">' + t('Basado en el diagnóstico de hoy y evolución reciente.','Gaurko diagnostikoan oinarrituta.','Based on today\'s diagnosis and recent evolution.') + '</div>';
   areas.forEach(function(a) {
     var d = DIMS[a.di];
-    html += '<div class="sem" style="background:' + a.c + '0d;border-color:' + a.c + '33;color:#1a1a2e"><div class="sdd" style="background:' + a.c + '"></div><div style="flex:1"><div style="display:flex;justify-content:space-between;margin-bottom:2px"><strong style="font-size:12px">' + d.e + ' ' + (isEs() ? d.es : d.eu) + '</strong><span style="font-size:9px;font-weight:700;color:' + a.c + ';background:' + a.c + '1a;padding:1px 6px;border-radius:999px">' + a.lv + ' · ' + a.sc + '/5</span></div><div style="font-size:11px;color:#666">' + (isEs() ? a.es : a.eu) + '</div></div></div>';
+    var dname = LANG==='eu' ? d.eu : LANG==='en' ? (d.en||d.es) : d.es;
+    var adesc = LANG==='eu' ? a.eu : LANG==='en' ? (a.en||a.es) : a.es;
+    html += '<div class="sem" style="background:' + a.c + '0d;border-color:' + a.c + '33;color:#1a1a2e"><div class="sdd" style="background:' + a.c + '"></div><div style="flex:1"><div style="display:flex;justify-content:space-between;margin-bottom:2px"><strong style="font-size:12px">' + d.e + ' ' + dname + '</strong><span style="font-size:9px;font-weight:700;color:' + a.c + ';background:' + a.c + '1a;padding:1px 6px;border-radius:999px">' + a.lv + ' · ' + a.sc + '/5</span></div><div style="font-size:11px;color:#666">' + adesc + '</div></div></div>';
   });
-  html += '<div class="acts"><button class="bgbtn" onclick="PROFE_STEP=0;renderApp()">← ' + t('Volver','Atzera') + '</button><button class="btn bp bs" onclick="PROFE_STEP=2;renderApp()">' + t('Ver intervenciones →','Esku-hartzeak →') + '</button></div></div>';
+  html += '<div class="acts"><button class="bgbtn" onclick="PROFE_STEP=0;renderApp()">← ' + t('Volver','Atzera','Back') + '</button><button class="btn bp bs" onclick="PROFE_STEP=2;renderApp()">' + t('Ver intervenciones →','Esku-hartzeak →','View interventions →') + '</button></div></div>';
   return html;
 }
 
 function renderIntervenciones() {
-  var html = stepsBarHTML(2) + '<div class="card"><div class="ey">' + t('Intervenciones recomendadas','Gomendatutako jarduerak') + '</div>' +
-    '<div class="ch2" style="font-size:17px;margin-bottom:5px">' + t('Elige una actividad','Aukeratu jarduera bat') + '</div>' +
-    '<div class="cb2t" style="margin-bottom:12px;font-size:11px">' + t('Listas para aplicar en clase sin preparación extra.','Prestaketa gehigarririk gabe aplikatzeko prest.') + '</div>';
+  var html = stepsBarHTML(2) + '<div class="card"><div class="ey">' + t('Intervenciones recomendadas','Gomendatutako jarduerak','Recommended interventions') + '</div>' +
+    '<div class="ch2" style="font-size:17px;margin-bottom:5px">' + t('Elige una actividad','Aukeratu jarduera bat','Choose an activity') + '</div>' +
+    '<div class="cb2t" style="margin-bottom:12px;font-size:11px">' + t('Listas para aplicar en clase sin preparación extra.','Prestaketa gehigarririk gabe aplikatzeko prest.','Ready to apply in class without extra preparation.') + '</div>';
   ACTS.forEach(function(a) {
+    var aname = LANG==='eu' ? a.eu : LANG==='en' ? (a.en||a.es) : a.es;
+    var atype = LANG==='eu' ? a.tyeu : LANG==='en' ? (a.tyen||a.tyes) : a.tyes;
+    var adesc = LANG==='eu' ? a.deu : LANG==='en' ? (a.den||a.des) : a.des;
     html += '<div class="acard ' + (SELECTED_ACT && SELECTED_ACT.id === a.id ? 'on' : '') + '" onclick="SELECTED_ACT=ACTS.find(function(x){return x.id===\'' + a.id + '\'});renderApp()">' +
-      '<div class="aico">' + a.icon + '</div><div style="flex:1"><div class="at">' + (isEs() ? a.es : a.eu) + '</div><div class="am">' + (isEs() ? a.tyes : a.tyeu) + ' · ' + a.dur + '</div>' +
-      '<div style="font-size:11px;color:#666;margin-top:3px;line-height:1.4">' + (isEs() ? a.des : a.deu) + '</div></div></div>';
+      '<div class="aico">' + a.icon + '</div><div style="flex:1"><div class="at">' + aname + '</div><div class="am">' + atype + ' · ' + a.dur + '</div>' +
+      '<div style="font-size:11px;color:#666;margin-top:3px;line-height:1.4">' + adesc + '</div></div></div>';
   });
-  html += '<div class="acts"><button class="bgbtn" onclick="PROFE_STEP=1;renderApp()">← ' + t('Volver','Atzera') + '</button>' +
-    '<button class="btn bp bs" ' + (SELECTED_ACT ? '' : 'disabled style="opacity:.4"') + ' onclick="PROFE_STEP=3;renderApp()">' + t('Lanzar actividad →','Jarduera abian jarri →') + '</button></div></div>';
+  html += '<div class="acts"><button class="bgbtn" onclick="PROFE_STEP=1;renderApp()">← ' + t('Volver','Atzera','Back') + '</button>' +
+    '<button class="btn bp bs" ' + (SELECTED_ACT ? '' : 'disabled style="opacity:.4"') + ' onclick="PROFE_STEP=3;renderApp()">' + t('Lanzar actividad →','Jarduera abian jarri →','Launch activity →') + '</button></div></div>';
   return html;
 }
 
 function renderActividad() {
   var a = SELECTED_ACT;
   if (!a) return renderIntervenciones();
-  return stepsBarHTML(3) + '<div class="card"><div class="ey">' + t('Actividad seleccionada','Hautatutako jarduera') + '</div>' +
-    '<div class="ch2" style="font-size:16px;margin-bottom:3px">' + a.icon + ' ' + (isEs() ? a.es : a.eu) + '</div>' +
-    '<div class="cb2t" style="margin-bottom:14px;font-size:11px">' + (isEs() ? a.des : a.deu) + '</div>' +
+  var aname = LANG==='eu' ? a.eu : LANG==='en' ? (a.en||a.es) : a.es;
+  var adesc = LANG==='eu' ? a.deu : LANG==='en' ? (a.den||a.des) : a.des;
+  return stepsBarHTML(3) + '<div class="card"><div class="ey">' + t('Actividad seleccionada','Hautatutako jarduera','Selected activity') + '</div>' +
+    '<div class="ch2" style="font-size:16px;margin-bottom:3px">' + a.icon + ' ' + aname + '</div>' +
+    '<div class="cb2t" style="margin-bottom:14px;font-size:11px">' + adesc + '</div>' +
     '<div style="background:#f8f8fa;border-radius:11px;padding:13px 14px;margin-bottom:12px">' +
-    '<div style="font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#FF6B35;margin-bottom:7px">' + t('Instrucciones para el docente','Irakasleak eman beharreko argibideak') + '</div>' +
-    '<div style="font-size:11px;color:#666;line-height:1.65">' + t('1. Indica al alumnado que abran Klaizen.<br/>2. Seleccionen "Alumno/a" en el menú.<br/>3. Hagan el check-in y accederán a la actividad.<br/>4. Deja ' + a.dur + ' para completarla.<br/>5. Guía una reflexión colectiva de 5 minutos.','1. Esan ikasleei Klaizen ireki dezatela.<br/>2. Hautatu "Ikasle/ak" menuan.<br/>3. Check-in egin eta jarduerara sartuko dira.<br/>4. Utzi ' + a.dur + ' osatzeko.<br/>5. 5 minutuko hausnarketa gidatu.') + '</div></div>' +
-    '<div class="acts"><button class="bgbtn" onclick="PROFE_STEP=2;renderApp()">← ' + t('Volver','Atzera') + '</button>' +
-    '<button class="btn bp bs" onclick="PROFE_STEP=4;renderApp()">' + t('Marcar como realizada ✓','Eginda gisa markatu ✓') + '</button></div></div>';
+    '<div style="font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#FF6B35;margin-bottom:7px">' + t('Instrucciones para el docente','Irakasleak eman beharreko argibideak','Instructions for the teacher') + '</div>' +
+    '<div style="font-size:11px;color:#666;line-height:1.65">' +
+    t('1. Indica al alumnado que abran Klaizen.<br/>2. Seleccionen "Alumno/a" en el menú.<br/>3. Hagan el check-in y accederán a la actividad.<br/>4. Deja ' + a.dur + ' para completarla.<br/>5. Guía una reflexión colectiva de 5 minutos.',
+      '1. Esan ikasleei Klaizen ireki dezatela.<br/>2. Hautatu "Ikasle/ak" menuan.<br/>3. Check-in egin eta jarduerara sartuko dira.<br/>4. Utzi ' + a.dur + ' osatzeko.<br/>5. 5 minutuko hausnarketa gidatu.',
+      '1. Ask students to open Klaizen.<br/>2. Select "Student" in the menu.<br/>3. Do the check-in to access the activity.<br/>4. Allow ' + a.dur + ' to complete it.<br/>5. Guide a 5-minute group reflection.') +
+    '</div></div>' +
+    '<div class="acts"><button class="bgbtn" onclick="PROFE_STEP=2;renderApp()">← ' + t('Volver','Atzera','Back') + '</button>' +
+    '<button class="btn bp bs" onclick="PROFE_STEP=4;renderApp()">' + t('Marcar como realizada ✓','Eginda gisa markatu ✓','Mark as done ✓') + '</button></div></div>';
 }
 
 function renderImpacto() {
   var a = SELECTED_ACT;
-  return stepsBarHTML(4) + '<div class="card"><div class="ey">' + t('Evaluación de impacto','Eraginaren ebaluazioa') + '</div>' +
-    '<div class="ch2" style="font-size:17px;margin-bottom:5px">' + t('¿Funcionó la intervención?','Esku-hartzeak funtzionatu al du?') + '</div>' +
-    '<div class="cb2t" style="font-size:11px;margin-bottom:12px">' + t('Actividad: ','Jarduera: ') + '<strong>' + (a ? (isEs() ? a.es : a.eu) : '') + '</strong></div>' +
+  var aname = a ? (LANG==='eu' ? a.eu : LANG==='en' ? (a.en||a.es) : a.es) : '';
+  return stepsBarHTML(4) + '<div class="card"><div class="ey">' + t('Evaluación de impacto','Eraginaren ebaluazioa','Impact assessment') + '</div>' +
+    '<div class="ch2" style="font-size:17px;margin-bottom:5px">' + t('¿Funcionó la intervención?','Esku-hartzeak funtzionatu al du?','Did the intervention work?') + '</div>' +
+    '<div class="cb2t" style="font-size:11px;margin-bottom:12px">' + t('Actividad: ','Jarduera: ','Activity: ') + '<strong>' + aname + '</strong></div>' +
     '<div class="cm">' +
-    '<div class="cb2b" style="background:#fef2f2;border-color:#fecaca"><div class="clb">' + t('Antes','Aurretik') + '</div><div class="cnb" style="color:#DC2626">2.4</div><div style="font-size:10px;color:#aaa;margin-top:2px">' + t('Pertenencia','Kidetasuna') + '</div></div>' +
-    '<div class="cb2b" style="background:#f0fdf4;border-color:#bbf7d0"><div class="clb">' + t('Después','Ostean') + '</div><div class="cnb" style="color:#059669">3.5</div><div style="font-size:10px;color:#059669;margin-top:2px">+1.1 ↑</div></div></div>' +
+    '<div class="cb2b" style="background:#fef2f2;border-color:#fecaca"><div class="clb">' + t('Antes','Aurretik','Before') + '</div><div class="cnb" style="color:#DC2626">2.4</div><div style="font-size:10px;color:#aaa;margin-top:2px">' + t('Pertenencia','Kidetasuna','Belonging') + '</div></div>' +
+    '<div class="cb2b" style="background:#f0fdf4;border-color:#bbf7d0"><div class="clb">' + t('Después','Ostean','After') + '</div><div class="cnb" style="color:#059669">3.5</div><div style="font-size:10px;color:#059669;margin-top:2px">+1.1 ↑</div></div></div>' +
     dimBarsHTML(SCORES_AFTER) +
-    '<div class="sem" style="background:#f0fdf4;border-color:#bbf7d0;color:#1a1a2e;margin-top:4px"><div class="sdd" style="background:#059669"></div><div style="font-size:11px"><strong>' + t('Mejora significativa.','Hobekuntza nabarmena.') + '</strong> ' + t('Pertenencia +1.1. Relaciones +1.1.','Kidetasuna +1,1. Harremanak +1,1.') + '</div></div>' +
-    '<div class="alrt"><span>📋</span><div style="font-size:11px">' + t('Recomendación: repetir actividad de cohesión en 2 semanas.','Gomendioa: 2 asteren buruan talde-kohesiorako jarduera errepikatu.') + '</div></div>' +
-    '<div class="acts"><button class="bgbtn" onclick="PROFE_STEP=3;renderApp()">← ' + t('Volver','Atzera') + '</button>' +
-    '<button class="btn bp bs" onclick="PROFE_STEP=\'mg\';SELECTED_ACT=null;renderApp()">' + t('Nuevo ciclo ↺','Ziklo berria ↺') + '</button></div></div>';
+    '<div class="sem" style="background:#f0fdf4;border-color:#bbf7d0;color:#1a1a2e;margin-top:4px"><div class="sdd" style="background:#059669"></div><div style="font-size:11px"><strong>' + t('Mejora significativa.','Hobekuntza nabarmena.','Significant improvement.') + '</strong> ' + t('Pertenencia +1.1. Relaciones +1.1.','Kidetasuna +1,1. Harremanak +1,1.','Belonging +1.1. Relationships +1.1.') + '</div></div>' +
+    '<div class="alrt"><span>📋</span><div style="font-size:11px">' + t('Recomendación: repetir actividad de cohesión en 2 semanas.','Gomendioa: 2 asteren buruan talde-kohesiorako jarduera errepikatu.','Recommendation: repeat cohesion activity in 2 weeks.') + '</div></div>' +
+    '<div class="acts"><button class="bgbtn" onclick="PROFE_STEP=3;renderApp()">← ' + t('Volver','Atzera','Back') + '</button>' +
+    '<button class="btn bp bs" onclick="PROFE_STEP=\'mg\';SELECTED_ACT=null;renderApp()">' + t('Nuevo ciclo ↺','Ziklo berria ↺','New cycle ↺') + '</button></div></div>';
 }
+
+// ── Formulario Van Westendorp – submit via fetch ───────────────────────────
+(function(){
+  document.addEventListener('DOMContentLoaded', function(){
+    var form = document.getElementById('vw-form');
+    if (!form) return;
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var btn = document.getElementById('vw-submit-btn');
+      var lbl = document.getElementById('ps-btnlbl');
+      if (btn) { btn.disabled = true; if(lbl) lbl.textContent = '...'; }
+      var data = {};
+      new FormData(form).forEach(function(v,k){ data[k] = v; });
+      fetch('https://formspree.io/f/xwvapbzv',{
+        method:'POST',
+        headers:{'Content-Type':'application/json','Accept':'application/json'},
+        body:JSON.stringify(data)
+      }).then(function(r){
+        if(r.ok){
+          form.style.display='none';
+          document.getElementById('vw-success').style.display='block';
+        } else {
+          if(btn){ btn.disabled=false; if(lbl) lbl.textContent=T_BTN[LANG]||T_BTN.es; }
+          alert('Error al enviar. Por favor, inténtalo de nuevo.');
+        }
+      }).catch(function(){
+        if(btn){ btn.disabled=false; if(lbl) lbl.textContent=T_BTN[LANG]||T_BTN.es; }
+        alert('Error de red. Por favor, inténtalo de nuevo.');
+      });
+    });
+  });
+})();
+
+// ── Traducciones landing & sección precios ────────────────────────────────
+var T_BTN = {es:'Enviar respuestas →', eu:'Erantzunak bidali →', en:'Submit answers →'};
+
+var LANDING_STRINGS = {
+  // Nav
+  'nav-about':    {es:'Sobre nosotros', eu:'Gu buruz', en:'About us'},
+  'nav-func':     {es:'Funcionalidades', eu:'Funtzioak', en:'Features'},
+  'nav-precios':  {es:'Precios', eu:'Prezioak', en:'Pricing'},
+  // Hero
+  'hero-tag':     {es:'Para centros de secundaria del País Vasco', eu:'Euskal Herriko bigarren hezkuntzako ikastetxeentzat', en:'For secondary schools in the Basque Country'},
+  'hero-sub':     {es:'Klaizen ayuda a docentes, orientación y dirección a diagnosticar el clima emocional del aula, proponer intervenciones y medir su impacto. Todo de forma anónima y segura.', eu:'Klaizenek irakasleei, orientazioari eta zuzendaritzari gelan klima emozionala diagnostikatzen, esku-hartzeak proposatzen eta eragina neurtzen laguntzen die.', en:'Klaizen helps teachers, guidance counsellors and management diagnose the emotional climate of the classroom, propose interventions and measure their impact. All anonymously and securely.'},
+  // Pricing section
+  'ps-tag':       {es:'PRECIOS', eu:'PREZIOAK', en:'PRICING'},
+  'ps-h2':        {es:'¿Cuánto pagarías por Klaizen?', eu:'Zenbat ordainduko zenuke Klaizenengatik?', en:'How much would you pay for Klaizen?'},
+  'ps-desc':      {es:'Klaizen es una herramienta de evaluación y mejora continua en el aula, pensada para centros educativos. El servicio se ofrece por clase durante todo el curso. Tu opinión nos ayuda a definir un precio justo.', eu:'Klaizen eskola-ingurunerako ebaluazio eta hobekuntza etengabeko tresna bat da. Zerbitzua klase bakoitzeko eskaintzen da ikasturte osoan.', en:'Klaizen is a classroom assessment and continuous improvement tool designed for educational centres. The service is offered per class for the full school year. Your opinion helps us set a fair price.'},
+  'ps-s1tag':     {es:'SECCIÓN 1 · CONTEXTO', eu:'1. ATALA · TESTUINGURUA', en:'SECTION 1 · CONTEXT'},
+  'ps-s1h':       {es:'Cuéntanos sobre ti', eu:'Kontaiguzu zuri buruz', en:'Tell us about yourself'},
+  'ps-s1sub':     {es:'Para interpretar mejor las respuestas.', eu:'Erantzunak hobeto interpretatzeko.', en:'To better interpret the responses.'},
+  'ps-lrol':      {es:'Tu rol', eu:'Zure rola', en:'Your role'},
+  'ps-rolph':     {es:'Selecciona...', eu:'Hautatu...', en:'Select...'},
+  'ps-rol1':      {es:'Docente', eu:'Irakaslea', en:'Teacher'},
+  'ps-rol2':      {es:'Equipo directivo', eu:'Zuzendaritza taldea', en:'Management team'},
+  'ps-rol3':      {es:'Orientación', eu:'Orientazioa', en:'Guidance'},
+  'ps-rol4':      {es:'Otro', eu:'Beste bat', en:'Other'},
+  'ps-ltc':       {es:'Tipo de centro', eu:'Ikastetxe mota', en:'School type'},
+  'ps-tcph':      {es:'Selecciona...', eu:'Hautatu...', en:'Select...'},
+  'ps-tc1':       {es:'Público', eu:'Publikoa', en:'Public'},
+  'ps-tc2':       {es:'Concertado', eu:'Itundua', en:'Charter'},
+  'ps-tc3':       {es:'Privado', eu:'Pribatua', en:'Private'},
+  'ps-let':       {es:'Etapa educativa', eu:'Hezkuntza etapa', en:'Education stage'},
+  'ps-etph':      {es:'Selecciona...', eu:'Hautatu...', en:'Select...'},
+  'ps-et1':       {es:'Primaria', eu:'Lehen Hezkuntza', en:'Primary'},
+  'ps-et2':       {es:'Secundaria', eu:'DBH', en:'Secondary'},
+  'ps-et3':       {es:'Bachillerato', eu:'Batxilergoa', en:'Sixth form'},
+  'ps-et4':       {es:'FP', eu:'LH', en:'Vocational'},
+  'ps-s2tag':     {es:'SECCIÓN 2 · DISPOSICIÓN A PAGAR', eu:'2. ATALA · ORDAINTZEKO PREST', en:'SECTION 2 · WILLINGNESS TO PAY'},
+  'ps-s2h':       {es:'Las 4 preguntas clave', eu:'4 galdera nagusiak', en:'The 4 key questions'},
+  'ps-s2sub':     {es:'Indica precios por clase y año (€/clase/año). No hay respuestas correctas.', eu:'Adierazi prezioak klase eta urte bakoitzeko (€/klase/urte). Ez dago erantzun zuzenak.', en:'Indicate prices per class and year (€/class/year). There are no right answers.'},
+  'ps-lganga-t':  {es:'Precio ganga', eu:'Prezio oso merkea', en:'Bargain price'},
+  'ps-lganga-s':  {es:'Tan barato que lo comprarías sin dudar (€/clase/año)', eu:'Hain merkea non zalantza gabe erosiko zenukeen (€/klase/urte)', en:'So cheap you would buy it without hesitation (€/class/year)'},
+  'ps-lcaro-t':   {es:'Caro pero lo compraría', eu:'Garestia baina erosiko nuke', en:'Expensive but would buy'},
+  'ps-lcaro-s':   {es:'Caro, pero el valor lo justifica (€/clase/año)', eu:'Garestia, baina balioa justifikatzen du (€/klase/urte)', en:'Expensive, but the value justifies it (€/class/year)'},
+  'ps-lbarato-t': {es:'Demasiado barato', eu:'Merreegia', en:'Too cheap'},
+  'ps-lbarato-s': {es:'Tan barato que dudarías de la calidad (€/clase/año)', eu:'Hain merkea non kalitateaz zalantzatuko zenukeen (€/klase/urte)', en:'So cheap you would doubt the quality (€/class/year)'},
+  'ps-ldcaro-t':  {es:'Demasiado caro', eu:'Oso garestia', en:'Too expensive'},
+  'ps-ldcaro-s':  {es:'Tan caro que no lo comprarías (€/clase/año)', eu:'Hain garestia non erosiko ez zenukeen (€/klase/urte)', en:'So expensive you would not buy it (€/class/year)'},
+  'ps-s3tag':     {es:'SECCIÓN 3 · INTENCIÓN DE COMPRA', eu:'3. ATALA · EROSKETA-ASMOA', en:'SECTION 3 · PURCHASE INTENT'},
+  'ps-s3h':       {es:'¿Lo contratarías?', eu:'Kontratatuko al zenuke?', en:'Would you subscribe?'},
+  'ps-lcontr':    {es:'¿Contratarías Klaizen para tu centro?', eu:'Kontratatuko al zenuke Klaizen zure ikastetxerako?', en:'Would you subscribe to Klaizen for your school?'},
+  'ps-rsi':       {es:'Sí, lo contrataría', eu:'Bai, kontratatuko nuke', en:'Yes, I would'},
+  'ps-rdep':      {es:'Depende del precio', eu:'Prezioaren arabera', en:'Depends on price'},
+  'ps-rno':       {es:'No por ahora', eu:'Ez oraingoz', en:'Not for now'},
+  'ps-lnc':       {es:'¿Cuántas clases tiene tu centro?', eu:'Zenbat klase daude zure ikastetxean?', en:'How many classes does your school have?'},
+  'ps-s4tag':     {es:'SECCIÓN 4 · PROPUESTA DE VALOR', eu:'4. ATALA · BALIO-PROPOSAMENA', en:'SECTION 4 · VALUE PROPOSITION'},
+  'ps-s4h':       {es:'¿Qué valoras?', eu:'Zer baloratzen duzu?', en:'What do you value?'},
+  'ps-lval':      {es:'¿Qué es lo más importante para ti de una herramienta como Klaizen?', eu:'Zer da garrantzitsuena zuretzat Klaizen bezalako tresna batean?', en:'What is most important to you in a tool like Klaizen?'},
+  'ps-linc':      {es:'¿Qué debería incluir para justificar el precio?', eu:'Zer izan beharko luke prezioaren justifikazio?', en:'What should it include to justify the price?'},
+  'ps-s5tag':     {es:'SECCIÓN 5 · PROCESO DE DECISIÓN', eu:'5. ATALA · ERABAKI-PROZESUA', en:'SECTION 5 · DECISION PROCESS'},
+  'ps-s5h':       {es:'¿Quién decide?', eu:'Nork erabakitzen du?', en:'Who decides?'},
+  'ps-lqd':       {es:'¿Quién toma la decisión de compra en tu centro?', eu:'Nork hartzen du erosketa-erabakia zure ikastetxean?', en:'Who makes the purchase decision at your school?'},
+  'ps-qdph':      {es:'Selecciona...', eu:'Hautatu...', en:'Select...'},
+  'ps-qd1':       {es:'El/la docente directamente', eu:'Irakasleak zuzenean', en:'The teacher directly'},
+  'ps-qd2':       {es:'Dirección del centro', eu:'Ikastetxeko zuzendaritza', en:'School management'},
+  'ps-qd3':       {es:'Departamento / Orientación', eu:'Saila / Orientazioa', en:'Department / Guidance'},
+  'ps-qd4':       {es:'Administración educativa', eu:'Hezkuntza administrazioa', en:'Education authority'},
+  'ps-lpr':       {es:'¿Hay presupuesto disponible para herramientas educativas digitales?', eu:'Ba al dago aurrekonturik tresna digital hezitzailetarako?', en:'Is there a budget available for digital educational tools?'},
+  'ps-prsi':      {es:'Sí', eu:'Bai', en:'Yes'},
+  'ps-prno':      {es:'No', eu:'Ez', en:'No'},
+  'ps-prns':      {es:'No lo sé', eu:'Ez dakit', en:'I don\'t know'},
+  'ps-btnlbl':    {es:'Enviar respuestas →', eu:'Erantzunak bidali →', en:'Submit answers →'},
+  'ps-priv':      {es:'Sin spam. Tus respuestas son anónimas y nos ayudan a mejorar Klaizen.', eu:'Spam gabe. Zure erantzunak anonimoak dira eta Klaizen hobetzen laguntzen digute.', en:'No spam. Your answers are anonymous and help us improve Klaizen.'},
+  'ps-thx':       {es:'¡Gracias por tu respuesta!', eu:'Eskerrik asko zure erantzunagatik!', en:'Thank you for your response!'},
+  'ps-thxsub':    {es:'Tu opinión es clave para definir un precio justo. Te avisaremos cuando Klaizen esté disponible.', eu:'Zure iritzia funtsezkoa da prezio bidezko bat zehazteko.', en:'Your opinion is key to defining a fair price. We will notify you when Klaizen is available.'},
+  'ps-again':     {es:'Enviar otra respuesta', eu:'Beste erantzun bat bidali', en:'Submit another response'},
+  // Acceder / Demo btns
+  'btn-acceder':  {es:'Acceder', eu:'Sartu', en:'Log in'},
+  'btn-demo':     {es:'Solicitar demo', eu:'Demoa eskatu', en:'Request demo'}
+};
+
+function updateLandingLang() {
+  // actualizar textContent de nodos con id en LANDING_STRINGS
+  Object.keys(LANDING_STRINGS).forEach(function(id){
+    var el = document.getElementById(id);
+    if (!el) return;
+    var str = LANDING_STRINGS[id][LANG] || LANDING_STRINGS[id].es;
+    // si es un input/option, actualizar value o textContent según tipo
+    if (el.tagName === 'OPTION') { el.textContent = str; }
+    else { el.textContent = str; }
+  });
+  // Hero h1 (tiene span interior, no se toca con textContent simple)
+  // Hero tag
+  var heroTag = document.querySelector('.hero-tag');
+  if (heroTag) heroTag.textContent = LANDING_STRINGS['hero-tag'][LANG] || LANDING_STRINGS['hero-tag'].es;
+  // Hero sub
+  var heroSub = document.querySelector('.hero-sub');
+  if (heroSub) heroSub.textContent = LANDING_STRINGS['hero-sub'][LANG] || LANDING_STRINGS['hero-sub'].es;
+  // Hero h1 texto antes del span
+  var h1 = document.querySelector('.hero-h1');
+  if (h1) {
+    var span = h1.querySelector('span');
+    var spanTxt = LANG==='eu' ? 'zure eskuetan.' : LANG==='en' ? 'in your hands.' : 'en tus manos.';
+    var mainTxt = LANG==='eu' ? 'Gelako ongizatea,\u00a0' : LANG==='en' ? 'Classroom wellbeing,\u00a0' : 'El bienestar del aula,\u00a0';
+    h1.childNodes[0].textContent = mainTxt;
+    if (span) span.textContent = spanTxt;
+  }
+  // Botones hero
+  var heroBtns = document.querySelectorAll('.hero-btns .btn');
+  if (heroBtns[0]) heroBtns[0].textContent = LANG==='eu' ? 'Demo doakoa eskatu' : LANG==='en' ? 'Request free demo' : 'Solicitar demo gratuita';
+  if (heroBtns[1]) heroBtns[1].textContent = LANG==='eu' ? 'Nola funtzionatzen duen ikusi' : LANG==='en' ? 'See how it works' : 'Ver cómo funciona';
+  // Botones nav acceder/demo
+  var navBtns = document.querySelectorAll('.nav-r .btn');
+  if (navBtns[0]) navBtns[0].textContent = LANG==='eu' ? 'Sartu' : LANG==='en' ? 'Log in' : 'Acceder';
+  if (navBtns[1]) navBtns[1].textContent = LANG==='eu' ? 'Demoa eskatu' : LANG==='en' ? 'Request demo' : 'Solicitar demo';
+  // CTA section
+  var ctaH2 = document.querySelector('.ctab h2');
+  if (ctaH2) ctaH2.textContent = LANG==='eu' ? 'Hasi zure ikastetxearekin gaur' : LANG==='en' ? 'Start with your school today' : 'Empieza con tu centro hoy';
+  var ctaP = document.querySelector('.ctab p');
+  if (ctaP) ctaP.textContent = LANG==='eu' ? 'Demo doakoa, konpromiso gabe. 30 minutuan erakutsiko dizugu.' : LANG==='en' ? 'Free demo, no commitment. We will show you in 30 minutes.' : 'Demo gratuita, sin compromiso. Te lo mostramos en 30 minutos.';
+  var ctaBtn = document.querySelector('.ctab .btn');
+  if (ctaBtn) ctaBtn.textContent = LANG==='eu' ? 'Demo doakoa eskatu' : LANG==='en' ? 'Request free demo' : 'Solicitar demo gratuita';
+  // Footer
+  var ftr = document.querySelector('footer p');
+  if (ftr) ftr.textContent = LANG==='eu' ? '© 2025 Klaizen · Eskola-ongizaterako hezkuntza plataforma · Euskal Herria' : LANG==='en' ? '© 2025 Klaizen · Educational wellbeing platform for the classroom · Basque Country' : '© 2025 Klaizen · Plataforma educativa para el bienestar del aula · País Vasco';
+  // Sección ROLES
+  var rolTitles = document.querySelectorAll('.rn');
+  var rolDescs  = document.querySelectorAll('.rd');
+  var roles = LANG==='eu'
+    ? [['Tutoreak','Gelan zure klasearen benetako egoera ezagutu minutu gutxian.'],['Orientazioa','Taldeka diagnostiko anonimoak eskuratu. Ereduak detektatu.'],['Zuzendaritza','Ikastetxe osoaren ongizatea bistaratu. Txostenak esportatu.'],['Ikasle/ak','Nola sentitzen zaren 3 minututan partekatu. Dena anonimoa da.']]
+    : LANG==='en'
+    ? [['Tutors','Know the real state of your class in minutes. Launch interventions with one click.'],['Guidance','Access anonymous group diagnoses. Detect patterns and prioritise support.'],['Management','Visualise wellbeing across the whole school. Export reports and make data-driven decisions.'],['Students','Share how you feel in 3 minutes. Access activities that help you grow. All anonymous.']]
+    : [['Tutores/as','Conoce el estado real de tu clase en minutos. Lanza intervenciones con un clic y mide si funcionan.'],['Orientación','Accede a diagnósticos anónimos por grupo. Detecta patrones y prioriza el apoyo de forma informada.'],['Dirección','Visualiza el bienestar de todo el centro. Exporta informes y toma decisiones basadas en datos reales.'],['Alumnado','Comparte cómo te sientes en 3 minutos. Accede a actividades que te ayudan a crecer. Todo es anónimo.']];
+  rolTitles.forEach(function(el,i){ if(roles[i]) el.textContent = roles[i][0]; });
+  rolDescs.forEach(function(el,i){ if(roles[i]) el.textContent = roles[i][1]; });
+  // HOW section
+  var howTag = document.querySelector('.sf ~ .s .stag');
+  // Section tags generales — traducir todas las .stag visibles
+  // (se delega en los IDs específicos, ya cubiertos arriba)
+}
+
+// Llamar al cargar para inicializar traducciones desde el estado inicial
+document.addEventListener('DOMContentLoaded', function(){ updateLandingLang(); });
 </script>
 </body>
 </html>
