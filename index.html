@@ -211,8 +211,29 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:17px;heigh
 @media(max-width:600px){
   .nav{padding:0 14px;}
   .nav-links{display:none;}
+  .nav-r .btn,.nav-r .lang{display:none;}
   .rg,.stg,.dg{grid-template-columns:1fr;}
   .pg{grid-template-columns:1fr 1fr;}
+}
+/* Hamburger */
+.nav-burger{display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;width:40px;height:40px;background:none;border:none;cursor:pointer;border-radius:8px;padding:6px;}
+.nav-burger span{display:block;width:22px;height:2px;background:#3a3a3a;border-radius:2px;transition:all .22s;}
+@media(max-width:600px){
+  .nav-burger{display:flex;}
+}
+/* Mobile menu dropdown */
+#mobile-menu{position:fixed;top:64px;left:0;right:0;z-index:199;background:white;border-bottom:1px solid #eee;box-shadow:0 8px 32px rgba(0,0,0,.10);padding:16px 18px;display:flex;flex-direction:column;gap:10px;animation:slideDown .18s ease;}
+@keyframes slideDown{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
+#mobile-menu .nl{font-size:15px;font-weight:600;color:#1a1a2e;text-align:left;padding:10px 4px;border-bottom:1px solid #f5f5f5;}
+#mobile-menu .nl:last-of-type{border-bottom:none;}
+/* Hero mobile */
+@media(max-width:500px){
+  .hero-h1{font-size:32px;letter-spacing:-1px;}
+  .hero-sub{font-size:14px;}
+  .hero-btns{flex-direction:column;}
+  .hero-btns .btn{width:100%;justify-content:center;padding:14px 20px;font-size:15px;}
+  .ctab{padding:36px 18px;margin:0 12px 52px;border-radius:20px;}
+  .ctab h2{font-size:22px;}
 }
 </style>
 </head>
@@ -221,8 +242,9 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:17px;heigh
 <!-- NAV -->
 <nav class="nav">
   <div class="nav-logo">
-    <svg width="34" height="34" viewBox="0 0 100 100" fill="none"><defs><linearGradient id="kg1" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#FFB300"/><stop offset="100%" stop-color="#FF5500"/></linearGradient></defs><rect x="4" y="4" width="92" height="92" rx="18" ry="18" fill="url(#kg1)"/><path d="M 10 85 Q 30 60 55 45 Q 72 34 90 28" stroke="white" stroke-width="12" stroke-linecap="round" fill="none"/><path d="M 8 92 Q 20 80 35 72" stroke="white" stroke-width="7" stroke-linecap="round" fill="none" opacity="0.7"/></svg>
-    <span>Klaizen</span>
+    <a href="/" style="display:flex;align-items:center;text-decoration:none;">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496.22685 125.97946" style="height:32px;width:auto;display:block;" aria-label="Klaizen"><defs><style>.cls-1{fill:#464646;}.cls-2{fill:#f36a15;}</style></defs><g><g><path class="cls-1" d="M243.96864,56.11857c4.45682-3.6448,7.9363-7.87949,11.48389-12.05451,3.68147-4.33251,7.40637-8.62808,11.09134-12.95762a3.83886,3.83886,0,0,1,3.11329-1.53893c2.93132.0303,5.86323-.008,8.79467.01481.65571.0051,1.51126-.21155,1.81716.59976.24707.65532-.41487,1.06576-.80933,1.49749q-6.277,6.86963-12.56253,13.73139c-2.49515,2.73874-4.85568,5.60961-7.47594,8.22131-1.55363,1.54859-1.52191,2.64427-.22862,4.345,6.20764,8.16353,12.29923,16.41533,18.41476,24.64865,1.49016,2.00623,2.91858,4.05839,4.36849,6.09437.91425,1.28378.771,2.05368-.99981,2.04888-3.44893-.00935-6.8987-.04716-10.34646.01652-1.54864.02855-2.28129-.91522-3.04919-2.00924-5.59562-7.97165-11.26785-15.89027-16.79175-23.9111-1.304-1.89343-1.87128-1.793-3.56175-.23032-2.76993,2.56057-3.46921,5.43948-3.3071,8.99671.21162,4.64485-.06069,9.31018.08177,13.96033.077,2.51421-.86977,3.41527-3.32163,3.21383a43.42526,43.42526,0,0,0-5.68731-.0084c-1.92429.09529-2.48083-.77082-2.5717-2.6089-.28956-5.85762-.08666-11.70346-.031-17.55961.11715-12.31967-.1538-24.64283-.23968-36.96475-.02856-4.09675.02894-4.17009,4.22574-4.11483,8.74193.11509,7.5052-1.23139,7.58169,7.474C244.01363,43.388,243.96864,49.75348,243.96864,56.11857Z"/><path class="cls-1" d="M344.0094,71.68746c-.00025,3.0154-.02619,6.03111.00888,9.04612.02334,2.009.77646,3.64321,2.97867,3.87232,1.28182.13335,2.29212.25059,2.09431,1.81907-.21744,1.72365.92543,3.89851-1.674,4.869-4.27907,1.59766-10.0302-.07034-12.36147-3.92712-.90433-1.49612-1.35174-1.13994-2.41628-.299-5.77748,4.56383-12.22486,6.36256-19.34731,3.83692-4.1762-1.48092-6.91207-4.4181-7.22956-9.14637-.34473-5.13326,1.38141-9.11923,6.15168-11.4903,4.92167-2.44629,10.2131-2.94056,15.59845-2.92571a4.91352,4.91352,0,0,0,1.03195-.00886c1.48368-.32175,3.68983,1.00308,4.13658-1.72826a5.32486,5.32486,0,0,0-3.21965-6.10439c-3.63795-1.3179-7.31885-.83518-10.96337-.0409a18.02521,18.02521,0,0,0-4.66257,1.49458c-2.39168,1.28019-3.22148.411-3.91807-1.90472-1.22284-4.06507-1.33456-3.9722,2.6232-5.47011a33.8893,33.8893,0,0,1,21.79541-1.28032c6.9205,1.98379,9.37221,5.5293,9.37335,12.66781Q344.01011,68.32735,344.0094,71.68746Zm-15.88357,1.3956a19.45034,19.45034,0,0,0-7.84072,1.30549,5.43115,5.43115,0,0,0-1.83587,8.6117c3.20723,3.32839,12.88193,1.13852,14.39805-3.259C334.36551,75.33767,332.8235,73.04179,328.12583,73.08306Z"/><path class="cls-1" d="M456.26215,71.48017c.00088-5.51381.03716-11.028-.01889-16.54123-.0194-1.90413.56484-2.94488,2.66721-2.78357a12.35922,12.35922,0,0,0,3.0878-.19249c2.66254-.47649,4.34621.2418,4.59025,3.23378.16422,2.014.98145,1.91388,2.43739.77863a21.62233,21.62233,0,0,1,15.40892-4.7833c6.87542.51238,11.6589,5.15422,11.73479,12.001.09156,8.26976-.02787,16.54185.0568,24.81175.02218,2.1663-.81672,2.79012-2.89526,2.81049-8.27885.08121-8.27752.13667-8.2748-8.00778q.00255-7.484-.00095-14.96792c-.008-6.38857-3.54352-9.17007-9.72139-7.608a19.61993,19.61993,0,0,0-5.76588,2.83988A3.89268,3.89268,0,0,0,467.679,66.735c.06288,6.97782-.0489,13.95766.05675,20.93441.03557,2.35259-.76706,3.3131-3.14126,3.12126a28.52568,28.52568,0,0,0-5.16533.02005c-2.59752.26493-3.25664-.93158-3.20457-3.30681C456.34164,82.165,456.26133,76.82169,456.26215,71.48017Z"/><path class="cls-1" d="M435.01373,74.19527c-3.62193,0-7.24646.08365-10.8648-.02974-2.37249-.07435-2.80521,1.04814-2.39739,3.05611.82493,4.06119,4.366,6.80763,9.316,7.16659a25.70656,25.70656,0,0,0,12.40611-1.90062c1.87678-.82618,2.57831-.2125,3.0818,1.59324,1.21544,4.35907,1.19819,4.60164-3.14208,6.10435a32.09474,32.09474,0,0,1-17.31989,1.338c-12.61754-2.65482-18.00232-11.43078-16.1397-24.06341,1.427-9.67827,9.0569-15.96615,18.84477-16.2928,5.68278-.18964,10.9695.60985,15.34579,4.73809,4.94929,4.66877,5.28141,10.572,4.78379,16.73716-.12517,1.55015-1.38289,1.53348-2.53122,1.53523q-5.69157.00871-11.38315.00218Zm-4.84963-6.37913c2.15348,0,4.309-.05829,6.45976.01972,1.52955.05547,2.12732-.43238,2.07728-2.07189-.14319-4.68751-3.06051-7.564-7.94907-7.62394-4.6226-.05667-9.08482,3.88327-9.22877,8.03137-.04587,1.32239.52087,1.65813,1.66358,1.64736C425.51243,67.79684,427.83836,67.81221,430.1641,67.81614Z"/><path class="cls-1" d="M389.97992,90.77507c-4.398.00218-8.79681.04583-13.19369-.02631-1.20824-.01983-2.86339.66-3.50634-.82713a5.15828,5.15828,0,0,1,.57629-5.17533q3.47226-4.82752,7.04347-9.5838c3.20059-4.27752,6.44232-8.52436,9.65062-12.79624.39525-.52632,1.13778-1.03055.78721-1.77411-.35645-.75606-1.22113-.47626-1.87154-.48134-4.31152-.03367-8.62481-.09581-12.93471-.01093-2.27639.04482-3.27184-.72846-3.20113-3.14518.14179-4.84527-.38732-4.9657,4.83409-4.91132,7.74781.08071,15.50036-.28658,23.25789.10413,4.1035.20667,5.61625,2.57582,3.60734,6.3052a42.72253,42.72253,0,0,1-3.27161,4.64376q-6.38368,8.78648-12.76945,17.57138c-.38545.5326-1.1235,1.07491-.78936,1.784.34773.73784,1.2308.43052,1.87925.43437,4.65659.02755,9.31508.0933,13.96928-.01512,2.302-.05363,3.44393.70151,3.12306,3.11945a10.55837,10.55837,0,0,0-.00834,1.29208c-.02749,3.42033-.06762,3.47541-3.47079,3.48653C399.121,90.78411,394.55046,90.77289,389.97992,90.77507Z"/><path class="cls-1" d="M298.91812,60.10886q0,13.304-.00067,26.608c-.001,4.05391-.00432,4.05511-4.18065,4.06168-1.6366.00255-3.27512-.05086-4.90926.01187-1.49963.05748-2.27951-.55083-2.2767-2.0785.00016-.086-.01071-.172-.01071-.258q-.00711-28.15782-.0255-56.31562c-.0024-1.87162.83527-2.64313,2.674-2.58534,1.97915.0622,3.967.101,5.94158-.014,2.1889-.12754,2.8171.87363,2.80206,2.92876-.06726,9.21329-.02922,18.42738-.02922,27.64117Z"/><path class="cls-1" d="M354.24247,71.23568c0-5.50875.05112-11.01823-.02705-16.52586-.02837-2.0003.62-2.79322,2.71457-2.58494a44.70481,44.70481,0,0,0,6.194.05085c1.77659-.07125,2.50046.67909,2.4815,2.4225q-.18378,16.89261-.2962,33.78591c-.0097,1.80467-.79125,2.46114-2.50725,2.39529-1.63341-.06272-3.2713-.00221-4.90723-.00493-3.652-.00606-3.66244-.00833-3.66965-3.78733q-.015-7.87577-.00253-15.75149Z"/><path class="cls-1" d="M366.83757,35.3833a6.90085,6.90085,0,0,1-6.96274,7.09787c-4.2955-.00509-7.29083-2.9121-7.24928-7.03554a6.878,6.878,0,0,1,7.11848-6.94109A6.73906,6.73906,0,0,1,366.83757,35.3833Z"/><path class="cls-2" d="M90.92.00742q39.16863,0,78.33724.00368a11.98473,11.98473,0,0,1,6.92047,1.71822c3.62,2.44183,4.36587,6.151,4.062,10.13424-.32873,4.30958-.67578,4.43013-5.02242,4.65618a109.44091,109.44091,0,0,0-24.49466,4.50792c-17.88412,5.1294-33.85806,13.9488-48.66269,25.06624C92.37509,53.36667,83.065,61.10916,73.587,68.641c-5.1468,4.09-10.9349,7.1089-16.70337,10.154a134.28566,134.28566,0,0,1-37.60958,13.63A106.393,106.393,0,0,1,1.81531,94.32169C.4815,94.35279-.0021,93.94174,0,92.55633q.06162-40.44565.063-80.8914C.07353,4.33067,4.56065.034,12.157.01649,25.497-.0143,38.83706.0075,52.1771.0074Q71.54854.00726,90.92.00742Z"/><path class="cls-2" d="M2.87437,125.065a4.05486,4.05486,0,0,1,2.9859-.73415A112.80511,112.80511,0,0,0,37.118,120.26823,103.31068,103.31068,0,0,0,73.67288,101.058c9.72479-7.73949,18.2855-16.70212,26.85119-25.65951,5.65477-5.91335,11.28711-11.8518,17.22232-17.48787,11.79233-11.19795,24.58425-21.00626,39.30593-28.11474a86.36539,86.36539,0,0,1,19.75036-6.97466c.50865-.10716,1.01991-.2151,1.53552-.27322a1.44748,1.44748,0,0,1,1.82,1.32391,14.09416,14.09416,0,0,1,.1576,1.974q.01134,43.56774-.00587,87.13547a13.97924,13.97924,0,0,1-1.97066,7.73255,10.58372,10.58372,0,0,1-8.83951,5.10859c-7.41881.3694-14.83863-.03039-22.25834-.0215q-70.38964.08426-140.77948.02616C5.25284,125.82711,4.00874,125.95327,2.87437,125.065Z"/></g></g></svg>
+    </a>
   </div>
   <div class="nav-links">
     <button class="nl" id="nav-about" onclick="showAbout()">Sobre nosotros</button>
@@ -233,15 +255,34 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:17px;heigh
     <button class="lang on" id="lang-es" onclick="setLang('es')">ES</button>
     <button class="lang" id="lang-eu" onclick="setLang('eu')">EU</button>
     <button class="lang" id="lang-en" onclick="setLang('en')">EN</button>
-    <button class="btn bo bs" onclick="showApp()">Acceder</button>
+    <a href="https://app.klaizen.eu" target="_blank" rel="noopener" class="btn bo bs" style="text-decoration:none;">Acceder</a>
     <button class="btn bp bs" onclick="showDemo()">Solicitar demo</button>
   </div>
+  <!-- Hamburger mobile -->
+  <button class="nav-burger" onclick="toggleMobileMenu()" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- Mobile menu -->
+<div id="mobile-menu" style="display:none;">
+  <button class="nl" onclick="showAbout();toggleMobileMenu()" id="mm-about">Sobre nosotros</button>
+  <button class="nl" onclick="document.getElementById('platform-section').scrollIntoView({behavior:'smooth'});toggleMobileMenu()" id="mm-func">Funcionalidades</button>
+  <button class="nl" onclick="showPricing();toggleMobileMenu()" id="mm-precios">Precios</button>
+  <div style="display:flex;gap:8px;padding-top:4px;">
+    <a href="https://app.klaizen.eu" target="_blank" rel="noopener" class="btn bo bs" style="text-decoration:none;flex:1;justify-content:center;">Acceder</a>
+    <button class="btn bp bs" onclick="showDemo();toggleMobileMenu()" style="flex:1;">Solicitar demo</button>
+  </div>
+  <div style="display:flex;gap:6px;padding-top:2px;">
+    <button class="lang on" id="mm-lang-es" onclick="setLang('es')">ES</button>
+    <button class="lang" id="mm-lang-eu" onclick="setLang('eu')">EU</button>
+    <button class="lang" id="mm-lang-en" onclick="setLang('en')">EN</button>
+  </div>
+</div>
 
 <!-- HERO -->
 <section class="hero">
   <div>
-    <div class="hero-tag">Para centros de secundaria del País Vasco</div>
     <h1 class="hero-h1">El bienestar del aula,<br/><span>en tus manos.</span></h1>
     <p class="hero-sub">Klaizen ayuda a docentes, orientación y dirección a diagnosticar el clima emocional del aula, proponer intervenciones y medir su impacto. Todo de forma anónima y segura.</p>
     <div class="hero-btns">
@@ -791,9 +832,23 @@ function setLang(l) {
   document.getElementById('lang-es').classList.toggle('on', l === 'es');
   document.getElementById('lang-eu').classList.toggle('on', l === 'eu');
   document.getElementById('lang-en').classList.toggle('on', l === 'en');
+  // Sync mobile lang buttons if they exist
+  var mEs = document.getElementById('mm-lang-es');
+  var mEu = document.getElementById('mm-lang-eu');
+  var mEn = document.getElementById('mm-lang-en');
+  if (mEs) mEs.classList.toggle('on', l === 'es');
+  if (mEu) mEu.classList.toggle('on', l === 'eu');
+  if (mEn) mEn.classList.toggle('on', l === 'en');
   renderApp();
   updateLandingLang();
 }
+function toggleMobileMenu() {
+  var m = document.getElementById('mobile-menu');
+  if (!m) return;
+  m.style.display = m.style.display === 'none' || m.style.display === '' ? 'flex' : 'none';
+}
+// Cerrar mobile menu al hacer scroll
+document.addEventListener('scroll', function(){ var m = document.getElementById('mobile-menu'); if(m) m.style.display='none'; }, {passive:true});
 
 // ── Helpers ───────────────────────────────────────────────────────────────
 function isEs() { return LANG === 'es'; }
