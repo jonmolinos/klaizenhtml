@@ -281,7 +281,7 @@ footer{padding:32px clamp(20px,4vw,48px);border-top:1px solid var(--line);displa
 /* ─── MODAL ─── */
 .modal-overlay{position:fixed;inset:0;background:rgba(26,26,24,.6);z-index:500;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .25s;}
 .modal-overlay.open{opacity:1;pointer-events:all;}
-.modal{background:var(--bg2);border-radius:var(--r-lg);padding:36px;max-width:480px;width:100%;position:relative;transform:scale(.96);transition:transform .25s;}
+.modal{background:var(--bg2);border-radius:var(--r-lg);padding:36px;max-width:480px;width:100%;position:relative;transform:scale(.96);transition:transform .25s;overflow:hidden;}
 .modal-overlay.open .modal{transform:scale(1);}
 .modal-close{position:absolute;top:16px;right:16px;width:28px;height:28px;border-radius:6px;background:var(--line);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--ink3);}
 .modal-close:hover{background:var(--accent2-light);color:var(--accent2);}
@@ -300,6 +300,17 @@ footer{padding:32px clamp(20px,4vw,48px);border-top:1px solid var(--line);displa
 #success-msg .success-icon{font-size:40px;margin-bottom:12px;}
 #success-msg h3{font-family:'Instrument Serif',serif;font-size:24px;color:var(--ink);margin-bottom:6px;}
 #success-msg p{font-size:14px;color:var(--ink3);}
+
+/* ─── CONSENT ─── */
+.form-consent-box{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:14px 16px;display:flex;flex-direction:column;gap:10px;}
+.consent-label{display:flex;gap:10px;align-items:flex-start;cursor:pointer;}
+.consent-label input[type=checkbox]{position:absolute;opacity:0;width:0;height:0;}
+.consent-check{width:18px;height:18px;min-width:18px;border:1.5px solid var(--ink4);border-radius:4px;margin-top:1px;display:flex;align-items:center;justify-content:center;transition:all .15s;background:var(--white);}
+.consent-check.checked{background:var(--accent);border-color:var(--accent);}
+.consent-check.checked::after{content:'✓';color:white;font-size:11px;font-weight:700;line-height:1;}
+.consent-text{font-size:12.5px;color:var(--ink2);line-height:1.55;}
+.consent-link{color:var(--accent);font-weight:600;text-decoration:underline;text-underline-offset:2px;}
+.consent-legal{font-size:11px;color:var(--ink4);line-height:1.55;border-top:1px solid var(--line);padding-top:10px;margin-top:2px;}
 </style>
 </head>
 <body>
@@ -810,7 +821,7 @@ footer{padding:32px clamp(20px,4vw,48px);border-top:1px solid var(--line);displa
         <button class="btn btn-white btn-xl" onclick="openModal()">Solicitar acceso al piloto →</button>
         <button class="btn btn-outline-white btn-lg" onclick="scrollTo('como-funciona')">Revisar cómo funciona</button>
       </div>
-      <p class="cta-note">También respondemos por email: hola@klaizen.com</p>
+      <p class="cta-note">También respondemos por email: appklaizen@gmail.com</p>
     </div>
   </div>
 </div>
@@ -821,7 +832,7 @@ footer{padding:32px clamp(20px,4vw,48px);border-top:1px solid var(--line);displa
   <div class="footer-links">
     <a href="#" class="footer-link">Privacidad</a>
     <a href="#" class="footer-link">Términos</a>
-    <a href="mailto:hola@klaizen.com" class="footer-link">hola@klaizen.com</a>
+    <a href="mailto:appklaizen@gmail.com" class="footer-link">appklaizen@gmail.com</a>
   </div>
 </footer>
 
@@ -867,14 +878,43 @@ footer{padding:32px clamp(20px,4vw,48px);border-top:1px solid var(--line);displa
             <option>Más de 150</option>
           </select>
         </div>
-        <p class="form-note">No haremos spam. Solo nos pondremos en contacto para coordinar una llamada corta.</p>
-        <button class="btn btn-p btn-lg" style="width:100%;justify-content:center;" onclick="submitForm()">Solicitar llamada →</button>
+
+        <div class="form-consent-box">
+          <label class="consent-label" id="consent-wrapper">
+            <input type="checkbox" id="f-consent" onchange="updateConsentState()"/>
+            <span class="consent-check" id="consent-check-ui"></span>
+            <span class="consent-text">He leído y acepto la <a href="#" class="consent-link" onclick="showPrivacy(event)">Política de Privacidad</a>. Autorizo a Klaizen a tratar mis datos personales con el fin de gestionar mi solicitud de contacto.</span>
+          </label>
+          <p class="consent-legal">De acuerdo con el RGPD (UE) 2016/679 y la LOPDGDD, el responsable del tratamiento es Klaizen. Tus datos se usarán exclusivamente para responder a tu solicitud. No se cederán a terceros. Puedes ejercer tus derechos de acceso, rectificación, supresión, portabilidad y oposición escribiendo a <strong>appklaizen@gmail.com</strong>.</p>
+        </div>
+
+        <div id="consent-error" style="display:none;font-size:12px;color:#e8521a;font-weight:500;padding:6px 10px;background:#fff0ea;border-radius:6px;border:1px solid #f5c4a8;">
+          Debes aceptar la Política de Privacidad para continuar.
+        </div>
+
+        <button class="btn btn-p btn-lg" id="submit-btn" style="width:100%;justify-content:center;opacity:.5;cursor:not-allowed;" onclick="submitForm()" disabled>Solicitar llamada →</button>
+        <p class="form-note" style="text-align:center;">Sin spam. Solo una llamada corta para ver si encajamos.</p>
       </div>
     </div>
     <div id="success-msg">
       <div class="success-icon">✅</div>
       <h3>¡Recibido!</h3>
       <p>Nos pondremos en contacto en menos de 48 horas para coordinar una llamada corta.</p>
+    </div>
+
+    <!-- Privacy inline panel -->
+    <div id="privacy-panel" style="display:none;position:absolute;inset:0;background:var(--bg2);border-radius:var(--r-lg);padding:28px 28px 24px;overflow-y:auto;">
+      <button onclick="hidePrivacy()" style="background:none;border:none;cursor:pointer;font-size:13px;color:var(--accent);font-weight:600;margin-bottom:16px;display:flex;align-items:center;gap:6px;">← Volver al formulario</button>
+      <h3 style="font-family:'Instrument Serif',serif;font-size:20px;color:var(--ink);margin-bottom:14px;">Política de Privacidad</h3>
+      <div style="font-size:12.5px;color:var(--ink2);line-height:1.7;display:flex;flex-direction:column;gap:10px;">
+        <p><strong>Responsable del tratamiento:</strong> Klaizen · appklaizen@gmail.com</p>
+        <p><strong>Finalidad:</strong> Gestionar tu solicitud de contacto y, si así lo manifiestas, mantenerte informado sobre el programa piloto de Klaizen.</p>
+        <p><strong>Legitimación:</strong> Tu consentimiento expreso, prestado mediante la aceptación de esta política (Art. 6.1.a RGPD).</p>
+        <p><strong>Destinatarios:</strong> Tus datos no se cederán a terceros, salvo obligación legal.</p>
+        <p><strong>Plazo de conservación:</strong> Hasta que retires tu consentimiento o en tanto no solicites su supresión. En todo caso, nunca más de 3 años desde el último contacto.</p>
+        <p><strong>Derechos:</strong> Puedes ejercer en cualquier momento tus derechos de acceso, rectificación, supresión ("derecho al olvido"), limitación del tratamiento, portabilidad y oposición, así como presentar una reclamación ante la Agencia Española de Protección de Datos (aepd.es), escribiendo a <strong>appklaizen@gmail.com</strong>.</p>
+        <p><strong>Transferencias internacionales:</strong> No se realizan transferencias de datos fuera del Espacio Económico Europeo.</p>
+      </div>
     </div>
   </div>
 </div>
@@ -902,11 +942,41 @@ function closeModal(){
 function closeModalIfBg(e){
   if(e.target.id==='modal') closeModal();
 }
+function updateConsentState(){
+  const cb=document.getElementById('f-consent');
+  const ui=document.getElementById('consent-check-ui');
+  const btn=document.getElementById('submit-btn');
+  const err=document.getElementById('consent-error');
+  if(cb.checked){
+    ui.classList.add('checked');
+    btn.disabled=false;
+    btn.style.opacity='1';
+    btn.style.cursor='pointer';
+    err.style.display='none';
+  } else {
+    ui.classList.remove('checked');
+    btn.disabled=true;
+    btn.style.opacity='.5';
+    btn.style.cursor='not-allowed';
+  }
+}
+function showPrivacy(e){
+  e.preventDefault();
+  document.getElementById('privacy-panel').style.display='block';
+}
+function hidePrivacy(){
+  document.getElementById('privacy-panel').style.display='none';
+}
 function submitForm(){
   const name=document.getElementById('f-name').value.trim();
   const email=document.getElementById('f-email').value.trim();
+  const consent=document.getElementById('f-consent').checked;
   if(!name||!email){
     alert('Por favor, rellena al menos tu nombre y email.');
+    return;
+  }
+  if(!consent){
+    document.getElementById('consent-error').style.display='block';
     return;
   }
   document.getElementById('form-view').style.display='none';
