@@ -188,6 +188,29 @@ h1.hero-h1 em{color:var(--accent);}
   .phase-label{text-align:left;}
 }
 
+/* ─── FLUJO DETECCIÓN ─── */
+.detection-flow{display:flex;align-items:center;gap:0;margin:36px 0 48px;background:var(--white);border:1px solid var(--line);border-radius:var(--r-lg);padding:24px 28px;overflow-x:auto;}
+.df-step{display:flex;flex-direction:column;align-items:center;gap:8px;flex:1;min-width:100px;}
+.df-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.df-icon-student{background:var(--accent-light);}
+.df-icon-data{background:var(--bg);}
+.df-icon-alert{background:var(--amber-light);}
+.df-icon-tutor{background:var(--accent2-light);}
+.df-icon-result{background:linear-gradient(135deg,var(--accent-light),var(--amber-light));}
+.df-label{font-size:11px;font-weight:600;color:var(--ink);text-align:center;line-height:1.3;}
+.df-sublabel{font-size:10px;color:var(--ink4);text-align:center;line-height:1.3;}
+.df-arrow{font-size:16px;color:var(--line);flex-shrink:0;padding:0 4px;margin-bottom:20px;}
+.df-step.df-highlight .df-icon{box-shadow:0 0 0 2px var(--accent);}
+.df-step.df-highlight .df-label{color:var(--accent);}
+@media(max-width:640px){
+  .detection-flow{gap:0;padding:20px 16px;}
+  .df-arrow{font-size:12px;padding:0 2px;}
+  .df-step{min-width:64px;}
+  .df-icon{width:36px;height:36px;font-size:16px;}
+  .df-label{font-size:10px;}
+  .df-sublabel{display:none;}
+}
+
 /* ─── BENEFICIOS ─── */
 .benefit-tabs{display:flex;gap:4px;background:var(--white);border:1px solid var(--line);border-radius:10px;padding:4px;width:fit-content;margin-bottom:32px;}
 .btab{padding:8px 20px;border-radius:7px;border:none;font-size:13px;font-weight:500;cursor:pointer;background:transparent;color:var(--ink3);transition:all .15s;}
@@ -321,13 +344,12 @@ footer{padding:32px clamp(20px,4vw,48px);border-top:1px solid var(--line);displa
     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 595.27559 247.64936" style="height:44px;width:auto;" aria-label="Klaizen"><defs><style>.cls-1{fill:#464646;}.cls-2{fill:url(#lg1);}.cls-3{fill:url(#lg2);}.cls-4{fill:none;}</style><linearGradient id="lg1" x1="49.55112" y1="159.19484" x2="183.68738" y2="25.05858" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#f43c10"/><stop offset="0.28" stop-color="#f25513"/><stop offset="0.67" stop-color="#f48715"/><stop offset="1" stop-color="#f6a611"/></linearGradient><linearGradient id="lg2" x1="91.75945" y1="230.02977" x2="231.26324" y2="90.52598" xlink:href="#lg1"/></defs><g><g><path class="cls-1" d="M289.97128,118.20091c4.45682-3.6448,7.9363-7.87949,11.4839-12.05451,3.68146-4.33251,7.40636-8.62808,11.09133-12.95762a3.83886,3.83886,0,0,1,3.1133-1.53893c2.93131.0303,5.86322-.008,8.79466.01481.65571.0051,1.51126-.21155,1.81716.59975.24707.65533-.41487,1.06577-.80933,1.49749q-6.27695,6.86964-12.56253,13.7314c-2.49515,2.73874-4.85568,5.6096-7.47594,8.22131-1.55363,1.54859-1.52191,2.64427-.22862,4.345,6.20764,8.16353,12.29923,16.41533,18.41477,24.64865,1.49015,2.00623,2.91857,4.05839,4.36848,6.09437.91425,1.28378.771,2.05368-.99981,2.04888-3.44892-.00935-6.8987-.04716-10.34646.01651-1.54864.02856-2.28128-.91521-3.04919-2.00923-5.59562-7.97165-11.26785-15.89027-16.79175-23.9111-1.304-1.89343-1.87128-1.793-3.56175-.23032-2.76993,2.56057-3.46921,5.43948-3.3071,8.99671.21162,4.64485-.06069,9.31018.08177,13.96033.077,2.5142-.86977,3.41527-3.32163,3.21383a43.42526,43.42526,0,0,0-5.68731-.0084c-1.92429.09529-2.48083-.77082-2.5717-2.6089-.28956-5.85762-.08666-11.70346-.031-17.55961.11715-12.31967-.1538-24.64283-.23968-36.96475-.02856-4.09675.02894-4.17009,4.22574-4.11483,8.74193.11509,7.5052-1.23139,7.58169,7.474C290.01627,105.47034,289.97128,111.83582,289.97128,118.20091Z"/><path class="cls-1" d="M390.012,133.7698c-.00025,3.0154-.02619,6.03111.00888,9.04611.02335,2.009.77647,3.64322,2.97867,3.87233,1.28182.13335,2.29212.25059,2.09431,1.81907-.21744,1.72365.92543,3.89851-1.674,4.869-4.27907,1.59766-10.0302-.07034-12.36146-3.92713-.90434-1.49611-1.35175-1.13994-2.41629-.299-5.77748,4.56383-12.22485,6.36256-19.34731,3.83692-4.1762-1.48093-6.91207-4.41811-7.22956-9.14637-.34473-5.13327,1.38141-9.11923,6.15168-11.4903,4.92167-2.4463,10.2131-2.94056,15.59845-2.92571a4.91419,4.91419,0,0,0,1.03195-.00886c1.48368-.32175,3.68983,1.00308,4.13658-1.72826a5.32485,5.32485,0,0,0-3.21965-6.10439c-3.63795-1.3179-7.31884-.83519-10.96337-.0409a18.02483,18.02483,0,0,0-4.66257,1.49458c-2.39168,1.28019-3.22147.411-3.91807-1.90472-1.22284-4.06507-1.33456-3.9722,2.6232-5.47012a33.88936,33.88936,0,0,1,21.79541-1.28031c6.92051,1.98379,9.37221,5.5293,9.37335,12.66781Q390.01276,130.40969,390.012,133.7698Zm-15.88356,1.3956a19.45052,19.45052,0,0,0-7.84073,1.30548,5.43116,5.43116,0,0,0-1.83587,8.61171c3.20723,3.32839,12.88193,1.13852,14.398-3.259C380.36815,137.42,378.82614,135.12413,374.12848,135.1654Z"/><path class="cls-1" d="M502.26479,133.56251c.00089-5.51381.03716-11.028-.01889-16.54123-.0194-1.90414.56485-2.94488,2.66721-2.78357a12.35919,12.35919,0,0,0,3.0878-.19249c2.66254-.47649,4.34621.2418,4.59025,3.23377.16423,2.01406.98145,1.91389,2.43739.77864a21.62235,21.62235,0,0,1,15.40892-4.7833c6.87542.51237,11.6589,5.15422,11.73479,12.00095.09156,8.26976-.02787,16.54185.0568,24.81175.02218,2.1663-.81671,2.79012-2.89526,2.81049-8.27885.08121-8.27752.13667-8.2748-8.00778q.00255-7.484-.00095-14.96792c-.008-6.38857-3.54352-9.17007-9.72139-7.608a19.61968,19.61968,0,0,0-5.76588,2.83988,3.8927,3.8927,0,0,0-1.88911,3.66362c.06288,6.97782-.0489,13.95766.05675,20.93441.03557,2.35259-.76705,3.3131-3.14126,3.12125a28.52658,28.52658,0,0,0-5.16533.02006c-2.59752.26493-3.25664-.93158-3.20457-3.30681C502.34428,144.24731,502.264,138.904,502.26479,133.56251Z"/><path class="cls-1" d="M481.01638,136.2776c-3.62194,0-7.24647.08366-10.8648-.02973-2.3725-.07435-2.80522,1.04814-2.3974,3.05611.82493,4.06119,4.366,6.80763,9.316,7.16658A25.70655,25.70655,0,0,0,489.47626,144.57c1.87678-.82618,2.57831-.2125,3.0818,1.59324,1.21544,4.35907,1.19819,4.60164-3.14208,6.10435a32.09483,32.09483,0,0,1-17.31989,1.338c-12.61754-2.65482-18.00232-11.43078-16.1397-24.06341,1.427-9.67828,9.0569-15.96615,18.84477-16.2928,5.68278-.18965,10.9695.60985,15.34579,4.73809,4.94929,4.66877,5.28141,10.572,4.7838,16.73716-.12518,1.55015-1.3829,1.53348-2.53123,1.53523q-5.69157.00871-11.38314.00218Zm-4.84964-6.37912c2.15348,0,4.30905-.05829,6.45976.01972,1.52955.05547,2.12732-.43238,2.07728-2.07189-.14319-4.68751-3.0605-7.564-7.94907-7.62394-4.6226-.05667-9.08482,3.88327-9.22877,8.03137-.04587,1.32239.52087,1.65813,1.66358,1.64736C471.51507,129.87918,473.841,129.89455,476.16674,129.89848Z"/><path class="cls-1" d="M435.98257,152.85741c-4.398.00218-8.79681.04583-13.1937-.02631-1.20824-.01983-2.86339.66-3.50634-.82713a5.15828,5.15828,0,0,1,.57629-5.17533q3.47226-4.82753,7.04347-9.5838c3.20059-4.27752,6.44232-8.52436,9.65062-12.79624.39525-.52633,1.13778-1.03055.78721-1.77411-.35645-.75606-1.22113-.47626-1.87153-.48134-4.31152-.03367-8.62481-.09582-12.93472-.01093-2.27639.04482-3.27184-.72846-3.20113-3.14518.14179-4.84527-.38732-4.9657,4.83409-4.91133,7.74781.08072,15.50036-.28658,23.25789.10414,4.10351.20667,5.61625,2.57582,3.60735,6.3052a42.725,42.725,0,0,1-3.27162,4.64376q-6.38369,8.78647-12.76945,17.57138c-.38545.5326-1.1235,1.07491-.78936,1.784.34773.73785,1.2308.43053,1.87925.43438,4.65659.02754,9.31508.0933,13.96928-.01513,2.302-.05363,3.44393.70152,3.12306,3.11946a10.55836,10.55836,0,0,0-.00834,1.29208c-.02749,3.42032-.06761,3.47541-3.47079,3.48653C445.12363,152.86644,440.5531,152.85523,435.98257,152.85741Z"/><path class="cls-1" d="M344.92076,122.1912q0,13.304-.00066,26.608c-.001,4.0539-.00433,4.0551-4.18066,4.06167-1.6366.00256-3.27512-.05085-4.90926.01188-1.49963.05748-2.27951-.55083-2.2767-2.0785.00016-.086-.01071-.172-.01071-.258q-.00711-28.15782-.0255-56.31562c-.0024-1.87162.83527-2.64313,2.674-2.58534,1.97914.0622,3.967.101,5.94157-.014,2.18891-.12753,2.8171.87364,2.80206,2.92877-.06726,9.21329-.02922,18.42737-.02922,27.64117Z"/><path class="cls-1" d="M400.24511,133.318c0-5.50875.05112-11.01823-.02705-16.52587-.02837-2.00029.62-2.79322,2.71457-2.58493a44.70481,44.70481,0,0,0,6.194.05085c1.7766-.07126,2.50046.67909,2.4815,2.4225q-.18378,16.89261-.2962,33.78591c-.0097,1.80466-.79125,2.46114-2.50725,2.39529-1.6334-.06273-3.2713-.00221-4.90723-.00493-3.652-.00606-3.66244-.00834-3.66965-3.78733q-.015-7.87577-.00252-15.75149Z"/><path class="cls-1" d="M412.84021,97.46564a6.90085,6.90085,0,0,1-6.96274,7.09787c-4.2955-.00509-7.29082-2.9121-7.24928-7.03554a6.878,6.878,0,0,1,7.11848-6.94109A6.73906,6.73906,0,0,1,412.84021,97.46564Z"/><path class="cls-2" d="M136.92261,62.08975q39.16863.00006,78.33725.00369a11.98472,11.98472,0,0,1,6.92046,1.71822c3.62,2.44183,4.36587,6.151,4.062,10.13424-.32872,4.30958-.67578,4.43013-5.02242,4.65617A109.44149,109.44149,0,0,0,196.72526,83.11c-17.88412,5.1294-33.85806,13.9488-48.66269,25.06624-9.68484,7.27277-18.99493,15.01525-28.47289,22.54713-5.1468,4.09-10.93489,7.1089-16.70337,10.154a134.286,134.286,0,0,1-37.60958,13.63A106.393,106.393,0,0,1,47.818,156.404c-1.33381.0311-1.81741-.38-1.8153-1.76536q.06162-40.44565.063-80.8914c.01052-7.33427,4.49764-11.63091,12.094-11.64845,13.34-.03079,26.68006-.009,40.0201-.00908Q117.55118,62.08961,136.92261,62.08975Z"/><path class="cls-3" d="M48.877,187.14733a4.05482,4.05482,0,0,1,2.9859-.73415,112.80506,112.80506,0,0,0,31.25777-4.06261,103.31081,103.31081,0,0,0,36.55485-19.21021c9.72479-7.73949,18.2855-16.70212,26.85118-25.65951,5.65477-5.91335,11.28711-11.8518,17.22232-17.48787,11.79234-11.198,24.58425-21.00626,39.30593-28.11474a86.36539,86.36539,0,0,1,19.75036-6.97466c.50865-.10717,1.01991-.2151,1.53553-.27322a1.44748,1.44748,0,0,1,1.82,1.32391,14.09416,14.09416,0,0,1,.1576,1.974q.01134,43.56772-.00587,87.13546a13.97925,13.97925,0,0,1-1.97066,7.73256,10.58372,10.58372,0,0,1-8.83951,5.10859c-7.41881.3694-14.83863-.03039-22.25834-.0215q-70.38964.08425-140.77947.02616C51.25548,187.90945,50.01138,188.03561,48.877,187.14733Z"/><rect class="cls-4" width="595.27559" height="247.64936"/></g></g></svg>
   </a>
   <div class="nav-links">
-    <button class="nl" onclick="scrollTo('problema')">El problema</button>
-    <button class="nl" onclick="scrollTo('como-funciona')">Cómo funciona</button>
-    <button class="nl" onclick="scrollTo('beneficios')">Beneficios</button>
-    <button class="nl" onclick="scrollTo('faq')">FAQ</button>
+    <button class="nl" onclick="scrollToSection('problema')">El problema</button>
+    <button class="nl" onclick="scrollToSection('como-funciona')">Cómo funciona</button>
+    <button class="nl" onclick="scrollToSection('beneficios')">Beneficios</button>
+    <button class="nl" onclick="scrollToSection('faq')">FAQ</button>
   </div>
   <div class="nav-r">
-    <button class="btn btn-o btn-s" onclick="scrollTo('faq')">Preguntas frecuentes</button>
     <button class="btn btn-p btn-s" onclick="openModal()">Hablar con nosotros</button>
   </div>
   <button class="nav-burger" onclick="toggleMenu()" aria-label="Menú">
@@ -336,12 +358,11 @@ footer{padding:32px clamp(20px,4vw,48px);border-top:1px solid var(--line);displa
 </nav>
 
 <div id="mobile-menu">
-  <button class="nl" onclick="scrollTo('problema');toggleMenu()">El problema</button>
-  <button class="nl" onclick="scrollTo('como-funciona');toggleMenu()">Cómo funciona</button>
-  <button class="nl" onclick="scrollTo('beneficios');toggleMenu()">Beneficios</button>
-  <button class="nl" onclick="scrollTo('faq');toggleMenu()">FAQ</button>
+  <button class="nl" onclick="scrollToSection('problema');toggleMenu()">El problema</button>
+  <button class="nl" onclick="scrollToSection('como-funciona');toggleMenu()">Cómo funciona</button>
+  <button class="nl" onclick="scrollToSection('beneficios');toggleMenu()">Beneficios</button>
+  <button class="nl" onclick="scrollToSection('faq');toggleMenu()">FAQ</button>
   <div style="display:flex;gap:8px;padding-top:4px;">
-    <button class="btn btn-o btn-s" style="flex:1" onclick="scrollTo('faq');toggleMenu()">Preguntas</button>
     <button class="btn btn-p btn-s" style="flex:1" onclick="openModal();toggleMenu()">Contactar</button>
   </div>
 </div>
@@ -351,49 +372,62 @@ footer{padding:32px clamp(20px,4vw,48px);border-top:1px solid var(--line);displa
   <div>
     <div class="hero-eyebrow reveal">
       <span class="hero-dot"></span>
-      FCT · FP Dual · En validación
+      FP Dual · FCT · Orientación basada en evidencias
     </div>
     <h1 class="hero-h1 reveal reveal-delay-1">Menos burocracia<br>en prácticas.<br><em>Más inteligencia de centro.</em></h1>
-    <p class="hero-sub reveal reveal-delay-2">Klaizen conecta al alumnado, la empresa y el centro durante las prácticas. Reduce la coordinación manual, elimina el papeleo y genera el conocimiento que necesitas para tomar mejores decisiones: qué empresas funcionan, qué demandan y qué perfiles prosperan en cada entorno.</p>
+    <p class="hero-sub reveal reveal-delay-2">Klaizen reduce la burocracia de las prácticas en empresa y FP Dual — y convierte cada trayectoria en aprendizaje útil para el centro. Descubre qué empresas forman mejor, qué perfiles prosperan en cada entorno y detecta riesgos antes de que sean problemas.</p>
     <div class="hero-btns reveal reveal-delay-3">
       <button class="btn btn-p btn-xl" onclick="openModal()">Solicitar acceso anticipado →</button>
-      <button class="btn btn-o btn-lg" onclick="scrollTo('como-funciona')">Ver cómo funciona</button>
+      <button class="btn btn-o btn-lg" onclick="scrollToSection('como-funciona')">Ver cómo funciona</button>
     </div>
-    <p class="hero-note reveal reveal-delay-4">Sin coste durante la fase piloto. Buscamos centros de FP con los que contrastar la hipótesis.</p>
+    <p class="hero-note reveal reveal-delay-4">Sin coste durante el piloto. Buscamos centros de FP Dual o FCT que quieran aprender sistemáticamente de sus prácticas.</p>
   </div>
   <div class="hero-visual" id="hero-vis">
     <!-- Card 1: Check-in alumno -->
     <div class="hv-card reveal reveal-delay-1">
       <div class="hv-card-label">
         <span class="hv-card-label-dot dot-green"></span>
-        Check-in semanal · Semana 3
+        Alumno · Check-in semanal · Semana 4
       </div>
       <div class="hv-checkin">
-        <div class="hv-checkin-q">¿Qué has aprendido esta semana?</div>
-        <div class="hv-checkin-a">"He aprendido a gestionar reclamaciones de clientes. No pensaba que me fuera a gustar tanto el trato directo."</div>
+        <div class="hv-checkin-q">¿Cómo te has sentido esta semana?</div>
+        <div class="hv-checkin-a">"Un poco agobiada. El horario es más duro de lo que esperaba y siento que no llego a todo."</div>
       </div>
       <div style="margin-top:12px;display:flex;justify-content:space-between;align-items:center;">
         <div style="font-size:11px;color:var(--ink4);">Motivación esta semana</div>
         <div style="display:flex;gap:3px;">
-          <span style="font-size:16px;">⭐</span><span style="font-size:16px;">⭐</span><span style="font-size:16px;">⭐</span><span style="font-size:16px;">⭐</span><span style="font-size:16px;opacity:.3;">⭐</span>
+          <span style="font-size:16px;">⭐</span><span style="font-size:16px;">⭐</span><span style="font-size:16px;opacity:.3;">⭐</span><span style="font-size:16px;opacity:.3;">⭐</span><span style="font-size:16px;opacity:.3;">⭐</span>
         </div>
       </div>
+      <div style="margin-top:8px;font-size:10px;color:var(--ink4);">Semana anterior: ⭐⭐⭐ · Tendencia: bajando</div>
     </div>
-    <!-- Card 2: Tutor empresa -->
-    <div class="hv-card reveal reveal-delay-2">
+
+    <!-- Card 2: Alerta al tutor -->
+    <div class="hv-card reveal reveal-delay-2" style="border-color:var(--amber);background:var(--amber-light);">
       <div class="hv-card-label">
         <span class="hv-card-label-dot dot-amber"></span>
-        Valoración tutor empresa
+        🔔 Alerta para el tutor
       </div>
-      <div class="mcard-row"><span class="mcard-row-label">Iniciativa</span><span class="mcard-tag tag-g">Alta</span></div>
-      <div class="mcard-row"><span class="mcard-row-label">Actitud</span><span class="mcard-tag tag-g">Muy buena</span></div>
-      <div class="mcard-row"><span class="mcard-row-label">Autonomía</span><span class="mcard-tag tag-y">En progreso</span></div>
-      <div style="margin-top:12px;font-size:11.5px;color:var(--ink3);font-style:italic;">"Muy buen perfil para atención al cliente. Tiene potencial."</div>
+      <div style="font-size:13px;font-weight:600;color:var(--ink);margin-bottom:6px;">Lucía · Semanas 3–4 con motivación baja</div>
+      <div style="font-size:12.5px;color:var(--ink2);line-height:1.5;margin-bottom:10px;">Dos semanas consecutivas por debajo de 3/5. Su último check-in menciona dificultades con el horario.</div>
+      <div style="display:flex;gap:6px;">
+        <span style="font-size:10px;font-weight:600;padding:3px 8px;border-radius:999px;background:white;color:#92400e;border:1px solid var(--amber);">⚠ Requiere atención</span>
+        <span style="font-size:10px;font-weight:600;padding:3px 8px;border-radius:999px;background:white;color:var(--ink3);border:1px solid var(--line);">Ver contexto →</span>
+      </div>
     </div>
-    <!-- Card 3: Insight -->
-    <div class="hv-insight-box reveal reveal-delay-3" style="margin-top:4px;">
-      <div class="hv-insight-title">✦ Resumen de prácticas</div>
-      <div class="hv-insight-text">Lucía ha mostrado mayor motivación en tareas de contacto con cliente. Sus reflexiones apuntan a que <strong>entornos con interacción social</strong> le generan más satisfacción. Información útil para orientar su búsqueda de empleo.</div>
+
+    <!-- Card 3: Tutor valida y actúa -->
+    <div class="hv-card reveal reveal-delay-3" style="border-color:#22c55e;">
+      <div class="hv-card-label">
+        <span class="hv-card-label-dot dot-green"></span>
+        Tutor valida · Hace 10 min
+      </div>
+      <div style="font-size:12.5px;color:var(--ink2);line-height:1.5;margin-bottom:10px;font-style:italic;">"He hablado con Lucía. El problema es el transporte — llega tarde porque el bus no cuadra. Lo hemos resuelto con la empresa."</div>
+      <div style="display:flex;gap:6px;align-items:center;margin-bottom:8px;">
+        <span style="font-size:10px;font-weight:600;padding:3px 8px;border-radius:999px;background:#dcfce7;color:#166534;">✓ Caso cerrado</span>
+        <span style="font-size:10px;color:var(--ink4);">Sin derivar a orientación</span>
+      </div>
+      <div style="font-size:10.5px;color:var(--ink4);border-top:1px solid var(--line);padding-top:8px;line-height:1.5;">El tutor intervino a tiempo. Sin Klaizen, esto habría llegado en la visita presencial — 3 semanas después.</div>
     </div>
   </div>
 </section>
@@ -430,7 +464,7 @@ footer{padding:32px clamp(20px,4vw,48px);border-top:1px solid var(--line);displa
 <section class="section" id="problema">
   <div class="eyebrow eyebrow-warn reveal">El problema</div>
   <h2 class="sh reveal reveal-delay-1">Coordinación manual.<br>Papeleo sin fin.<br><em>Y conocimiento que se evapora.</em></h2>
-  <p class="ssub reveal reveal-delay-2">El seguimiento de prácticas genera trabajo administrativo que no aporta nada. Pero hay un segundo problema más costoso: toda la información sobre empresas, alumnos y resultados se archiva sin generar ningún aprendizaje para el centro.</p>
+  <p class="ssub reveal reveal-delay-2">El seguimiento de prácticas genera trabajo administrativo que no aporta nada. Y mientras el tutor gestiona correos y formularios, hay alumnos que están perdidos, desmotivados o necesitan apoyo — y nadie lo sabe hasta que ya es demasiado tarde.</p>
   <div class="problem-split reveal reveal-delay-2">
     <div class="psplit-left">
       <div class="psplit-tag psplit-tag-bad">
@@ -441,19 +475,19 @@ footer{padding:32px clamp(20px,4vw,48px);border-top:1px solid var(--line);displa
         <li><span class="icon">📧</span>Seguimiento disperso entre correos, llamadas y documentos.</li>
         <li><span class="icon">📄</span>Formularios en papel o PDF que nadie revisa en tiempo real.</li>
         <li><span class="icon">🔄</span>Coordinación manual entre tutor de centro, tutor de empresa y alumno.</li>
-        <li><span class="icon">🗂️</span>Información que se archiva al final del curso sin generar conocimiento útil.</li>
+        <li><span class="icon">👻</span>Alumnos desmotivados o en crisis que nadie detecta hasta que abandonan.</li>
         <li><span class="icon">⏱️</span>Horas de trabajo administrativo que podrían dedicarse a acompañar mejor al alumno.</li>
       </ul>
     </div>
     <div class="psplit-right">
       <div class="psplit-tag psplit-tag-good">
         <span style="font-size:16px;">💡</span>
-        Lo que el centro necesita saber (y hoy no puede)
+        Lo que el centro necesita (y hoy no tiene)
       </div>
       <ul class="psplit-list">
+        <li><span class="icon">🚨</span>Alertas tempranas cuando un alumno necesita apoyo, orientación o intervención.</li>
         <li><span class="icon">🏢</span>Qué empresas generan mejores resultados y cuáles no deberían seguir en la red.</li>
-        <li><span class="icon">📋</span>Qué competencias demandan realmente las empresas de cada sector.</li>
-        <li><span class="icon">👤</span>Qué tipo de perfil de alumno encaja mejor en cada entorno de prácticas.</li>
+        <li><span class="icon">👤</span>Qué tipo de perfil encaja mejor en cada entorno de prácticas.</li>
         <li><span class="icon">📈</span>Qué factores correlacionan con una mayor empleabilidad al terminar el ciclo.</li>
         <li><span class="icon">🔄</span>Cómo mejorar las asignaciones del próximo curso con datos del actual.</li>
       </ul>
@@ -463,7 +497,7 @@ footer{padding:32px clamp(20px,4vw,48px);border-top:1px solid var(--line);displa
     <div class="po-icon">🔍</div>
     <div>
       <div class="po-title">Las prácticas son la mayor fuente de inteligencia de un centro de FP. Hoy se archivan.</div>
-      <div class="po-desc">Cada curso, decenas de prácticas generan señales sobre qué empresas funcionan, qué demandan los sectores y qué perfiles prosperan. Esa información <span class="po-highlight">existe pero no se estructura</span>. Klaizen la captura de forma natural durante el seguimiento, sin trabajo extra para el centro.</div>
+      <div class="po-desc">Cada curso, decenas de prácticas generan señales sobre alumnos que necesitan apoyo, sobre qué empresas funcionan y qué perfiles prosperan. Esa información <span class="po-highlight">existe pero no se captura</span>. Klaizen la recoge de forma natural durante el seguimiento, sin trabajo extra para el centro.</div>
     </div>
   </div>
 </section>
@@ -474,8 +508,41 @@ footer{padding:32px clamp(20px,4vw,48px);border-top:1px solid var(--line);displa
 <div class="section-full" id="como-funciona" style="background:var(--bg2);">
   <div class="inner">
     <div class="eyebrow reveal">Cómo funciona</div>
-    <h2 class="sh reveal reveal-delay-1">Tres actores.<br>Una plataforma.<br><em>Un flujo conectado.</em></h2>
-    <p class="ssub reveal reveal-delay-2">Klaizen acompaña las prácticas en tres momentos. Cada interacción reduce trabajo manual y acumula el conocimiento que el centro necesita para decidir mejor el próximo curso.</p>
+    <h2 class="sh reveal reveal-delay-1">Seguimiento ligero.<br>Alertas precisas.<br><em>Solo los casos que importan.</em></h2>
+    <p class="ssub reveal reveal-delay-2">Klaizen no inunda al tutor con datos. Filtra la señal del ruido: el alumno registra, Klaizen detecta patrones, y el tutor solo interviene cuando hay algo que requiere su atención.</p>
+
+    <!-- Flujo de detección -->
+    <div class="detection-flow reveal reveal-delay-3">
+      <div class="df-step">
+        <div class="df-icon df-icon-student">🎓</div>
+        <div class="df-label">Alumno</div>
+        <div class="df-sublabel">Check-in semanal</div>
+      </div>
+      <div class="df-arrow">→</div>
+      <div class="df-step">
+        <div class="df-icon df-icon-data">📊</div>
+        <div class="df-label">Seguimiento ligero</div>
+        <div class="df-sublabel">3 min por semana</div>
+      </div>
+      <div class="df-arrow">→</div>
+      <div class="df-step df-highlight">
+        <div class="df-icon df-icon-alert">🔔</div>
+        <div class="df-label">Alerta simple</div>
+        <div class="df-sublabel">Solo si hay señal</div>
+      </div>
+      <div class="df-arrow">→</div>
+      <div class="df-step">
+        <div class="df-icon df-icon-tutor">👩‍🏫</div>
+        <div class="df-label">Tutor valida</div>
+        <div class="df-sublabel">Contexto real</div>
+      </div>
+      <div class="df-arrow">→</div>
+      <div class="df-step df-highlight">
+        <div class="df-icon df-icon-result">🧭</div>
+        <div class="df-label">Orientación</div>
+        <div class="df-sublabel">Solo donde hace falta</div>
+      </div>
+    </div>
 
     <div class="flow-phases">
 
@@ -486,11 +553,11 @@ footer{padding:32px clamp(20px,4vw,48px);border-top:1px solid var(--line);displa
         </div>
         <div class="phase-content">
           <div class="phase-title">Perfiles y expectativas</div>
-          <div class="phase-desc">El alumno crea su perfil antes de incorporarse: intereses, fortalezas percibidas, miedos y objetivos para las prácticas. La empresa define el puesto, las tareas y las competencias que valora. El centro lo tiene todo centralizado desde el primer día.</div>
+          <div class="phase-desc">El alumno responde unas preguntas cortas antes de incorporarse: qué espera, qué le preocupa, qué quiere aprender. La empresa define el puesto. El centro lo tiene todo centralizado desde el primer día, sin correos ni formularios en papel.</div>
           <div class="phase-cards">
-            <div class="phase-actor"><span class="pa-badge pa-badge-student">Alumno</span><span class="pa-content">Responde 5 preguntas sobre sus expectativas. Le lleva 4 minutos. Lo hace desde el móvil.</span></div>
+            <div class="phase-actor"><span class="pa-badge pa-badge-student">Alumno</span><span class="pa-content">5 preguntas sobre expectativas. 4 minutos. Desde el móvil.</span></div>
             <div class="phase-actor"><span class="pa-badge pa-badge-company">Empresa</span><span class="pa-content">Describe el puesto y lo que espera del alumno. Queda registrado para futuras comparaciones.</span></div>
-            <div class="phase-actor"><span class="pa-badge pa-badge-center">Centro</span><span class="pa-content">Valida el encaje y tiene visibilidad sobre todas las asignaciones desde un solo panel.</span></div>
+            <div class="phase-actor"><span class="pa-badge pa-badge-center">Centro</span><span class="pa-content">Visibilidad completa de todas las asignaciones desde un solo panel. Sin llamadas para confirmar.</span></div>
           </div>
         </div>
       </div>
@@ -501,12 +568,12 @@ footer{padding:32px clamp(20px,4vw,48px);border-top:1px solid var(--line);displa
           <div class="phase-label">Durante<br>las prácticas</div>
         </div>
         <div class="phase-content">
-          <div class="phase-title">Check-ins semanales y seguimiento en tiempo real</div>
-          <div class="phase-desc">Cada semana, el alumno responde tres preguntas cortas sobre su experiencia. El tutor de empresa valora actitud, iniciativa y autonomía. El tutor del centro puede ver el estado de todas las prácticas activas sin necesidad de llamar a nadie.</div>
+          <div class="phase-title">El alumno registra. Klaizen detecta. El tutor actúa cuando toca.</div>
+          <div class="phase-desc">Cada semana, el alumno hace un check-in corto desde el móvil. La empresa valora en dos clics. Klaizen analiza los patrones — motivación, encaje, señales de riesgo — y genera alertas solo cuando algo merece atención del tutor. El 80% de los alumnos no genera ninguna alerta. El tutor dedica su tiempo al 20% que realmente lo necesita.</div>
           <div class="phase-cards">
-            <div class="phase-actor"><span class="pa-badge pa-badge-student">Alumno</span><span class="pa-content">Check-in semanal en 3 minutos: qué aprendí, cómo me sentí, qué me costó. Desde el móvil, justo al salir del trabajo.</span></div>
-            <div class="phase-actor"><span class="pa-badge pa-badge-company">Empresa</span><span class="pa-content">Valoración rápida del tutor: dos clics por semana. Sin formularios largos. Notificación automática cuando algo requiere atención.</span></div>
-            <div class="phase-actor"><span class="pa-badge pa-badge-center">Centro</span><span class="pa-content">Panel con todas las prácticas activas. Alertas automáticas si hay semanas sin check-in o si hay incidencias reportadas.</span></div>
+            <div class="phase-actor"><span class="pa-badge pa-badge-student">Alumno</span><span class="pa-content">Check-in en 3 minutos: qué aprendí, cómo me sentí, qué me costó. Sus respuestas revelan motivación, encaje vocacional y necesidades de apoyo.</span></div>
+            <div class="phase-actor"><span class="pa-badge pa-badge-company">Empresa</span><span class="pa-content">Valoración rápida: dos clics por semana. Notificación automática al centro si algo requiere atención.</span></div>
+            <div class="phase-actor"><span class="pa-badge pa-badge-center">Centro</span><span class="pa-content">Alertas cuando un alumno muestra señales de riesgo. El tutor valida el contexto y decide si intervenir. Sin revisar 30 fichas cada semana.</span></div>
           </div>
         </div>
       </div>
@@ -517,12 +584,12 @@ footer{padding:32px clamp(20px,4vw,48px);border-top:1px solid var(--line);displa
           <div class="phase-label">Al cerrar<br>las prácticas</div>
         </div>
         <div class="phase-content">
-          <div class="phase-title">Reflexión, evidencias y empleabilidad</div>
-          <div class="phase-desc">Al terminar, el alumno hace una reflexión guiada sobre su experiencia completa. El resultado: un perfil de autoconocimiento que puede usar para orientar su búsqueda de empleo y preparar entrevistas con argumentos reales.</div>
+          <div class="phase-title">El alumno entiende su encaje. El centro aprende.</div>
+          <div class="phase-desc">Al terminar, el alumno cierra con una reflexión guiada: qué descubrió sobre sí mismo, qué tipo de entorno le va bien, qué quiere buscar. El centro consolida el aprendizaje institucional: qué empresas funcionan, qué perfiles prosperan, qué mejorar el próximo curso.</div>
           <div class="phase-cards">
-            <div class="phase-actor"><span class="pa-badge pa-badge-student">Alumno</span><span class="pa-content">Descubre sus fortalezas, preferencias de entorno laboral y competencias desarrolladas. Tiene argumentos concretos para entrevistas.</span></div>
+            <div class="phase-actor"><span class="pa-badge pa-badge-student">Alumno</span><span class="pa-content">Descubre su encaje vocacional con evidencias reales. Sale con argumentos concretos para entrevistas y claridad sobre qué quiere.</span></div>
             <div class="phase-actor"><span class="pa-badge pa-badge-company">Empresa</span><span class="pa-content">Evalúa la experiencia global e indica si contrataría al alumno. Feedback estructurado que el alumno puede ver.</span></div>
-            <div class="phase-actor"><span class="pa-badge pa-badge-center">Centro</span><span class="pa-content">Aprende qué empresas funcionan mejor, qué perfiles prosperan en cada entorno y qué factores generan mejores resultados. Mejora las asignaciones futuras.</span></div>
+            <div class="phase-actor"><span class="pa-badge pa-badge-center">Centro</span><span class="pa-content">Historial de trayectorias que mejora las asignaciones futuras y la orientación del alumnado. Cada curso, el centro sabe más que el anterior.</span></div>
           </div>
         </div>
       </div>
@@ -563,8 +630,8 @@ footer{padding:32px clamp(20px,4vw,48px);border-top:1px solid var(--line);displa
     </div>
     <div class="bcard">
       <div class="bcard-emoji">🧭</div>
-      <div class="bcard-title">Mayor autoconocimiento</div>
-      <div class="bcard-desc">Sabe con más claridad qué entornos le van bien, qué fortalezas ha desarrollado y qué quiere evitar en su carrera.</div>
+      <div class="bcard-title">Claridad sobre su trayectoria</div>
+      <div class="bcard-desc">Sabe con más claridad qué entornos le van bien, qué fortalezas ha desarrollado y qué quiere buscar en su carrera.</div>
     </div>
     <div class="bcard">
       <div class="bcard-emoji">📊</div>
@@ -640,7 +707,7 @@ footer{padding:32px clamp(20px,4vw,48px);border-top:1px solid var(--line);displa
     <div class="bcard">
       <div class="bcard-emoji">🎓</div>
       <div class="bcard-title">Mejor empleabilidad del alumnado</div>
-      <div class="bcard-desc">Los estudiantes salen con autoconocimiento real y evidencias de sus competencias. Indicador de calidad para el centro.</div>
+      <div class="bcard-desc">Los estudiantes salen con evidencias reales de sus competencias y una narrativa clara de su trayectoria. Indicador de calidad para el centro.</div>
     </div>
   </div>
 </section>
@@ -685,7 +752,7 @@ footer{padding:32px clamp(20px,4vw,48px);border-top:1px solid var(--line);displa
               <div class="week-item"><div class="week-dot" style="background:var(--accent);"></div><span>Sem 6: enviado ✓</span></div>
             </div>
           </div>
-          <button class="btn btn-p btn-s" style="width:100%;justify-content:center;margin-top:12px;font-size:12px;">Mi perfil de autoconocimiento →</button>
+          <button class="btn btn-p btn-s" style="width:100%;justify-content:center;margin-top:12px;font-size:12px;">Mi trayectoria de competencias →</button>
         </div>
       </div>
 
@@ -752,6 +819,14 @@ footer{padding:32px clamp(20px,4vw,48px);border-top:1px solid var(--line);displa
 
     <div class="faq-item">
       <button class="faq-btn" onclick="toggleFaq(this)">
+        <span class="faq-q">¿Esto no va a generar más trabajo para los tutores y orientadores?</span>
+        <span class="faq-arrow">+</span>
+      </button>
+      <div class="faq-body"><p class="faq-a">Es la pregunta correcta, y la respuesta está en el diseño del flujo. Klaizen no alerta de todo — filtra. El alumno registra cada semana, el sistema detecta patrones, y solo genera una alerta cuando algo cambia de forma significativa. El tutor de prácticas valida el contexto con lo que ya sabe del alumno y resuelve la mayoría de los casos con una llamada o un mensaje. Solo los casos que realmente lo necesitan llegan a orientación. Los problemas no desaparecen — pero llegan cuando todavía son pequeños, no cuando ya han explotado. Un caso detectado en semana 3 se resuelve en 10 minutos. El mismo caso detectado en semana 8 puede ser un abandono.</p></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-btn" onclick="toggleFaq(this)">
         <span class="faq-q">¿Necesito implantar un sistema nuevo en el centro?</span>
         <span class="faq-arrow">+</span>
       </button>
@@ -763,7 +838,7 @@ footer{padding:32px clamp(20px,4vw,48px);border-top:1px solid var(--line);displa
         <span class="faq-q">¿Sustituye a los documentos de seguimiento oficiales?</span>
         <span class="faq-arrow">+</span>
       </button>
-      <div class="faq-body"><p class="faq-a">No, y no pretende hacerlo en esta fase. Klaizen convive con los registros oficiales y añade una capa de seguimiento más ágil y de reflexión del alumno. A largo plazo, puede generar los documentos requeridos automáticamente, pero el punto de partida no es reemplazar la burocracia existente sino reducir la que depende de la coordinación manual.</p></div>
+      <div class="faq-body"><p class="faq-a">No, y no pretende hacerlo en esta fase. Klaizen convive con los registros oficiales y añade una capa de seguimiento más ágil y de reflexión del alumno. A largo plazo, puede generar los documentos requeridos automáticamente, pero el punto de partida no es reemplazar la burocracia existente sino reducir la que depende de la coordinación manual — y liberar tiempo para lo que importa: la orientación real del alumno.</p></div>
     </div>
 
     <div class="faq-item">
@@ -795,7 +870,7 @@ footer{padding:32px clamp(20px,4vw,48px);border-top:1px solid var(--line);displa
         <span class="faq-q">¿Solo vale para FP? ¿Sirve para otras etapas?</span>
         <span class="faq-arrow">+</span>
       </button>
-      <div class="faq-body"><p class="faq-a">La hipótesis actual está centrada en FCT y FP Dual porque es donde el problema de coordinación y el potencial de autoconocimiento son más evidentes. Pero el enfoque es extrapolable a bachillerato con prácticas, universidad en prácticas y cualquier modelo de formación en alternancia. Empezamos donde el problema es más agudo.</p></div>
+      <div class="faq-body"><p class="faq-a">La hipótesis actual está centrada en FCT y FP Dual porque es donde el problema de fragmentación de información y el potencial de orientación basada en evidencias son más evidentes. Pero el enfoque es extrapolable a bachillerato con prácticas, universidad en prácticas y cualquier modelo de formación en alternancia. Empezamos donde el problema es más agudo.</p></div>
     </div>
 
     <div class="faq-item">
@@ -803,7 +878,7 @@ footer{padding:32px clamp(20px,4vw,48px);border-top:1px solid var(--line);displa
         <span class="faq-q">¿Esto es una plataforma de analítica educativa?</span>
         <span class="faq-arrow">+</span>
       </button>
-      <div class="faq-body"><p class="faq-a">No. Los datos son una consecuencia, no el punto de partida. Klaizen existe para simplificar el seguimiento, mejorar la comunicación y ayudar al alumno a reflexionar sobre su experiencia. Si eso genera datos útiles para el centro, perfecto — pero no construimos sobre la premisa de "vamos a darle datos a los centros". Construimos sobre "vamos a hacer las prácticas más fáciles y más útiles para todos".</p></div>
+      <div class="faq-body"><p class="faq-a">No en el sentido tradicional. Klaizen no parte de la analítica — parte de simplificar el seguimiento y ayudar al alumno a reflexionar sobre su experiencia. Pero cuando eso funciona, genera algo valioso: un historial real de trayectorias que el centro puede usar para orientar mejor, detectar riesgos antes y tomar mejores decisiones sobre empresas y asignaciones. Los datos son una consecuencia natural de hacer bien el seguimiento.</p></div>
     </div>
 
   </div>
@@ -816,10 +891,10 @@ footer{padding:32px clamp(20px,4vw,48px);border-top:1px solid var(--line);displa
   <div class="inner">
     <div class="cta-inner reveal">
       <div class="cta-h">¿Tu centro gestiona prácticas<br>con correos y Excel?<br><em>Hay una forma mejor.</em></div>
-      <p class="cta-sub">Klaizen reduce el trabajo de coordinación y convierte el seguimiento de prácticas en conocimiento útil: qué empresas funcionan, qué demandan y qué perfiles necesitan. Sin burocracia extra. Sin trabajo adicional para el tutor.</p>
+      <p class="cta-sub">Klaizen reduce el trabajo de coordinación y convierte el seguimiento de prácticas en conocimiento útil: qué empresas funcionan, qué demandan y qué perfiles necesitan. Sin burocracia extra. Sin trabajo adicional para el tutor. Y con el tiempo, aprenderás qué experiencias, empresas y trayectorias producen mejores resultados para tu alumnado.</p>
       <div class="cta-btns">
         <button class="btn btn-white btn-xl" onclick="openModal()">Solicitar acceso al piloto →</button>
-        <button class="btn btn-outline-white btn-lg" onclick="scrollTo('como-funciona')">Revisar cómo funciona</button>
+        <button class="btn btn-outline-white btn-lg" onclick="scrollToSection('como-funciona')">Revisar cómo funciona</button>
       </div>
       <p class="cta-note">También respondemos por email: appklaizen@gmail.com</p>
     </div>
@@ -841,7 +916,7 @@ footer{padding:32px clamp(20px,4vw,48px);border-top:1px solid var(--line);displa
   <div class="modal">
     <button class="modal-close" onclick="closeModal()">✕</button>
     <div id="form-view">
-      <div class="modal-eyebrow">Acceso anticipado</div>
+      <div class="modal-eyebrow">Piloto FP Dual / FCT</div>
       <h2 class="modal-h">Hablamos en 20 minutos.</h2>
       <p class="modal-sub">Cuéntanos cómo coordináis las prácticas hoy. Si Klaizen encaja con vuestra realidad, os invitamos al piloto.</p>
       <div class="modal-form">
@@ -921,7 +996,7 @@ footer{padding:32px clamp(20px,4vw,48px);border-top:1px solid var(--line);displa
 
 <script>
 /* ── SCROLL UTILS ── */
-function scrollTo(id){
+function scrollToSection(id){
   document.getElementById(id)?.scrollIntoView({behavior:'smooth'});
 }
 
